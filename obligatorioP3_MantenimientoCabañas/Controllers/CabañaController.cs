@@ -51,6 +51,7 @@ namespace obligatorioP3_MantenimientoCabañas.Controllers
         {
             try
             {
+                
                 return RedirectToAction(nameof(Index));
             }
             catch
