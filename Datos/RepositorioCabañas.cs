@@ -7,7 +7,31 @@ using Dominio.EntidadesNegocio;
 
 namespace Datos
 {
-    internal class RepositorioCabañas : IRepositorio<Cabaña>
+     public class RepositorioCabañas : IRepositorioCabañas
     {
+        public void Add(Cabaña obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Cabaña> FindAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FindById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Cabaña obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
