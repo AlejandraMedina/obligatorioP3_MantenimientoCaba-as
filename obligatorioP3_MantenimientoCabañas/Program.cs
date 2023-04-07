@@ -1,4 +1,10 @@
-namespace obligatorioP3_MantenimientoCabañas
+using Datos.Repositorios;
+using PresentacionMVC.Controllers;
+using Dominio.InterfacesRespositorios;
+using Aplicacion;
+
+
+namespace PresentacionMVC
 {
     public class Program
     {
@@ -8,6 +14,11 @@ namespace obligatorioP3_MantenimientoCabañas
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            //AGREGAR INFORMACIÓN PARA LA INYECCIÓN DE DEPENDENCIAS AUTOMÁTICA:
+            builder.Services.AddScoped <IRepositorioCabañas, RepositorioCabañas>();
+            builder.Services.AddScoped<IAltaCabaña, AltaCabaña>();
+            builder.Services.AddScoped<IListadoCabañas, ListadoCabañas>();
 
             var app = builder.Build();
 
@@ -28,7 +39,8 @@ namespace obligatorioP3_MantenimientoCabañas
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            pattern: "{controller=Cabaña}/{action=Create}/{id?}");
+    
 
             app.Run();
         }

@@ -2,7 +2,7 @@
 using obligatorioP3_MantenimientoCabañas.Models;
 using System.Diagnostics;
 
-namespace obligatorioP3_MantenimientoCabañas.Controllers
+namespace PresentacionMVC.Controllers
 {
     public class HomeController : Controller
     {

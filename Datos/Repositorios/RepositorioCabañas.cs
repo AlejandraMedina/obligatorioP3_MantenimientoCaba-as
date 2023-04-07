@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio.EntidadesNegocio;
+using Dominio.InterfacesRespositorios;
 
-namespace Datos
+namespace Datos.Repositorios
 {
-     public class RepositorioCabañas : IRepositorioCabañas
+    public class RepositorioCabañas : IRepositorioCabañas
     {
         public void Add(Cabaña obj)
         {
@@ -19,7 +20,7 @@ namespace Datos
             throw new NotImplementedException();
         }
 
-        public void FindById(int id)
+        public Cabaña FindById(int id)
         {
             throw new NotImplementedException();
         }
@@ -33,5 +34,9 @@ namespace Datos
         {
             throw new NotImplementedException();
         }
+
+
+
+
     }
 }
