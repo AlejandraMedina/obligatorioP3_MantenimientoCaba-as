@@ -8,6 +8,7 @@ namespace Dominio.EntidadesNegocio
 {
     public class Cabaña
     {
+        public int id { get; set; }
         public string Nombre { get; }
         public int NumHabitacion { get; }
         public Tipo Tipo { get; set; }

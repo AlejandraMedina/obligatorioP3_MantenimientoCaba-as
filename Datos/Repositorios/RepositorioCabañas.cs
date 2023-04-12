@@ -12,6 +12,7 @@ namespace Datos.Repositorios
     {
         public void Add(Cabaña obj)
         {
+           
             throw new NotImplementedException();
         }
 

@@ -2,7 +2,8 @@ using Datos.Repositorios;
 using PresentacionMVC.Controllers;
 using Dominio.InterfacesRespositorios;
 using Aplicacion;
-
+using Datos.EF;
+using Microsoft.EntityFrameworkCore;
 
 namespace PresentacionMVC
 {
@@ -19,6 +20,14 @@ namespace PresentacionMVC
             builder.Services.AddScoped <IRepositorioCabañas, RepositorioCabañas>();
             builder.Services.AddScoped<IAltaCabaña, AltaCabaña>();
             builder.Services.AddScoped<IListadoCabañas, ListadoCabañas>();
+
+            var configurationBuilder = new ConfigurationBuilder();
+            configurationBuilder.AddJsonFile("appsettings.json", false, true);
+            var configuration = configurationBuilder.Build();
+
+            string strCon = configuration.GetConnectionString("MiConexion");
+
+            builder.Services.AddDbContext<MantenimientoCabañaContext>(options => options.UseSqlServer(strCon));
 
             var app = builder.Build();
 
