@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Datos.EF;
 using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRespositorios;
+using Dominio.ExcepcionesPropias;
 
 namespace Datos.Repositorios
 {

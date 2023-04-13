@@ -75,12 +75,12 @@ namespace PresentacionMVC.Controllers
         // POST: CabañasController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Cabaña t)
+        public ActionResult Edit(int id, Cabaña c)
         {
             try
             {
-               //c.Validar();
-              // Repo.Update(t);
+               c.Validar();
+               //Repo.Update(c);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -100,16 +100,9 @@ namespace PresentacionMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            try
-            {
-                //Repo.Remove(id);
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                ViewBag.Mensaje = "No se pudo eliminar la cabaña";
-                return View();
-            }
+           // Cabaña c = Repo.FindById(id);
+           // return View(c);
+            return View();
         }
     }
 }
