@@ -3,9 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRespositorios;
 using Aplicacion;
-
-//using Negocio.ExcepcionesPropias;
-//using Aplicacion;
+using Dominio.ExcepcionesPropias;
+using Aplicacion;
 
    
 
@@ -40,39 +39,31 @@ namespace PresentacionMVC.Controllers
         }
 
         // GET: CabañasController/Create
-        //public ActionResult Create()
-        //{
-         //   return View();
-       // }
-
-
-
-        
-
-
-        // GET: TemasController/Create
-        public ActionResult Create()
+        public ActionResult CreateCabaña()
         {
             return View();
         }
 
 
+
+
+
         // POST: CabañasController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Cabaña c)
+        public ActionResult CreateCabaña (Cabaña c)
         {
             try
             {
-                // c.Validar();
+                c.Validar();
                 AltaCabaña.Alta(c);
                 return RedirectToAction(nameof(Index));
             }
-            //catch (NombreCabañaInvalidoException ex)
-            //{
-            //    ViewBag.Mensaje = ex.Message;
-            //    return View();
-            //}
+            catch (NombreCabañaInvalidoException ex)
+            {
+                ViewBag.Mensaje = ex.Message;
+                return View();
+            }
             catch (Exception ex)
             {
                 ViewBag.Mensaje = "Oops! Ocurrió un error inesperado";
@@ -89,7 +80,7 @@ namespace PresentacionMVC.Controllers
             try
             {
                //c.Validar();
-                //Repo.Update(t);
+              // Repo.Update(t);
                 return RedirectToAction(nameof(Index));
             }
             catch

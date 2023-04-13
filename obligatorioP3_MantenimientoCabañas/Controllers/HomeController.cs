@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using obligatorioP3_MantenimientoCabañas.Models;
+using PresentacionMVC.Models;
 using System.Diagnostics;
 
 namespace PresentacionMVC.Controllers

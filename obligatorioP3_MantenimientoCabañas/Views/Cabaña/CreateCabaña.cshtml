@@ -1,0 +1,45 @@
+﻿@model PresentacionMVC.Models.AltaCabañaViewModel
+
+@{
+    ViewData["Title"] = "CreateCabaña";
+}
+
+<h1>Crear Cabaña</h1>
+
+
+<hr/>
+<div>@ViewBag.Mensaje</div>
+<hr/>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateCabaña">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+         <div class="form-group">
+                <label asp-for="cabaña.Nombre" class="control-label"></label>
+                <input asp-for="cabaña.Nombre" class="form-control" />
+                <span asp-validation-for="cabaña.Nombre" class="text-danger"></span>
+         </div>
+
+            <div class="form-group">
+                <label asp-for="cabaña.NumHabitacion" class="control-label"></label>
+                <input asp-for="cabaña.NumHabitacion" class="form-control" />
+                <span asp-validation-for="cabaña.NumHabitacion" class="text-danger"></span>
+            </div>
+      
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver al Inicio</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

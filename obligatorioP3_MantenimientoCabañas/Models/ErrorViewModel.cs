@@ -1,4 +1,4 @@
-namespace obligatorioP3_MantenimientoCabañas.Models
+namespace PresentacionMVC.Models
 {
     public class ErrorViewModel
     {

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dominio.InterfacesDominio;
+using Dominio.ExcepcionesPropias;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Dominio.EntidadesNegocio
 {
-    public class Cabaña
+    public class Cabaña : IValidable , IComparable<Cabaña>
     {
         public int id { get; set; }
-        public string Nombre { get; }
+        public string? Nombre { get; }
         public int NumHabitacion { get; }
         public Tipo Tipo { get; set; }
         public float Costo { get; set; }
@@ -19,5 +21,27 @@ namespace Dominio.EntidadesNegocio
         public int PersonasMax { get; set; }
         public string Foto { get; set; }
         public int Mantenimiento { get; set; }
+
+        public void Validar()
+        {
+            if (string.IsNullOrEmpty(Nombre))
+            {
+                throw new NombreCabañaInvalidoException("El nombre no puede ser nulo o vacío");
+            }
+            if (Nombre.Length < 3)
+            {
+                throw new NombreCabañaInvalidoException("El nombre no puede tener menos de 3 caracteres");
+            }
+            if (Nombre.Length > 30)
+            {
+                throw new NombreCabañaInvalidoException("El nombre no puede tener más de 128 caracteres");
+            }
+        }
+
+
+        public int CompareTo(Cabaña other)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
