@@ -24,7 +24,7 @@ namespace Datos.Repositorios
             public void Add(Tipo obj)
             {
                 //obj.Validar();
-               // Contexto.Tipo.Add(obj);
+                Contexto.Tipos.Add(obj);
                 Contexto.SaveChanges();
             }
 
@@ -35,13 +35,20 @@ namespace Datos.Repositorios
 
             public Tipo FindById(int id)
             {
-                throw new NotImplementedException();
+            Tipo buscado = Contexto.Tipos.Find(id);
+
+            if (buscado == null)
+            {
+                throw new Exception("No existe el tipo con id " + id);
+            }
+
+            return buscado;
             }
 
             public void Remove(int id)
             {
-               // Tipo aBorrar = this.FindById(id);
-               // Contexto.Tipo.Remove(aBorrar);
+                Tipo aBorrar = this.FindById(id);
+                Contexto.Tipos.Remove(aBorrar);
                 Contexto.SaveChanges();
             }
 
@@ -52,7 +59,13 @@ namespace Datos.Repositorios
 
             Tipo IRepositorio<Tipo>.FindById(int id)
             {
-                throw new NotImplementedException();
+                Tipo buscado = Contexto.Tipos.Find(id);
+                if (buscado == null)
+                {
+                    throw new Exception("No existe el tipo con id " + id);
+                }
+
+                return buscado;
             }
         }
 }

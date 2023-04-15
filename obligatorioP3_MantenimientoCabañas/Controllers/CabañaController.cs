@@ -6,6 +6,7 @@ using Aplicacion;
 using Dominio.ExcepcionesPropias;
 using PresentacionMVC.Models;
 using System.Globalization;
+using Datos.Repositorios;
 
 namespace PresentacionMVC.Controllers
 {
@@ -16,15 +17,15 @@ namespace PresentacionMVC.Controllers
 
         public IRepositorio<Cabaña> RepoCabañas { get; set; }
 
-
-       
+        public IRepositorio<Tipo> RepoTipo { get; set; }
 
         public IWebHostEnvironment WHE { get; set; }
 
-        public CabañaController(IListadoTipos listadoTipos, IRepositorio<Cabaña> repo, IWebHostEnvironment whe)
+        public CabañaController(IListadoTipos listadoTipos, IRepositorio<Cabaña> repo, IWebHostEnvironment whe, IRepositorio<Tipo> repoTipo)
         {
             ListadoTipos = listadoTipos;
-            RepoCabañas = repo;     
+            RepoCabañas = repo;
+            RepoTipo = repoTipo;
             WHE = whe;      
         }
 
@@ -74,6 +75,7 @@ namespace PresentacionMVC.Controllers
         {
             try
             {
+               
 
                 string rutaWwwRoot = WHE.WebRootPath;
                 string rutaCarpeta = Path.Combine(rutaWwwRoot, "Imagenes");
@@ -87,23 +89,38 @@ namespace PresentacionMVC.Controllers
                 //mejor si lo podemos validar en la vista así no manda el post
 
                 string nomArchivo = vm.Cabaña.Nombre + "_001." + extension;
+                //AltaCabañaViewModel vm2 = new AltaCabañaViewModel();
 
+                //vm2.Tipos = ListadoTipos.ObtenerListado().ToList();
+                //vm.Tipos = vm2.Tipos;
 
                 //Genero la ruta de la carpeta que guardaré en la base de datos que es a  donde esta guardada la imagen 
 
                 string rutaArchivo = Path.Combine(rutaCarpeta, nomArchivo);
-
-                vm.Cabaña.Tipo.id = vm.IdTipoSeleccionado;
+                
                 vm.Cabaña.Foto = nomArchivo;
 
-                RepoCabañas.Add(vm.Cabaña);
-                //Guardar la imagen
 
+                //Traigo el tipo que selecciono
+
+                Tipo t = RepoTipo.FindById(vm.IdTipoSeleccionado);
+
+                Tipo tipo = new Tipo();
+
+                tipo = t;
+
+                vm.Cabaña.Tipo = tipo;
+
+                RepoCabañas.Add(vm.Cabaña);
+
+                //Guardar la imagen
                 FileStream fs = new FileStream(rutaArchivo, FileMode.Create);
                 vm.Foto.CopyTo(fs);
+                
 
                 return RedirectToAction(nameof(Index));
             }
+
             catch (NombreCabañaInvalidoException ex)
             {
                 ViewBag.Mensaje = ex.Message;

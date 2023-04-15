@@ -8,7 +8,7 @@ namespace Dominio.EntidadesNegocio
 {
     public class Mantenimiento
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public DateTime Fecha { get; set; }
         public string Descripcion { get; set; }
         public double CostoMant { get; set; }
