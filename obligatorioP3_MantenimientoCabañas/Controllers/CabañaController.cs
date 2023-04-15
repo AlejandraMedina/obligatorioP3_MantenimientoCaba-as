@@ -89,17 +89,17 @@ namespace PresentacionMVC.Controllers
                 //mejor si lo podemos validar en la vista así no manda el post
 
                 string nomArchivo = vm.Cabaña.Nombre + "_001." + extension;
-                //AltaCabañaViewModel vm2 = new AltaCabañaViewModel();
+                
 
-                //vm2.Tipos = ListadoTipos.ObtenerListado().ToList();
-                //vm.Tipos = vm2.Tipos;
+                List<Tipo> tipos = ListadoTipos.ObtenerListado().ToList();
+               
 
                 //Genero la ruta de la carpeta que guardaré en la base de datos que es a  donde esta guardada la imagen 
 
                 string rutaArchivo = Path.Combine(rutaCarpeta, nomArchivo);
                 
                 vm.Cabaña.Foto = nomArchivo;
-
+                vm.Tipos = tipos;
 
                 //Traigo el tipo que selecciono
 
