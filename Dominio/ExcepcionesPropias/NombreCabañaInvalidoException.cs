@@ -10,12 +10,9 @@ namespace Dominio.ExcepcionesPropias
     {
             
         public NombreCabañaInvalidoException() { }
-        public NombreCabañaInvalidoException(string mensaje) {
-           
-        
+        public NombreCabañaInvalidoException(string mensaje) {          
         }
         public NombreCabañaInvalidoException(string mensaje, Exception inner)  {
-        
         }
 
     }

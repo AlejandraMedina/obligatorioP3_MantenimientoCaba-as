@@ -24,7 +24,7 @@ namespace PresentacionMVC.Controllers
         public CabañaController(IListadoTipos listadoTipos, IRepositorio<Cabaña> repo, IWebHostEnvironment whe)
         {
             ListadoTipos = listadoTipos;
-            RepoCabañas = repo;
+            RepoCabañas = repo;     
             WHE = whe;      
         }
 
@@ -61,6 +61,7 @@ namespace PresentacionMVC.Controllers
             AltaCabañaViewModel vm = new AltaCabañaViewModel();
             
             vm.Tipos = ListadoTipos.ObtenerListado().ToList();
+
             return View(vm);
         }
 
@@ -92,7 +93,7 @@ namespace PresentacionMVC.Controllers
 
                 string rutaArchivo = Path.Combine(rutaCarpeta, nomArchivo);
 
-                //vm.Cabaña.Tipo.id = vm.IdTipoSeleccionado;
+                vm.Cabaña.Tipo.id = vm.IdTipoSeleccionado;
                 vm.Cabaña.Foto = nomArchivo;
 
                 RepoCabañas.Add(vm.Cabaña);

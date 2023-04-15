@@ -7,10 +7,10 @@
 <h1>Crear Cabaña</h1>
 
 
-<hr/>
-<div>@ViewBag.Mensaje</div>
-<hr/>
 
+<hr />
+<div>@ViewBag.Mensaje</div>
+<hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="CreateCabaña"  enctype="multipart/form-data">
@@ -28,12 +28,22 @@
                 <span asp-validation-for="Cabaña.NumHabitacion" class="text-danger"></span>
             </div>
 
+            <div class="form-group">
+                <select name="IdTipoSeleccionado" id="tipos">
+                    @foreach (var tipo in Model.Tipos)
+                    {
+                        <option value="@tipo.id">@tipo.Nombre</option>
+                    }
+                </select>
+            </div>
 
             <div class="form-group">
                 <label asp-for="Foto" class="control-label"></label>
                 <input asp-for="Foto" class="form-control" />
                 <span asp-validation-for="Foto" class="text-danger"></span>
             </div>
+
+
 
       
             <div class="form-group">

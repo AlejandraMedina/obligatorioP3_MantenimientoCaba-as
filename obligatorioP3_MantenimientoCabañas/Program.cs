@@ -22,6 +22,7 @@ namespace PresentacionMVC
             builder.Services.AddScoped<IRepositorioCabañas, RepositorioCabañas>();
             builder.Services.AddScoped<IRepositorioTipos, RepositorioTipos>();
             builder.Services.AddScoped<IAltaCabaña, AltaCabaña>();
+            builder.Services.AddScoped<IAltaTipo, AltaTipo>();
             builder.Services.AddScoped<IListadoCabañas, ListadoCabañas>();
             builder.Services.AddScoped<IListadoTipos, ListadoTipos>();
             
