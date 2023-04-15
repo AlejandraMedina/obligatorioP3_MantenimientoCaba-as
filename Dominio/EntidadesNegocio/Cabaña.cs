@@ -29,7 +29,7 @@ namespace Dominio.EntidadesNegocio
         {
             if (string.IsNullOrEmpty(Nombre))
             {
-                throw new NombreCabañaInvalidoException("El nombre no puede ser nulo o vacío");
+                throw new NombreCabañaInvalidoException("El dsfsd no puede ser nulo o vacío");
             }
             if (Nombre.Length < 3)
             {
