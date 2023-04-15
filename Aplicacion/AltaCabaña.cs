@@ -14,6 +14,7 @@ namespace Aplicacion
 
         public AltaCabaña(IRepositorioCabañas repo)
         {
+            
             Repo = repo;
         }
         public void Alta(Cabaña c)

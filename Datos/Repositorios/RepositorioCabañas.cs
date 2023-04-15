@@ -34,7 +34,13 @@ namespace Datos.Repositorios
 
         public Cabaña FindById(int id)
         {
-            throw new NotImplementedException();
+            //Cabaña buscada = Contexto.Cabaña.Find(id);
+            //if (buscada == null)
+            //{
+               throw new Exception("No existe el tema con id " + id);
+            //}
+
+            //return buscada;
         }
 
         public void Remove(int id)

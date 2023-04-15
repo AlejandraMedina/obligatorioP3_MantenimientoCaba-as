@@ -24,11 +24,8 @@ namespace Datos.Migrations
 
             modelBuilder.Entity("Dominio.EntidadesNegocio.Cabaña", b =>
                 {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<float>("Costo")
                         .HasColumnType("real");
@@ -44,10 +41,16 @@ namespace Datos.Migrations
                     b.Property<bool>("Habilitada")
                         .HasColumnType("bit");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Jacuzzi")
                         .HasColumnType("bit");
 
                     b.Property<int>("Mantenimiento")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumHabitacion")
                         .HasColumnType("int");
 
                     b.Property<int>("PersonasMax")
@@ -56,7 +59,7 @@ namespace Datos.Migrations
                     b.Property<int>("Tipoid")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Nombre");
 
                     b.HasIndex("Tipoid");
 
@@ -92,8 +95,8 @@ namespace Datos.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<int>("Cabaniaid")
-                        .HasColumnType("int");
+                    b.Property<string>("CabaniaNombre")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<double>("CostoMant")
                         .HasColumnType("float");
@@ -111,7 +114,7 @@ namespace Datos.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("Cabaniaid");
+                    b.HasIndex("CabaniaNombre");
 
                     b.ToTable("Mantenimientos");
                 });
@@ -152,9 +155,7 @@ namespace Datos.Migrations
                 {
                     b.HasOne("Dominio.EntidadesNegocio.Cabaña", "Cabania")
                         .WithMany()
-                        .HasForeignKey("Cabaniaid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CabaniaNombre");
 
                     b.Navigation("Cabania");
                 });

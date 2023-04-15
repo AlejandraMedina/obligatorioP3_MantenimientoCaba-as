@@ -5,14 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Dominio.EntidadesNegocio
 {
     public class Cabaña : IValidable , IComparable<Cabaña>
     {
-        public int id { get; set; }
-        public string? Nombre { get; }
-        public int NumHabitacion { get; }
+        public int Id { get; set; }
+
+        [Key]
+        public  string Nombre { get; set; }
+        public int NumHabitacion { get; set; }
         public Tipo Tipo { get; set; }
         public float Costo { get; set; }
         public string Descripcion { get; set; }

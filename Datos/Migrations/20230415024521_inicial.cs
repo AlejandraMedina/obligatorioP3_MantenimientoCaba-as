@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Datos.Migrations
 {
     /// <inheritdoc />
-    public partial class inicialObligatorio : Migration
+    public partial class inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -43,8 +43,9 @@ namespace Datos.Migrations
                 name: "Cabañas",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    NumHabitacion = table.Column<int>(type: "int", nullable: false),
                     Tipoid = table.Column<int>(type: "int", nullable: false),
                     Costo = table.Column<float>(type: "real", nullable: false),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -56,7 +57,7 @@ namespace Datos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cabañas", x => x.id);
+                    table.PrimaryKey("PK_Cabañas", x => x.Nombre);
                     table.ForeignKey(
                         name: "FK_Cabañas_Tipos_Tipoid",
                         column: x => x.Tipoid,
@@ -75,17 +76,16 @@ namespace Datos.Migrations
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CostoMant = table.Column<double>(type: "float", nullable: false),
                     Funcionario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Cabaniaid = table.Column<int>(type: "int", nullable: false)
+                    CabaniaNombre = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Mantenimientos", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Mantenimientos_Cabañas_Cabaniaid",
-                        column: x => x.Cabaniaid,
+                        name: "FK_Mantenimientos_Cabañas_CabaniaNombre",
+                        column: x => x.CabaniaNombre,
                         principalTable: "Cabañas",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Nombre");
                 });
 
             migrationBuilder.CreateIndex(
@@ -94,9 +94,9 @@ namespace Datos.Migrations
                 column: "Tipoid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Mantenimientos_Cabaniaid",
+                name: "IX_Mantenimientos_CabaniaNombre",
                 table: "Mantenimientos",
-                column: "Cabaniaid");
+                column: "CabaniaNombre");
         }
 
         /// <inheritdoc />

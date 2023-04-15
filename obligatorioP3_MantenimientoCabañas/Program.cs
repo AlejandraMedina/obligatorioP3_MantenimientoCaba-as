@@ -4,6 +4,8 @@ using Dominio.InterfacesRespositorios;
 using Aplicacion;
 using Datos.EF;
 using Microsoft.EntityFrameworkCore;
+using Dominio.InterfacesRepositorios;
+using Dominio.EntidadesNegocio;
 
 namespace PresentacionMVC
 {
@@ -17,9 +19,16 @@ namespace PresentacionMVC
             builder.Services.AddControllersWithViews();
 
             //AGREGAR INFORMACIÓN PARA LA INYECCIÓN DE DEPENDENCIAS AUTOMÁTICA:
-            builder.Services.AddScoped <IRepositorioCabañas, RepositorioCabañas>();
+            builder.Services.AddScoped<IRepositorioCabañas, RepositorioCabañas>();
+            builder.Services.AddScoped<IRepositorioTipos, RepositorioTipos>();
             builder.Services.AddScoped<IAltaCabaña, AltaCabaña>();
             builder.Services.AddScoped<IListadoCabañas, ListadoCabañas>();
+            builder.Services.AddScoped<IListadoTipos, ListadoTipos>();
+            
+            builder.Services.AddScoped<IRepositorio<Cabaña>, RepositorioCabañas>();
+
+
+
 
             var configurationBuilder = new ConfigurationBuilder();
             configurationBuilder.AddJsonFile("appsettings.json", false, true);
@@ -48,7 +57,7 @@ namespace PresentacionMVC
 
             app.MapControllerRoute(
                 name: "default",
-            pattern: "{controller=Cabaña}/{action=CreateCabaña}/{nombre?}");
+            pattern: "{controller=Cabaña}/{action=CreateCabaña}/{id?}");
     
 
             app.Run();

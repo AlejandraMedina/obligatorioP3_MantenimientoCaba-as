@@ -5,10 +5,11 @@ namespace PresentacionMVC.Models
   
         public class AltaCabañaViewModel
         {
-            public Cabaña cabaña { get; set; }
-            public List<Tipo> tipos { get; set; }
+            public Cabaña Cabaña { get; set; }
+            public List<Tipo> Tipos { get; set; }
             public int IdTipoSeleccionado { get; set; }
+            public IFormFile Foto { get; set; }
 
-    }
+        }
     
 }
