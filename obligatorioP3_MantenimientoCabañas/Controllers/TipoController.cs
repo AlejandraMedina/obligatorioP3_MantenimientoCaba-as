@@ -47,6 +47,7 @@ namespace PresentacionMVC.Controllers
             {
                 //t.Validar();
                 AltaTipo.Alta(t);
+                
                 return RedirectToAction(nameof(Index));
             }
             catch (NombreTipoInvalidoException ex)
