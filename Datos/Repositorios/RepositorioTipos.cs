@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Datos.Repositorios
 {
@@ -54,13 +55,14 @@ namespace Datos.Repositorios
 
             public void Update(Tipo obj)
             {
-                throw new NotImplementedException();
+            Contexto.Update(obj);
+                Contexto.SaveChanges();
             }
 
             Tipo IRepositorio<Tipo>.FindById(int id)
             {
                 Tipo buscado = Contexto.Tipos.Find(id);
-                if (buscado == null)
+                if(buscado == null)
                 {
                     throw new Exception("No existe el tipo con id " + id);
                 }

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Dominio.EntidadesNegocio;
-
 using Aplicacion;
 using Dominio.ExcepcionesPropias;
+using NuGet.Protocol;
 
 namespace PresentacionMVC.Controllers
 {
@@ -12,11 +12,17 @@ namespace PresentacionMVC.Controllers
 
         IListadoTipos ListadoTipos { get; set; }
         IAltaTipo AltaTipo { get; set; }
+        IModificarTipo ModificarTipo { get; set; }
 
-        public TipoController(IListadoTipos listadoTipos, IAltaTipo altaTipo)
-        {
+        IEliminarTipo EliminarTipo { get; set; }
+
+        public TipoController(IListadoTipos listadoTipos, IAltaTipo altaTipo, IModificarTipo modificarTipo, IEliminarTipo eliminarTipo)
+        { 
+        
             ListadoTipos = listadoTipos;
             AltaTipo = altaTipo;
+            ModificarTipo = modificarTipo;
+            EliminarTipo = eliminarTipo;
         }
 
         // GET: TipoController
@@ -63,18 +69,19 @@ namespace PresentacionMVC.Controllers
         }
 
         // GET: TipoController/Edit/5
-        public ActionResult Edit(int id)
-        {
+        public ActionResult EditTipo(int id)
+        {                      
             return View();
         }
 
         // POST: TipoController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult EditTipo(int id, Tipo t)
         {
             try
             {
+                EliminarTipo.Eliminar(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -96,6 +103,7 @@ namespace PresentacionMVC.Controllers
         {
             try
             {
+                EliminarTipo.Eliminar(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

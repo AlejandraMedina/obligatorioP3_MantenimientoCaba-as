@@ -1,11 +1,11 @@
-﻿@model IEnumerable<Dominio.EntidadesNegocio.Tipo>
+﻿@model PresentacionMVC.Models.AltaTipoViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Tipos disponibles de cabañas</h1>
-
+<div>@ViewBag.Mensaje</div>
 <p>
     <a asp-action="CreateTipo">Crear nuevo </a>
 </p>
@@ -13,19 +13,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.tipo.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
+                @Html.DisplayNameFor(model => model.tipo.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
+                @Html.DisplayNameFor(model => model.tipo.Descripcion)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Tipos)
         {
             <tr>
                 <td>
@@ -38,8 +38,8 @@
                     @Html.DisplayFor(modelItem => item.Descripcion)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |                     
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Edit", "Edit", new {/* id = item.Id*/ })                     
+                    @Html.ActionLink("Delete", "Delete", new {/* id = item.Id*/ })
                 </td>
             </tr>
         }

@@ -15,38 +15,39 @@ namespace Datos.Migrations
                 name: "Funcionarios",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Mail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Contrasenia = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Funcionarios", x => x.id);
+                    table.PrimaryKey("PK_Funcionarios", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Tipos",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tipos", x => x.id);
+                    table.PrimaryKey("PK_Tipos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Cabañas",
                 columns: table => new
                 {
-                    Nombre = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NumHabitacion = table.Column<int>(type: "int", nullable: false),
-                    Tipoid = table.Column<int>(type: "int", nullable: false),
+                    TipoId = table.Column<int>(type: "int", nullable: false),
                     Costo = table.Column<float>(type: "real", nullable: false),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Jacuzzi = table.Column<bool>(type: "bit", nullable: false),
@@ -57,12 +58,12 @@ namespace Datos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cabañas", x => x.Nombre);
+                    table.PrimaryKey("PK_Cabañas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cabañas_Tipos_Tipoid",
-                        column: x => x.Tipoid,
+                        name: "FK_Cabañas_Tipos_TipoId",
+                        column: x => x.TipoId,
                         principalTable: "Tipos",
-                        principalColumn: "id",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -70,33 +71,34 @@ namespace Datos.Migrations
                 name: "Mantenimientos",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CostoMant = table.Column<double>(type: "float", nullable: false),
                     Funcionario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CabaniaNombre = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    CabaniaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Mantenimientos", x => x.id);
+                    table.PrimaryKey("PK_Mantenimientos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Mantenimientos_Cabañas_CabaniaNombre",
-                        column: x => x.CabaniaNombre,
+                        name: "FK_Mantenimientos_Cabañas_CabaniaId",
+                        column: x => x.CabaniaId,
                         principalTable: "Cabañas",
-                        principalColumn: "Nombre");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cabañas_Tipoid",
+                name: "IX_Cabañas_TipoId",
                 table: "Cabañas",
-                column: "Tipoid");
+                column: "TipoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Mantenimientos_CabaniaNombre",
+                name: "IX_Mantenimientos_CabaniaId",
                 table: "Mantenimientos",
-                column: "CabaniaNombre");
+                column: "CabaniaId");
         }
 
         /// <inheritdoc />

@@ -1,0 +1,36 @@
+﻿@model Dominio.EntidadesNegocio.Cabaña
+
+
+
+<h1>Eliminar</h1>
+
+<h3>Está seguro que desea eliminar esta cabaña?</h3>
+<div>
+    <h4>Cabaña</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Habilitada)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Habilitada)
+        </dd>
+    </dl>
+
+    <form asp-action="DeleteCabaña">
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <a asp-action="Index"></a>
+    </form>
+</div>

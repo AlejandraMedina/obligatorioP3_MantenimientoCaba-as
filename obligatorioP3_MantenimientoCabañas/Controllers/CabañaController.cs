@@ -7,6 +7,7 @@ using Dominio.ExcepcionesPropias;
 using PresentacionMVC.Models;
 using System.Globalization;
 using Datos.Repositorios;
+using System.Collections.Generic;
 
 namespace PresentacionMVC.Controllers
 {
@@ -14,19 +15,25 @@ namespace PresentacionMVC.Controllers
     {
 
         public IListadoTipos ListadoTipos { get; set; }
+        public IListadoCabañas ListadoCabañas { get; set; }
 
         public IRepositorio<Cabaña> RepoCabañas { get; set; }
 
         public IRepositorio<Tipo> RepoTipo { get; set; }
 
+        IAltaCabaña AltaCabaña{ get; set; }
+        IListadoCabañas listadoCabañas { get; set; }
+
         public IWebHostEnvironment WHE { get; set; }
 
-        public CabañaController(IListadoTipos listadoTipos, IRepositorio<Cabaña> repo, IWebHostEnvironment whe, IRepositorio<Tipo> repoTipo)
+        public CabañaController(IListadoTipos listadoTipos, IRepositorio<Cabaña> repo, IWebHostEnvironment whe, IRepositorio<Tipo> repoTipo, IAltaCabaña altaCabaña, IListadoCabañas listadoCabañas)
         {
             ListadoTipos = listadoTipos;
             RepoCabañas = repo;
             RepoTipo = repoTipo;
-            WHE = whe;      
+            WHE = whe;
+            AltaCabaña = altaCabaña;
+            ListadoCabañas = listadoCabañas;
         }
 
 
@@ -45,7 +52,11 @@ namespace PresentacionMVC.Controllers
         // GET: CabañasController
         public ActionResult Index()
         {
-            IEnumerable<Cabaña> cabañas = RepoCabañas.FindAll();
+            IEnumerable<Cabaña> cabañas = ListadoCabañas.ObtenerListado();
+            if (cabañas.Count()==0)
+            {
+                ViewBag.Mensaje = "No hay cabañas disponibles para mostrar";
+            }
             return View(cabañas);
         }
 
@@ -62,7 +73,7 @@ namespace PresentacionMVC.Controllers
             AltaCabañaViewModel vm = new AltaCabañaViewModel();
             
             vm.Tipos = ListadoTipos.ObtenerListado().ToList();
-
+            
             return View(vm);
         }
 
@@ -75,8 +86,6 @@ namespace PresentacionMVC.Controllers
         {
             try
             {
-               
-
                 string rutaWwwRoot = WHE.WebRootPath;
                 string rutaCarpeta = Path.Combine(rutaWwwRoot, "Imagenes");
 
@@ -89,9 +98,7 @@ namespace PresentacionMVC.Controllers
                 //mejor si lo podemos validar en la vista así no manda el post
 
                 string nomArchivo = vm.Cabaña.Nombre + "_001." + extension;
-                
 
-                List<Tipo> tipos = ListadoTipos.ObtenerListado().ToList();
                
 
                 //Genero la ruta de la carpeta que guardaré en la base de datos que es a  donde esta guardada la imagen 
@@ -99,37 +106,28 @@ namespace PresentacionMVC.Controllers
                 string rutaArchivo = Path.Combine(rutaCarpeta, nomArchivo);
                 
                 vm.Cabaña.Foto = nomArchivo;
-                vm.Tipos = tipos;
+  
 
                 //Traigo el tipo que selecciono
 
                 Tipo t = RepoTipo.FindById(vm.IdTipoSeleccionado);
+                vm.Cabaña.Tipo = t;
 
-                Tipo tipo = new Tipo();
-
-                tipo = t;
-
-                vm.Cabaña.Tipo = tipo;
-
-                RepoCabañas.Add(vm.Cabaña);
+                //RepoCabañas.Add(vm.Cabaña);
+                AltaCabaña.Alta(vm.Cabaña);
 
                 //Guardar la imagen
                 FileStream fs = new FileStream(rutaArchivo, FileMode.Create);
                 vm.Foto.CopyTo(fs);
-                
 
                 return RedirectToAction(nameof(Index));
             }
-
-            catch (NombreCabañaInvalidoException ex)
-            {
-                ViewBag.Mensaje = ex.Message;
-                return View();
-            }
             catch (Exception ex)
             {
-                ViewBag.Mensaje = "Oops! Ocurrió un error inesperado";
-                return View();
+                ViewBag.Mensaje = "Oops! Ocurrió un error inesperado";               
+                IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
+                ViewBag.Tipos = tipos;
+                return View(vm);                
             }
         }
 
@@ -137,13 +135,13 @@ namespace PresentacionMVC.Controllers
         // POST: CabañasController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Cabaña c)
+        public ActionResult EditCabaña(int id, Cabaña c)
         {
             try
             {
                c.Validar();
-               //Repo.Update(c);
-                return RedirectToAction(nameof(Index));
+               RepoCabañas.Update(c);
+               return RedirectToAction(nameof(Index));
             }
             catch
             {
@@ -152,18 +150,31 @@ namespace PresentacionMVC.Controllers
         }
 
         // GET: CabañasController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult DeleteCabaña (int Id)
         {
-            return View();
+            AltaCabañaViewModel vm = new AltaCabañaViewModel();
+            Cabaña c = RepoCabañas.FindById(Id);
+            //ViewBag.c = c;
+            return View(c);
         }
 
         // POST: CabañasController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult DeleteCabaña(int Id, IFormCollection collection)
         {
-            Cabaña c = RepoCabañas.FindById(id);
-            return View(c);           
+            
+            try
+            {
+                RepoCabañas.Remove(Id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                ViewBag.Mensaje = "No se pudo eliminar la cabaña.";
+                Cabaña c = RepoCabañas.FindById(Id);
+                return View(c);
+            }
         }
     }
 }

@@ -1,15 +1,13 @@
 ﻿@model PresentacionMVC.Models.AltaCabañaViewModel
 
-@{
-    ViewData["Title"] = "CreateCabaña";
-}
+
+
 
 <h1>Crear Cabaña</h1>
 
 
 
-<hr />
-<div>@ViewBag.Mensaje</div>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -30,8 +28,40 @@
             <div class="form-group">
                 <label asp-for="Cabaña.Descripcion" class="control-label"></label>
                 <input asp-for="Cabaña.Descripcion" class="form-control" />
-                <span asp-validation-for="Cabaña.NumHabitacion" class="text-danger"></span>
+                <span asp-validation-for="Cabaña.Descripcion" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="Cabaña.Costo" class="control-label"></label>
+                <input asp-for="Cabaña.Costo" class="form-control" />
+                <span asp-validation-for="Cabaña.Costo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Cabaña.Mantenimiento" class="control-label"></label>
+                <input asp-for="Cabaña.Mantenimiento" class="form-control" />
+                <span asp-validation-for="Cabaña.Mantenimiento" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Cabaña.PersonasMax" class="control-label"></label>
+                <input asp-for="Cabaña.PersonasMax" class="form-control" />
+                <span asp-validation-for="Cabaña.PersonasMax" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Cabaña.Jacuzzi" /> @Html.DisplayNameFor(model => model.Cabaña.Jacuzzi)
+                </label>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Cabaña.Habilitada" /> @Html.DisplayNameFor(model => model.Cabaña.Habilitada)
+                </label>
+            </div>
+
+
             <hr />
             <div class="form-group">
                 <select name="IdTipoSeleccionado" id="IdTipoSeleccionado">

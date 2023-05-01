@@ -24,8 +24,11 @@ namespace Datos.Migrations
 
             modelBuilder.Entity("Dominio.EntidadesNegocio.Cabaña", b =>
                 {
-                    b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<float>("Costo")
                         .HasColumnType("real");
@@ -41,14 +44,15 @@ namespace Datos.Migrations
                     b.Property<bool>("Habilitada")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Jacuzzi")
                         .HasColumnType("bit");
 
                     b.Property<int>("Mantenimiento")
                         .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NumHabitacion")
                         .HasColumnType("int");
@@ -56,23 +60,23 @@ namespace Datos.Migrations
                     b.Property<int>("PersonasMax")
                         .HasColumnType("int");
 
-                    b.Property<int>("Tipoid")
+                    b.Property<int>("TipoId")
                         .HasColumnType("int");
 
-                    b.HasKey("Nombre");
+                    b.HasKey("Id");
 
-                    b.HasIndex("Tipoid");
+                    b.HasIndex("TipoId");
 
                     b.ToTable("Cabañas");
                 });
 
             modelBuilder.Entity("Dominio.EntidadesNegocio.Funcionario", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Contrasenia")
                         .IsRequired()
@@ -82,21 +86,21 @@ namespace Datos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Funcionarios");
                 });
 
             modelBuilder.Entity("Dominio.EntidadesNegocio.Mantenimiento", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CabaniaNombre")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CabaniaId")
+                        .HasColumnType("int");
 
                     b.Property<double>("CostoMant")
                         .HasColumnType("float");
@@ -112,20 +116,20 @@ namespace Datos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CabaniaNombre");
+                    b.HasIndex("CabaniaId");
 
                     b.ToTable("Mantenimientos");
                 });
 
             modelBuilder.Entity("Dominio.EntidadesNegocio.Tipo", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
@@ -135,7 +139,7 @@ namespace Datos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Tipos");
                 });
@@ -144,7 +148,7 @@ namespace Datos.Migrations
                 {
                     b.HasOne("Dominio.EntidadesNegocio.Tipo", "Tipo")
                         .WithMany()
-                        .HasForeignKey("Tipoid")
+                        .HasForeignKey("TipoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -155,7 +159,9 @@ namespace Datos.Migrations
                 {
                     b.HasOne("Dominio.EntidadesNegocio.Cabaña", "Cabania")
                         .WithMany()
-                        .HasForeignKey("CabaniaNombre");
+                        .HasForeignKey("CabaniaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Cabania");
                 });

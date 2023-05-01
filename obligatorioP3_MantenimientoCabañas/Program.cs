@@ -24,8 +24,7 @@ namespace PresentacionMVC
             builder.Services.AddScoped<IAltaCabaña, AltaCabaña>();
             builder.Services.AddScoped<IAltaTipo, AltaTipo>();
             builder.Services.AddScoped<IListadoCabañas, ListadoCabañas>();
-            builder.Services.AddScoped<IListadoTipos, ListadoTipos>();
-            
+            builder.Services.AddScoped<IListadoTipos, ListadoTipos>();            
             builder.Services.AddScoped<IRepositorio<Cabaña>, RepositorioCabañas>();
             builder.Services.AddScoped<IRepositorio<Tipo>, RepositorioTipos>();
 
@@ -58,8 +57,8 @@ namespace PresentacionMVC
 
             app.MapControllerRoute(
                 name: "default",
-            pattern: "{controller=Cabaña}/{action=CreateCabaña}/{id?}");
-    
+           // pattern: "{controller=Cabaña}/{action=CreateCabaña}/{id?}");
+            pattern: "{controller=Cabaña}/{action=Index}");
 
             app.Run();
         }

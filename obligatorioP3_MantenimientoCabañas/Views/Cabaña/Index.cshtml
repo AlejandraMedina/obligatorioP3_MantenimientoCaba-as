@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Dominio.EntidadesNegocio.Cabaña>
-
 @{
     ViewData["Title"] = "ListadoCabañas";
 }
@@ -7,13 +6,41 @@
 <h1>ListadoCabañas</h1>
 
 <p>
-    <a asp-action="CreateCabaña">Create New</a>
+    <a asp-action="CreateCabaña">Crear Nueva</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumHabitacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonasMax)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Costo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jacuzzi)
+            </th>
+            <th>
+               Tipo
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Habilitada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mantenimiento)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Foto)
             </th>
         </tr>
     </thead>
@@ -25,8 +52,37 @@
                     @Html.DisplayFor(modelItem => item.Nombre)
                 </td>
                 <td>
-                    <img src="/Imagenes/@item.Foto" height="200"/>
-                    
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumHabitacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PersonasMax)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Costo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Jacuzzi)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo.Id) 
+                </td>
+              
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mantenimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Habilitada)
+                </td>
+                <td>
+                    <img src="/Imagenes/@item.Foto" height="200"/>                    
+                </td>
+                <td>
+                    @Html.ActionLink("EditCabaña", "EditCabaña", new {id = item.Id }) |
+                    @Html.ActionLink("DeleteCabaña", "DeleteCabaña", new { id = item.Id})
                 </td>
             </tr>
         }
