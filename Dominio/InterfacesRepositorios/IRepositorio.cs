@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio.EntidadesNegocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace Dominio.InterfacesRespositorios
         void Remove(int id);
         T FindById(int id);
         IEnumerable<T> FindAll();
-        void Update(T obj);
+        void Update(T obj);      
     }
 
 }

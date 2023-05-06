@@ -1,0 +1,42 @@
+﻿@using Dominio.EntidadesNegocio;
+@model PresentacionMVC.Models.LoginUsuarioViewModel
+
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Error
+    </div>
+}
+
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Mensaje
+    </div>
+}
+
+
+<form method="post">
+
+    <input type="email" name="email" placeholder="Email" />
+    <input type="password" name="password" placeholder="Contraseña" />
+    <button type="submit">Acceder</button>
+
+</form>
+
+<br />
+
+
+@if (Context.Session.GetString("rol") == "sinIdentificar")
+{
+    <div>
+        <a href="/seleccion/ListarSelecciones">Listado de Selecciones</a>
+    </div>
+}

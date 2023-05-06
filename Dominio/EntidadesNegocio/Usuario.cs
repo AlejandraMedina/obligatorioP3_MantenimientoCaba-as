@@ -1,51 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Dominio.EntidadesNegocio
 {
-    public abstract class Usuario 
+    public abstract class Usuario : IEquatable<Usuario>
+           
     {
-       
-        public string Mail { get; set; }
+        
+        public int Id { get; set; }
+
+        static int UltIdUsuario;
+        protected string Email { get; set; }
         public string Password { get; set; }
 
-        public int Id { get; private set; }
-
-        private static int numId = 1;
-
-
+        public string rol { get; set; }
 
         public Usuario()
         {
-            Id = numId;
+            Id = UltIdUsuario++;
         }
-
-        public Usuario(string mail, string password)
+        public Usuario(string email, string password, string rol)
         {
-            Id = numId++;
-            Mail = mail;
-            Password = password;
+            this.Id = UltIdUsuario++;
+            this.Email = email;
+            this.Password = password;
+            this.rol = rol;
+            Validar();
         }
 
 
-
-        public override bool Equals(object obj)
+        public void Validar()
         {
-            Usuario unU = obj as Usuario;
-            return Mail == unU.Mail;
+            ValidarEmail();
+            ValidarPassword();
         }
 
-        public override int GetHashCode()
+
+        public void ValidarEmail()
         {
-            return Id;
+            if (string.IsNullOrEmpty(Email))
+            {
+                throw new Exception("Se recibió email sin datos.");
+            }
+            if (!(Email.Contains("@")))
+            {
+                throw new Exception("No se ingresó un mail válido.");
+            }
+            if (Email.Substring(0, 1).Contains("@") || Email.Substring(Email.Length - 1).Contains("@"))
+            {
+                throw new Exception("No se ingresó un formato de mail correcto.");
+            }
         }
+        public void ValidarPassword()
+        {
+            if (string.IsNullOrEmpty(Password))
+            {
+                throw new Exception("Se recibió password sin datos.");
+            }
+            if (Password.Length < 8)
+            {
+                throw new Exception("La contraseña debe contener al menos 8 caracteres.");
+            }
+        }
+
+        public bool Equals([AllowNull] Usuario other)
+        {
+            // TODO: es necesario comparar tambien la contraseña?
+            return (Email.Equals(other.Email) && Password.Equals(other.Password));
+        }
+
+
 
     }
-
-
-
 
 }

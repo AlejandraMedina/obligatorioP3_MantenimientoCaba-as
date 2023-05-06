@@ -29,7 +29,9 @@ namespace PresentacionMVC
             builder.Services.AddScoped<IModificarTipo, ModificarTipo>();
             builder.Services.AddScoped<IRepositorio<Cabaña>, RepositorioCabañas>();
             builder.Services.AddScoped<IRepositorio<Tipo>, RepositorioTipos>();
-
+            builder.Services.AddScoped<IRepositorio<Usuario>, RepositorioUsuarios>();
+            builder.Services.AddScoped<ILoginUsuario, LoginUsuario>();
+            builder.Services.AddScoped<IListadoUsuarios, ListadoUsuarios>();
 
 
             var configurationBuilder = new ConfigurationBuilder();

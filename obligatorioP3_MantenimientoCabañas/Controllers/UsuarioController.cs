@@ -1,83 +1,88 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Aplicacion;
+using Dominio.EntidadesNegocio;
+using Dominio.InterfacesRespositorios;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PresentacionMVC.Controllers
 {
     public class UsuarioController : Controller
     {
+
+
+        ILoginUsuario LoginUsuario { get; set; }
+
+        IListadoUsuarios listadoUsuarios { get; set; }
+
+
+        public UsuarioController(ILoginUsuario loginUsuario, IListadoUsuarios listadoUsuarios)
+        {
+            LoginUsuario = loginUsuario;
+           
+        }
+
         // GET: UsuarioController
-        public ActionResult Index()
+        public ActionResult Login()
         {
+            if (HttpContext.Session.GetString("rol") == "funcionario")
+            {
+                return Redirect("/home/index");
+            }
+            HttpContext.Session.SetString("rol", "sinIdentificar");
+           // ViewBag.Error = error;
+            
             return View();
         }
 
-        // GET: UsuarioController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
-        // GET: UsuarioController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: UsuarioController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Login(string EMail)
         {
+            if (HttpContext.Session.GetString("rol") == "funcionario")
+            {
+                return Redirect("/home/index");
+            }
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (string.IsNullOrEmpty(EMail))
+                {
+                    return RedirectToAction("login", new { error = "Por favor completar ambos campos." });
+                }
+
+                Usuario usuario = LoginUsuario.ExiteUsuario(EMail);
+
+                if (usuario == null)
+                {
+                    return RedirectToAction("login", new { error = "Usuario y/o contraseña incorrectos." });
+                }
+
+                HttpContext.Session.SetString("email", EMail);
+                HttpContext.Session.SetInt32("idUsuario", usuario.IdUsuario);
+              
+
+                if (usuario is Funcionario)
+                {
+                    HttpContext.Session.SetString("rol", "funcionario");
+                }
+               
+                return Redirect("/home/index");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
-            }
+                ViewBag.Error = e.Message;
+                return RedirectToAction("login");
+            }          
+
+         
         }
 
-        // GET: UsuarioController/Edit/5
-        public ActionResult Edit(int id)
+        public IActionResult Logout()
         {
-            return View();
+            HttpContext.Session.Clear();
+            HttpContext.Session.SetString("rol", "sinIdentificar");
+            return RedirectToAction("login");
         }
 
-        // POST: UsuarioController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: UsuarioController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: UsuarioController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-    }
+       }
 }

@@ -6,10 +6,19 @@ using System.Threading.Tasks;
 
 namespace Dominio.EntidadesNegocio
 {
-    public class Funcionario
+    public class Funcionario : Usuario
     {
-        public int Id { get; set; }
-        public string Mail { get; set; }
-        public string Contrasenia { get; set; }
+   
+        public Funcionario()
+        {
+
+        }
+
+        public Funcionario(string email, string password) : base( email, password)
+        {
+        
+        }
+
     }
+
 }

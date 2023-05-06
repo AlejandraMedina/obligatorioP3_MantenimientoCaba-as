@@ -59,15 +59,6 @@ namespace Datos.Repositorios
                 Contexto.SaveChanges();
             }
 
-            Tipo IRepositorio<Tipo>.FindById(int id)
-            {
-                Tipo buscado = Contexto.Tipos.Find(id);
-                if(buscado == null)
-                {
-                    throw new Exception("No existe el tipo con id " + id);
-                }
-
-                return buscado;
-            }
+        
         }
 }

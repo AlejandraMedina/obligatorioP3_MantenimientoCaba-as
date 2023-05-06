@@ -1,15 +1,14 @@
 ﻿using Dominio.EntidadesNegocio;
-using Dominio.InterfacesRespositorios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio.InterfacesRepositorios
+namespace Aplicacion
 {
-    public interface IRepositorioUsuarios : IRepositorio<Usuario>
+    public interface IListadoUsuarios
     {
-
+        IEnumerable<Usuario> ObtenerListado();
     }
 }
