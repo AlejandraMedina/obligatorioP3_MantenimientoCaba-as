@@ -17,6 +17,7 @@ namespace PresentacionMVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddSession();
 
             //AGREGAR INFORMACIÓN PARA LA INYECCIÓN DE DEPENDENCIAS AUTOMÁTICA:
             builder.Services.AddScoped<IRepositorioCabañas, RepositorioCabañas>();
