@@ -58,10 +58,10 @@ namespace PresentacionMVC.Controllers
                 }
 
                 HttpContext.Session.SetString("email", EMail);
-                HttpContext.Session.SetInt32("idUsuario", usuario.IdUsuario);
+                HttpContext.Session.SetInt32("idUsuario", usuario.Id);
               
 
-                if (usuario is Funcionario)
+                if (usuario.Rol == "funcionario")
                 {
                     HttpContext.Session.SetString("rol", "funcionario");
                 }

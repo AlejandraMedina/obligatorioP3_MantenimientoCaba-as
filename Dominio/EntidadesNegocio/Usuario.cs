@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.EntidadesNegocio
 {
-    public abstract class Usuario : IEquatable<Usuario>
+    public class Usuario : IEquatable<Usuario>
            
     {
         
@@ -17,7 +17,7 @@ namespace Dominio.EntidadesNegocio
         protected string Email { get; set; }
         public string Password { get; set; }
 
-        public string rol { get; set; }
+        public string Rol { get; set; }
 
         public Usuario()
         {
@@ -28,7 +28,7 @@ namespace Dominio.EntidadesNegocio
             this.Id = UltIdUsuario++;
             this.Email = email;
             this.Password = password;
-            this.rol = rol;
+            this.Rol = rol;
             Validar();
         }
 
