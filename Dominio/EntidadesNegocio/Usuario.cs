@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.EntidadesNegocio
 {
-    public class Usuario : IEquatable<Usuario>
+    public class Usuario 
            
     {
         

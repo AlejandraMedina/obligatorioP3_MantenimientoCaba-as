@@ -1,6 +1,8 @@
 ﻿@model Dominio.EntidadesNegocio.Cabaña
 
-
+@{
+    ViewData["Title"] = "Delete";
+}
 
 <h1>Eliminar</h1>
 
@@ -16,7 +18,7 @@
             @Html.DisplayFor(model => model.Id)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
+            @Html.DisplayNameFor(model => model)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Nombre)
@@ -30,7 +32,7 @@
     </dl>
 
     <form asp-action="DeleteCabaña">
-        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <input type="submit" value="DeleteCabaña" class="btn btn-danger" />
         <a asp-action="Index"></a>
     </form>
 </div>

@@ -4,6 +4,7 @@ using Dominio.EntidadesNegocio;
 using Aplicacion;
 using Dominio.ExcepcionesPropias;
 using NuGet.Protocol;
+using PresentacionMVC.Models;
 
 namespace PresentacionMVC.Controllers
 {
@@ -81,7 +82,8 @@ namespace PresentacionMVC.Controllers
         {
             try
             {
-                EliminarTipo.Eliminar(id);
+                EliminarTipo.Remove(id);
+               
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -91,19 +93,23 @@ namespace PresentacionMVC.Controllers
         }
 
         // GET: TipoController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult DeleteTipo(int id)
         {
-            return View();
+          
+
+            
+
+            return View(id);
         }
 
         // POST: TipoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult DTipo(int id)
         {
             try
             {
-                EliminarTipo.Eliminar(id);
+                EliminarTipo.Remove(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

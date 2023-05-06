@@ -17,14 +17,11 @@ namespace Aplicacion
 
             Repo = repo;
         }
-        public void Eliminar(int t)
-        {
-            Repo.Remove(t);
-        }
+       
 
-        public void Remove(int t)
+        public void Remove(int id)
         {
-            throw new NotImplementedException();
+            Remove(id);
         }
     }
 

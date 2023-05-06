@@ -22,31 +22,23 @@ namespace PresentacionMVC.Controllers
         public IRepositorio<Tipo> RepoTipo { get; set; }
 
         IAltaCabaña AltaCabaña{ get; set; }
+
+        IEliminarCabaña EliminarCabaña { get; set; }
         IListadoCabañas listadoCabañas { get; set; }
 
         public IWebHostEnvironment WHE { get; set; }
 
-        public CabañaController(IListadoTipos listadoTipos, IRepositorio<Cabaña> repo, IWebHostEnvironment whe, IRepositorio<Tipo> repoTipo, IAltaCabaña altaCabaña, IListadoCabañas listadoCabañas)
+        public CabañaController(IListadoTipos listadoTipos, IRepositorio<Cabaña> repo, IWebHostEnvironment whe, IRepositorio<Tipo> repoTipo, IAltaCabaña altaCabaña, IListadoCabañas listadoCabañas, IEliminarCabaña eliminarCabaña )
         {
             ListadoTipos = listadoTipos;
             RepoCabañas = repo;
             RepoTipo = repoTipo;
             WHE = whe;
             AltaCabaña = altaCabaña;
+            EliminarCabaña = eliminarCabaña;
             ListadoCabañas = listadoCabañas;
         }
 
-
-        //IListadoCabañas ListadoCabañas { get; set; }
-
-        //IAltaCabaña AltaCabaña{ get; set; }
-
-
-       // public CabañaController(IListadoCabañas listadoCabañas, IAltaCabaña altaCabaña)
-        //{
-         //   ListadoCabañas = listadoCabañas;
-          //  AltaCabaña = altaCabaña;
-        //}
 
 
         // GET: CabañasController
@@ -150,30 +142,31 @@ namespace PresentacionMVC.Controllers
         }
 
         // GET: CabañasController/Delete/5
-        public ActionResult DeleteCabaña (int Id)
+        public ActionResult DeleteCabaña(int Id)
         {
-            AltaCabañaViewModel vm = new AltaCabañaViewModel();
+          
             Cabaña c = RepoCabañas.FindById(Id);
-            //ViewBag.c = c;
+            
             return View(c);
         }
 
         // POST: CabañasController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteCabaña(int Id, IFormCollection collection)
+        public ActionResult DeleteCabaña(Cabaña c, IFormCollection colletion)
         {
             
             try
             {
-                RepoCabañas.Remove(Id);
+
+                EliminarCabaña.Eliminar(c.Id);
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
                 ViewBag.Mensaje = "No se pudo eliminar la cabaña.";
-                Cabaña c = RepoCabañas.FindById(Id);
-                return View(c);
+                Cabaña ca = RepoCabañas.FindById(c.Id);
+                return View(ca);
             }
         }
     }
