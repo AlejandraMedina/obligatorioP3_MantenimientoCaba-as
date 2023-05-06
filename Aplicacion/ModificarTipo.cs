@@ -24,6 +24,9 @@ namespace Aplicacion
             
         }
 
-        
+        void IModificarTipo.ModificarTipo(Tipo t)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

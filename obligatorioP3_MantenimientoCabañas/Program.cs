@@ -21,10 +21,12 @@ namespace PresentacionMVC
             //AGREGAR INFORMACIÓN PARA LA INYECCIÓN DE DEPENDENCIAS AUTOMÁTICA:
             builder.Services.AddScoped<IRepositorioCabañas, RepositorioCabañas>();
             builder.Services.AddScoped<IRepositorioTipos, RepositorioTipos>();
+            builder.Services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
             builder.Services.AddScoped<IAltaCabaña, AltaCabaña>();
             builder.Services.AddScoped<IAltaTipo, AltaTipo>();
             builder.Services.AddScoped<IListadoCabañas, ListadoCabañas>();
-            builder.Services.AddScoped<IListadoTipos, ListadoTipos>();            
+            builder.Services.AddScoped<IListadoTipos, ListadoTipos>();
+            builder.Services.AddScoped<IModificarTipo, ModificarTipo>();
             builder.Services.AddScoped<IRepositorio<Cabaña>, RepositorioCabañas>();
             builder.Services.AddScoped<IRepositorio<Tipo>, RepositorioTipos>();
 
