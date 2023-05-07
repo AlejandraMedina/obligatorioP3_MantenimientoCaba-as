@@ -5,6 +5,11 @@ using Aplicacion;
 using Dominio.ExcepcionesPropias;
 using NuGet.Protocol;
 using PresentacionMVC.Models;
+using Dominio.InterfacesRepositorios;
+using Microsoft.CodeAnalysis.Host;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Datos.Repositorios;
+using Dominio.InterfacesRespositorios;
 
 namespace PresentacionMVC.Controllers
 {
@@ -17,19 +22,26 @@ namespace PresentacionMVC.Controllers
 
         IEliminarTipo EliminarTipo { get; set; }
 
-        public TipoController(IListadoTipos listadoTipos, IAltaTipo altaTipo, IModificarTipo modificarTipo, IEliminarTipo eliminarTipo)
+        IRepositorioTipos RepoTipo { get; set; }
+        IRepositorioCabañas RepoCabaña { get; set; }
+
+        public TipoController(IListadoTipos listadoTipos, IAltaTipo altaTipo, IModificarTipo modificarTipo, IEliminarTipo eliminarTipo, IRepositorioTipos repotipo, IRepositorioCabañas repocabaña)
         { 
         
             ListadoTipos = listadoTipos;
             AltaTipo = altaTipo;
             ModificarTipo = modificarTipo;
             EliminarTipo = eliminarTipo;
+            RepoTipo = repotipo;
+            RepoCabaña = repocabaña;
         }
 
         // GET: TipoController
         public ActionResult Index()
         {
+
             IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
+          
             return View(tipos);
         }
 
@@ -82,7 +94,7 @@ namespace PresentacionMVC.Controllers
         {
             try
             {
-                EliminarTipo.Remove(id);
+               
                
                 return RedirectToAction(nameof(Index));
             }
@@ -95,27 +107,42 @@ namespace PresentacionMVC.Controllers
         // GET: TipoController/Delete/5
         public ActionResult DeleteTipo(int id)
         {
-          
+            Tipo t = RepoTipo.FindById(id);
 
-            
 
-            return View(id);
+            return View(t);
         }
 
         // POST: TipoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DTipo(int id)
+        public ActionResult DeleteTipo( Tipo t)
         {
+           
             try
             {
-                EliminarTipo.Remove(id);
+                bool aux = false;
+
+                /*foreach (var item in RepoCabaña.FindAll())
+                {
+                if (item.Tipo.Id == id)
+                    //    //{
+                    //    //    aux = true;
+                    //    //}
+                    //    //if (!aux)
+                    //    //{
+
+                    //    //}
+                    //}*/
+                    EliminarTipo.Remove(t.Id);
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
+                ViewBag.Mensaje = "Oops! Ocurrió un error inesperado";
                 return View();
             }
+            
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿@model PresentacionMVC.Models.AltaTipoViewModel
+﻿@model IEnumerable<Dominio.EntidadesNegocio.Tipo>
+
 
 @{
     ViewData["Title"] = "Index";
@@ -13,19 +14,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.tipo.Id)
+                @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.tipo.Nombre)
+                @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.tipo.Descripcion)
+                @Html.DisplayNameFor(model => model.Descripcion)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Tipos)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>
@@ -38,8 +39,8 @@
                     @Html.DisplayFor(modelItem => item.Descripcion)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new {/* id = item.Id*/ })                     
-                    @Html.ActionLink("Delete", "Delete", new {/* id = item.Id*/ })
+                    @Html.ActionLink("Edit", "Edit", new {/*id = item.Id*/}) |
+                    @Html.ActionLink("DeleteTipo", "DeleteTipo", new { id = item.Id})
                 </td>
             </tr>
         }

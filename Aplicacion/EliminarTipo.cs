@@ -21,7 +21,7 @@ namespace Aplicacion
 
         public void Remove(int id)
         {
-            Remove(id);
+            Repo.Remove(id);
         }
     }
 

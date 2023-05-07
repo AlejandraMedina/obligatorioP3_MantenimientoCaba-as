@@ -142,31 +142,31 @@ namespace PresentacionMVC.Controllers
         }
 
         // GET: CabañasController/Delete/5
-        public ActionResult DeleteCabaña()
+        public ActionResult DeleteCabaña(int Id)
         {
           
             Cabaña c = RepoCabañas.FindById(Id);
             
-            return View(c.Id);
+            return View(c);
         }
 
         // POST: CabañasController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteCabaña(int id, IFormCollection colletion)
+        public ActionResult DeleteCabaña(Cabaña c, IFormCollection colletion)
         {
             
             try
             {
 
-                EliminarCabaña.Eliminar(id);
+                EliminarCabaña.Eliminar(c.Id);
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
                 ViewBag.Mensaje = "No se pudo eliminar la cabaña.";
-                Cabaña ca = RepoCabañas.FindById(id);
-                return View(ca);
+                Cabaña ca = RepoCabañas.FindById(c.Id);
+                return View(ca.Id);
             }
         }
     }

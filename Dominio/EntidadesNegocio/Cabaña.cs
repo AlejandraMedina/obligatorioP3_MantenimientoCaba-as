@@ -13,7 +13,7 @@ namespace Dominio.EntidadesNegocio
     {
 
         public int Id { get; set; }
-        public  string Nombre { get; set; }
+        public string Nombre { get; set; }
         public int NumHabitacion { get; set; }
         public Tipo Tipo { get; set; }
         public float Costo { get; set; }
@@ -40,7 +40,8 @@ namespace Dominio.EntidadesNegocio
             }
         }
 
-
+     
+    
         public int CompareTo(Cabaña other)
         {
             throw new NotImplementedException();
