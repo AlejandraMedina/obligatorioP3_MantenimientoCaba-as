@@ -10,7 +10,7 @@ using Dominio.ExcepcionesPropias;
 
 namespace Datos.Repositorios
 {
-    public class RepositorioCabañas : IRepositorioCabañas 
+    public class RepositorioCabañas : IRepositorioCabañas
     {
 
         public MantenimientoCabañaContext Contexto { get; set; }
@@ -36,11 +36,11 @@ namespace Datos.Repositorios
         {
 
             Cabaña buscada = Contexto.Cabañas.Find(id);
-            
+
 
             if (buscada == null)
             {
-               throw new Exception("No existe la cabaña con id " + id);
+                throw new Exception("No existe la cabaña con id " + id);
             }
 
             return buscada;
@@ -58,8 +58,46 @@ namespace Datos.Repositorios
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Cabaña> CabañaPorTexto(string txt)
 
 
+        {
+            {
+                var cabañas = Contexto.Cabañas.Where(cabaña => cabaña.Nombre.Contains(txt))                         
+                                                 .ToList();
 
+                return cabañas.ToList();
+            }
+
+        }
+
+        IEnumerable<Cabaña> IRepositorioCabañas.CabañasPorTipo(Tipo tipo)
+        {
+            throw new NotImplementedException();
+
+        }
+
+        IEnumerable<Cabaña> IRepositorioCabañas.CabañasPorCantMaxPersonas(int cantMax)
+        {
+
+            var cabañas = Contexto.Cabañas.Where(cabaña => cabaña.CantMaxPersonas == cantMax);
+
+            var cantMaxima = Contexto.Cabañas
+                           .Select(cabaña => cabaña.Nombre)
+                           .ToList();
+
+            return cabañas.ToList();
+        }
+
+        IEnumerable<Cabaña> IRepositorioCabañas.CabañasHabilitadas()
+        {
+            var cabañas = Contexto.Cabañas.Where(cabaña => cabaña.Habilitada == true);
+
+            var habilitadas = Contexto.Cabañas
+                            .Select(cabaña => cabaña.Nombre)
+                            .ToList();
+
+            return cabañas.ToList();
+        }
     }
 }
