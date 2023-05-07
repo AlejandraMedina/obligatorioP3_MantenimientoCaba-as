@@ -58,46 +58,46 @@ namespace Datos.Repositorios
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Cabaña> CabañaPorTexto(string txt)
+        //public IEnumerable<Cabaña> CabañaPorTexto(string txt)
 
 
-        {
-            {
-                var cabañas = Contexto.Cabañas.Where(cabaña => cabaña.Nombre.Contains(txt))                         
-                                                 .ToList();
+        //{
+        //    {
+        //        var cabañas = Contexto.Cabañas.Where(cabaña => cabaña.Nombre.Contains(txt))                         
+        //                                         .ToList();
 
-                return cabañas.ToList();
-            }
+        //        return cabañas.ToList();
+        //    }
 
-        }
+        //}
 
-        IEnumerable<Cabaña> IRepositorioCabañas.CabañasPorTipo(Tipo tipo)
-        {
-            throw new NotImplementedException();
+        //IEnumerable<Cabaña> CabañasPorTipo(Tipo tipo)
+        //{
+        //    throw new NotImplementedException();
 
-        }
+        //}
 
-        IEnumerable<Cabaña> IRepositorioCabañas.CabañasPorCantMaxPersonas(int cantMax)
-        {
+        //IEnumerable<Cabaña> CabañasPorCantMaxPersonas(int cantMax)
+        //{
 
-            var cabañas = Contexto.Cabañas.Where(cabaña => cabaña.CantMaxPersonas == cantMax);
+        //   // var cabañas = Contexto.Cabañas.Where(cabaña => cabaña.CantMaxPersonas == cantMax);
 
-            var cantMaxima = Contexto.Cabañas
-                           .Select(cabaña => cabaña.Nombre)
-                           .ToList();
+        //    var cantMaxima = Contexto.Cabañas
+        //                   .Select(cabaña => cabaña.Nombre)
+        //                   .ToList();
 
-            return cabañas.ToList();
-        }
+        //    return cabañas.ToList();
+        //}
 
-        IEnumerable<Cabaña> IRepositorioCabañas.CabañasHabilitadas()
-        {
-            var cabañas = Contexto.Cabañas.Where(cabaña => cabaña.Habilitada == true);
+        //IEnumerable<Cabaña> CabañasHabilitadas()
+        //{
+        //    var cabañas = Contexto.Cabañas.Where(cabaña => cabaña.Habilitada == true);
 
-            var habilitadas = Contexto.Cabañas
-                            .Select(cabaña => cabaña.Nombre)
-                            .ToList();
+        //    var habilitadas = Contexto.Cabañas
+        //                    .Select(cabaña => cabaña.Nombre)
+        //                    .ToList();
 
-            return cabañas.ToList();
-        }
+        //    return cabañas.ToList();
+        //}
     }
 }
