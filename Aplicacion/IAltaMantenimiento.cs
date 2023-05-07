@@ -1,4 +1,4 @@
-using Dominio.EntidadesNegocio;
+ï»¿using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRepositorios;
 using System;
 using System.Collections.Generic;
@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Aplicacion
 {
-    public interface IAltaCabaña
+    public interface IAltaMantenimiento
     {
-        void Alta(Cabaña c);
+        void Alta(Mantenimiento m);
     }
 }

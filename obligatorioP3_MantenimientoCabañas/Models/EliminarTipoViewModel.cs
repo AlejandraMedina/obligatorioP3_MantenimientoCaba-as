@@ -2,7 +2,7 @@
 
 namespace PresentacionMVC.Models
 {
-    public class AltaTipoViewModel
+    public class EliminarTipoViewModel
     {
         public int Id { get; set; }
         public Tipo Tipo { get; set; }

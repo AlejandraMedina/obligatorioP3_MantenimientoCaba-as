@@ -1,12 +1,28 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Aplicacion;
+using Dominio.EntidadesNegocio;
+using Dominio.InterfacesRespositorios;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PresentacionMVC.Models;
 
-namespace obligatorioP3_MantenimientoCabañas.Controllers
+namespace PresentacionMVC.Controllers
 {
     public class MantenimientoController : Controller
     {
-        // GET: MantenimientoController
-        public ActionResult Index()
+
+        public IListadoMantenimientos ListadoMantenimientos { get; set; }
+
+        IAltaMantenimiento AltaMantenimiento { get; set; }
+
+        public MantenimientoController(IAltaMantenimiento altaMantenimiento, IListadoCabañas listadoCabañas, ListadoMantenimientos listadoMantenimientos)
+        {
+            AltaMantenimiento = altaMantenimiento;
+            ListadoMantenimientos = listadoMantenimientos;
+
+        }
+            
+            // GET: MantenimientoController
+            public ActionResult Index()
         {
             return View();
         }
@@ -18,23 +34,30 @@ namespace obligatorioP3_MantenimientoCabañas.Controllers
         }
 
         // GET: MantenimientoController/Create
-        public ActionResult Create()
+        public ActionResult CreateMantenimiento()
         {
-            return View();
+            AltaMantenimientoViewModel vm = new AltaMantenimientoViewModel();
+
+            return View(vm);
         }
 
         // POST: MantenimientoController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult CreateMantenimiento(AltaMantenimientoViewModel vm)
         {
             try
             {
+               
+                AltaMantenimiento.Alta(vm.Mantenimiento);                
+
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewBag.Mensaje = "Oops! Ocurrió un error inesperado";
+               
+                return View(vm);
             }
         }
 

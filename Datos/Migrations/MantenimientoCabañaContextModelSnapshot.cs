@@ -169,7 +169,7 @@ namespace Datos.Migrations
 
                     b.Navigation("Cabania");
                 });
-#pragma warning restore 612, 618
+
         }
     }
 }

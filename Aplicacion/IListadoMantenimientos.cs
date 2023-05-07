@@ -1,5 +1,4 @@
-using Dominio.EntidadesNegocio;
-using Dominio.InterfacesRepositorios;
+ï»¿using Dominio.EntidadesNegocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Aplicacion
 {
-    public interface IAltaCabaña
+    public interface IListadoMantenimientos
     {
-        void Alta(Cabaña c);
+        IEnumerable<Mantenimiento> ObtenerListado();
     }
 }

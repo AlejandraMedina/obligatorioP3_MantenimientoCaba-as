@@ -21,6 +21,7 @@ namespace PresentacionMVC
 
             //AGREGAR INFORMACIÓN PARA LA INYECCIÓN DE DEPENDENCIAS AUTOMÁTICA:
             builder.Services.AddScoped<IRepositorioCabañas, RepositorioCabañas>();
+            builder.Services.AddScoped<IRepositorioMantenimientos, RepositorioMantenimientos>();
             builder.Services.AddScoped<IRepositorioTipos, RepositorioTipos>();
             builder.Services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
             builder.Services.AddScoped<IAltaCabaña, AltaCabaña>();
@@ -31,10 +32,13 @@ namespace PresentacionMVC
             builder.Services.AddScoped<IEliminarTipo, EliminarTipo>();
             builder.Services.AddScoped<IEliminarCabaña, EliminarCabaña>();
             builder.Services.AddScoped<IRepositorio<Cabaña>, RepositorioCabañas>();
+            builder.Services.AddScoped<IRepositorio<Mantenimiento>, RepositorioMantenimientos>();
             builder.Services.AddScoped<IRepositorio<Tipo>, RepositorioTipos>();
             builder.Services.AddScoped<IRepositorio<Usuario>, RepositorioUsuarios>();
             builder.Services.AddScoped<ILoginUsuario, LoginUsuario>();
             builder.Services.AddScoped<IListadoUsuarios, ListadoUsuarios>();
+            builder.Services.AddScoped<IAltaMantenimiento, AltaMantenimiento>();
+            builder.Services.AddScoped<IListadoMantenimientos, ListadoMantenimientos>();
 
 
             var configurationBuilder = new ConfigurationBuilder();
@@ -71,4 +75,6 @@ namespace PresentacionMVC
             app.Run();
         }
     }
+
+  
 }

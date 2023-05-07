@@ -118,7 +118,7 @@ namespace PresentacionMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteTipo(int id, IFormCollection collection)
         {
-            
+           
             try
             {
                 bool encontre = false;
@@ -159,11 +159,11 @@ namespace PresentacionMVC.Controllers
         // POST: TipoController/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult BuscarTipoPorId(int Id)
+        public ActionResult BuscarTipoPorId(string nombre)
         {
-            Tipo t = RepoTipo.FindById(Id);
+            //Tipo t = RepoTipo.FindById(Id);
            
-            return View(t);
+            return View();
         }
        
     }

@@ -52,11 +52,7 @@ namespace PresentacionMVC.Controllers
             return View(cabañas);
         }
 
-        // GET: CabañasController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        
 
         // GET: CabañasController/Create
         public ActionResult CreateCabaña()
@@ -64,7 +60,6 @@ namespace PresentacionMVC.Controllers
            //Para que se carguen los tipos de cabaña en el desplegable de la vista inicial
             AltaCabañaViewModel vm = new AltaCabañaViewModel();
             
-            vm.Tipos = ListadoTipos.ObtenerListado().ToList();
             
             return View(vm);
         }
@@ -169,5 +164,15 @@ namespace PresentacionMVC.Controllers
                 return View(ca.Id);
             }
         }
+
+        // GET: CabañaController/Details/
+        public ActionResult Details(int id)
+        {
+            Cabaña c = RepoCabañas.FindById(id);
+            return View(c);
+           
+        }
+
+
     }
 }
