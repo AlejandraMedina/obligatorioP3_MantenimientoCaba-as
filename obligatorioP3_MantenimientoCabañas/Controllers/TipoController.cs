@@ -83,7 +83,8 @@ namespace PresentacionMVC.Controllers
 
         // GET: TipoController/Edit/5
         public ActionResult EditTipo(int id)
-        {                      
+        {               
+            //cambia el costo y la descripcion ver como cargar esos datos
             return View();
         }
 
@@ -147,6 +148,17 @@ namespace PresentacionMVC.Controllers
         }
 
 
+        // GET: TipoController/Edit/5
+        public ActionResult BuscarTipoPorId()
+        {
+
+            return View();
+        }
+
+
+        // POST: TipoController/
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult BuscarTipoPorId(int Id)
         {
             Tipo t = RepoTipo.FindById(Id);
