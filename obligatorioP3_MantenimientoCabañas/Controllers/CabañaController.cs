@@ -59,7 +59,8 @@ namespace PresentacionMVC.Controllers
         {
            //Para que se carguen los tipos de cabaña en el desplegable de la vista inicial
             AltaCabañaViewModel vm = new AltaCabañaViewModel();
-            
+            IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
+            vm.Tipos = tipos;
             
             return View(vm);
         }
