@@ -108,34 +108,35 @@ namespace PresentacionMVC.Controllers
         public ActionResult DeleteTipo(int id)
         {
             Tipo t = RepoTipo.FindById(id);
-
-
+            
             return View(t);
         }
 
         // POST: TipoController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteTipo( Tipo t)
+        public ActionResult DeleteTipo(int id, IFormCollection collection)
         {
-           
+            
             try
             {
-                bool aux = false;
+                bool encontre = false;
 
-                /*foreach (var item in RepoCabaña.FindAll())
+                foreach (var item in RepoCabaña.FindAll())
                 {
                 if (item.Tipo.Id == id)
-                    //    //{
-                    //    //    aux = true;
-                    //    //}
-                    //    //if (!aux)
-                    //    //{
-
-                    //    //}
-                    //}*/
-                    EliminarTipo.Remove(t.Id);
-                return RedirectToAction(nameof(Index));
+                    {
+                      encontre = true;
+                    }
+                    if (!encontre)
+                    {
+                        EliminarTipo.Remove(id);
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
+                
+                ViewBag.Mensaje = "No es posible eliminar, hay cabañas con este tipo.";
+                return View();
             }
             catch
             {
@@ -144,5 +145,14 @@ namespace PresentacionMVC.Controllers
             }
             
         }
+
+
+        public ActionResult BuscarTipoPorId(int Id)
+        {
+            Tipo t = RepoTipo.FindById(Id);
+           
+            return View(t);
+        }
+       
     }
 }

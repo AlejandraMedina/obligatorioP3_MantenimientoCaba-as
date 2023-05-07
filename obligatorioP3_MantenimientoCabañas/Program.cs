@@ -65,8 +65,8 @@ namespace PresentacionMVC
             app.MapControllerRoute(
                 name: "default",
             //pattern: "{controller=Cabaña}/{action=CreateCabaña}/{id?}");
-            pattern: "{controller=Tipo}/{action=Index}");
-      
+            //pattern: "{controller=Tipo}/{action=Index}");
+            pattern: "{controller=Home}/{action=Index}");
 
             app.Run();
         }

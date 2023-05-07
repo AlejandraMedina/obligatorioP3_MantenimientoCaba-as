@@ -20,18 +20,35 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="CabañaController/Index" asp-action="Index">Inicio</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
-                      
+               
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="CreateCabañas" asp-action="CreateCabañas">Crear Cabaña</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Tipo" asp-action="Index">Listado de Tipos</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Cabaña" asp-action="Index">Listado de Cabañas</a>
+                        </li>
+
 
                     </ul>
                 </div>
             </div>
         </nav>
+
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Volver al Inicio</a>
+
+        <h1>Mantenimiento de Cabañas: </h1>
+      
+        <a class="nav-link text-dark" asp-area="" asp-controller="Tipo" asp-action="CreateTipo">Crear Tipo</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Tipo" asp-action="Index">Listar tipos</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Tipo" asp-action="DeleteTipo">Eliminar Tipo</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Tipo" asp-action="EditTipo">Modificar Tipo</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Tipo" asp-action="BuscarTipoPorId">Buscar tipo por Id</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Cabaña" asp-action="CreateCabaña">Crear Cabaña</a>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
