@@ -2,9 +2,9 @@
 
 namespace PresentacionMVC.Models
 {
-    public class EliminarTipoViewModel
+    public class AltaTipoViewModel
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public Tipo Tipo { get; set; }
         public IEnumerable<Tipo> Tipos { get; set; }
     }

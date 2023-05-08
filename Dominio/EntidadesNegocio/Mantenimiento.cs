@@ -13,6 +13,8 @@ namespace Dominio.EntidadesNegocio
         public string Descripcion { get; set; }
         public double CostoMant { get; set; }
         public string Funcionario { get; set; }
+
         public Cabaña Cabania { get; set; }
+        public int IdCabania { get; set; }
     }
 }

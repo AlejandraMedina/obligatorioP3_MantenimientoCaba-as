@@ -11,21 +11,22 @@ namespace PresentacionMVC.Controllers
     {
 
         public IListadoMantenimientos ListadoMantenimientos { get; set; }
+        public IRepositorio<Cabaña> RepoCabañas { get; set; }
 
         IAltaMantenimiento AltaMantenimiento { get; set; }
 
-        public MantenimientoController(IAltaMantenimiento altaMantenimiento, IListadoCabañas listadoCabañas, ListadoMantenimientos listadoMantenimientos)
+        public MantenimientoController(IAltaMantenimiento altaMantenimiento, IListadoCabañas listadoCabañas,  IRepositorio<Cabaña> repoCabañas, IListadoMantenimientos listadoMantenimientos)
         {
-            AltaMantenimiento = altaMantenimiento;
+            AltaMantenimiento = altaMantenimiento;        
+            RepoCabañas = repoCabañas;
             ListadoMantenimientos = listadoMantenimientos;
+        }
 
-        }
-            
-            // GET: MantenimientoController
+        // GET: MantenimientoController
             public ActionResult Index()
-        {
+            {
             return View();
-        }
+            }
 
         // GET: MantenimientoController/Details/5
         public ActionResult Details(int id)
@@ -33,30 +34,35 @@ namespace PresentacionMVC.Controllers
             return View();
         }
 
-        // GET: MantenimientoController/Create
-        public ActionResult CreateMantenimiento()
+        //// GET: MantenimientoController/Create
+        public ActionResult CreateMantenimiento(int id)
         {
             AltaMantenimientoViewModel vm = new AltaMantenimientoViewModel();
+            vm.IdCabañaSeleccionada = id;
 
             return View(vm);
         }
 
-        // POST: MantenimientoController/Create
+        //// POST: MantenimientoController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateMantenimiento(AltaMantenimientoViewModel vm)
         {
             try
             {
-               
-                AltaMantenimiento.Alta(vm.Mantenimiento);                
+                vm.Cabaña = RepoCabañas.FindById(vm.IdCabañaSeleccionada);
+                vm.Mantenimiento.Cabania = RepoCabañas.FindById(vm.IdCabañaSeleccionada);               
+                vm.Mantenimiento.IdCabania = vm.IdCabañaSeleccionada;
+                int id = vm.IdCabañaSeleccionada;
+                AltaMantenimiento.Alta(vm.Mantenimiento);
 
-                return RedirectToAction(nameof(Index));
+
+                return RedirectToAction(nameof(ListarMantenimientosDeCabaña),new {id = id });
             }
             catch (Exception ex)
             {
                 ViewBag.Mensaje = "Oops! Ocurrió un error inesperado";
-               
+
                 return View(vm);
             }
         }
@@ -101,6 +107,25 @@ namespace PresentacionMVC.Controllers
             {
                 return View();
             }
+        }
+
+
+        // GET: MantenimientoController
+        public  IActionResult ListarMantenimientosDeCabaña(int id)
+        {
+
+            List<Mantenimiento> aux = new List<Mantenimiento>();
+
+            foreach (Mantenimiento m in ListadoMantenimientos.ObtenerListado())
+            {
+
+                if (m.IdCabania == id)
+                {
+                    aux.Add(m);
+                }
+            }
+            return View(aux);
+           
         }
     }
 }

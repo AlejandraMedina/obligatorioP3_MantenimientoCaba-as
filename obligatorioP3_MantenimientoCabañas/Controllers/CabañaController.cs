@@ -8,6 +8,7 @@ using PresentacionMVC.Models;
 using System.Globalization;
 using Datos.Repositorios;
 using System.Collections.Generic;
+using Dominio.InterfacesRepositorios;
 
 namespace PresentacionMVC.Controllers
 {
@@ -21,6 +22,8 @@ namespace PresentacionMVC.Controllers
 
         public IRepositorio<Tipo> RepoTipo { get; set; }
 
+      
+
         IAltaCabaña AltaCabaña{ get; set; }
 
         IEliminarCabaña EliminarCabaña { get; set; }
@@ -28,16 +31,15 @@ namespace PresentacionMVC.Controllers
 
         public IWebHostEnvironment WHE { get; set; }
 
-        public CabañaController(IListadoTipos listadoTipos, IRepositorio<Cabaña> repo, IWebHostEnvironment whe, IRepositorio<Tipo> repoTipo, IAltaCabaña altaCabaña, IListadoCabañas listadoCabañas, IEliminarCabaña eliminarCabaña )
+        public CabañaController(IListadoTipos listadoTipos, IRepositorio<Cabaña> repo, IWebHostEnvironment whe, IRepositorio<Tipo> repoTipo, IAltaCabaña altaCabaña, IListadoCabañas listadoCabañas)
         {
             ListadoTipos = listadoTipos;
             RepoCabañas = repo;
             RepoTipo = repoTipo;
             WHE = whe;
-            AltaCabaña = altaCabaña;
-            EliminarCabaña = eliminarCabaña;
-            ListadoCabañas = listadoCabañas;
-        }
+            AltaCabaña = altaCabaña;           
+            ListadoCabañas = listadoCabañas;           
+         }
 
 
 
@@ -59,8 +61,9 @@ namespace PresentacionMVC.Controllers
         {
            //Para que se carguen los tipos de cabaña en el desplegable de la vista inicial
             AltaCabañaViewModel vm = new AltaCabañaViewModel();
-            
-            
+            IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
+            vm.Tipos = tipos;         
+
             return View(vm);
         }
 
@@ -174,5 +177,22 @@ namespace PresentacionMVC.Controllers
         }
 
 
+        // GET: CabañaController/Details/
+        // public ActionResult CabañasPorCantMaxPersonas(int MaxPersonas)
+        //{
+
+        // IEnumerable<Cabaña> cabañas = RepoCabañas.
+
+        //if (cabañas.Count() == 0)
+        //{
+        //    ViewBag.Mensaje = "No hay cabañas disponibles para mostrar";
+        //}
+        //return View(cabañas);
+        //}
+
+
+
+
+       
     }
 }

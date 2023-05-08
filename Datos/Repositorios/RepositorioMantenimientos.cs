@@ -58,10 +58,10 @@ namespace Datos.Repositorios
             Contexto.SaveChanges();
         }
 
-        IEnumerable<Mantenimiento> IRepositorio<Mantenimiento>.FindAll()
-        {
-            throw new NotImplementedException();
-        }
+        //IEnumerable<Mantenimiento> IRepositorio<Mantenimiento>.FindAll()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public void Update(Mantenimiento obj)
         {

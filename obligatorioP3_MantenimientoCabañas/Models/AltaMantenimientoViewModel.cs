@@ -7,5 +7,8 @@ namespace PresentacionMVC.Models
         public int Id { get; set; }
         public Mantenimiento Mantenimiento { get; set; }
 
+        public int IdCabañaSeleccionada { get; set; }
+        public Cabaña Cabaña { get; set; }
+
     }
 }

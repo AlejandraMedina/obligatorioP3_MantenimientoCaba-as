@@ -14,8 +14,7 @@ namespace Dominio.EntidadesNegocio
 
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public int NumHabitacion { get; set; }
-        public int CantMaxPersonas { get; set; }
+        public int NumHabitacion { get; set; }        
         public Tipo Tipo { get; set; }
         public float Costo { get; set; }
         public string Descripcion { get; set; }

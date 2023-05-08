@@ -73,9 +73,12 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Modificar", "EditCabaña", new {  id = Model.Id }) 
+    @Html.ActionLink("Modificar", "EditCabaña", new {  id = Model.Id })
+    @Html.ActionLink("Crear mantenimiento", "CreateMantenimiento","Mantenimiento", new {  id = Model.Id })
+    @Html.ActionLink("Listar mantenimientos", "ListarMantenimientosDeCabaña","Mantenimiento", new {  id = Model.Id })
     <div>
-    <a asp-controller="Mantenimiento" asp-action="CreateMantenimiento">Crear mantenimiento: </a> 
+    @*<a asp-controller="Mantenimiento" asp-action="CreateMantenimiento">Crear mantenimiento </a>*@
+   
     </div>
     <a asp-action="Index">Volver al inicio</a>
 </div>

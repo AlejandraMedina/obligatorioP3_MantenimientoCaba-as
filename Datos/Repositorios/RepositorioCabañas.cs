@@ -7,6 +7,7 @@ using Datos.EF;
 using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRespositorios;
 using Dominio.ExcepcionesPropias;
+using Microsoft.EntityFrameworkCore;
 
 namespace Datos.Repositorios
 {
@@ -77,17 +78,32 @@ namespace Datos.Repositorios
 
         //}
 
-        //IEnumerable<Cabaña> CabañasPorCantMaxPersonas(int cantMax)
-        //{
+        
 
-        //   // var cabañas = Contexto.Cabañas.Where(cabaña => cabaña.CantMaxPersonas == cantMax);
-
-        //    var cantMaxima = Contexto.Cabañas
-        //                   .Select(cabaña => cabaña.Nombre)
-        //                   .ToList();
-
-        //    return cabañas.ToList();
-        //}
+        public IEnumerable<Cabaña> CabañasPorCantMaxPersonas(int cantMax)
+        {
+            
+                var cabañas = Contexto.Cabañas
+                                      .Include(cabaña => cabaña.Tipo)
+                                      .ThenInclude(Tipo => Tipo.Nombre)
+                                      .Where(cabaña => cabaña.PersonasMax == cantMax)
+                                      .Select(cabaña => new Cabaña
+                                      {
+                                          Id = cabaña.Id,
+                                          Nombre = cabaña.Nombre,
+                                          NumHabitacion = cabaña.NumHabitacion,
+                                          PersonasMax = cabaña.PersonasMax,
+                                          Costo = cabaña.Costo,
+                                          Descripcion = cabaña.Descripcion,
+                                          Jacuzzi = cabaña.Jacuzzi,
+                                          Habilitada = cabaña.Habilitada,
+                                          Foto = cabaña.Foto,
+                                      }
+                                      )
+                                     .ToList();
+                return cabañas;
+           
+        }
 
         //IEnumerable<Cabaña> CabañasHabilitadas()
         //{
