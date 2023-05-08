@@ -6,25 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Datos.Migrations
 {
     /// <inheritdoc />
-    public partial class inicial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Funcionarios",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Mail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Contrasenia = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Funcionarios", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Tipos",
                 columns: table => new
@@ -37,6 +23,20 @@ namespace Datos.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tipos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Usuarios",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -77,7 +77,8 @@ namespace Datos.Migrations
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CostoMant = table.Column<double>(type: "float", nullable: false),
                     Funcionario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CabaniaId = table.Column<int>(type: "int", nullable: false)
+                    CabaniaId = table.Column<int>(type: "int", nullable: false),
+                    IdCabania = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -105,10 +106,10 @@ namespace Datos.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Funcionarios");
+                name: "Mantenimientos");
 
             migrationBuilder.DropTable(
-                name: "Mantenimientos");
+                name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "Cabañas");

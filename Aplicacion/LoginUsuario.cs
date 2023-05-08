@@ -1,4 +1,5 @@
 ﻿using Dominio.EntidadesNegocio;
+using Dominio.InterfacesRepositorios;
 using Dominio.InterfacesRespositorios;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,20 @@ namespace Aplicacion
     {
         public IEnumerable<Usuario> usuarios;
 
+        public IRepositorioUsuarios RepoUsuario { get; set; }
+
+
+        public LoginUsuario(IRepositorioUsuarios repoUsuario) {
+
+            RepoUsuario = repoUsuario;
+        }
+    
+
         public Usuario ExiteUsuario(string Email) {
 
-            foreach (Usuario item in usuarios)
+
+
+            foreach (Usuario item in RepoUsuario.FindAll())
             {
                 if (item.Equals(Email))
                 {

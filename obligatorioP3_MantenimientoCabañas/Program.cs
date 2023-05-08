@@ -58,6 +58,7 @@ namespace PresentacionMVC
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseSession();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -68,10 +69,12 @@ namespace PresentacionMVC
 
             app.MapControllerRoute(
                 name: "default",
-            pattern: "{controller=Cabaña}/{action=CreateCabaña}/{id?}");
+            pattern: "{controller=Usuario}/{action=Login}");
+            // pattern: "{controller=Cabaña}/{action=CreateCabaña}/{id?}");
             //pattern: "{controller=Tipo}/{action=Index}");
             //pattern: "{controller=Home}/{action=Index}");
             //pattern: "{controller=Mantenimiento}/{action=CreateMantenimiento}/{8?}");
+         
             app.Run();
         }
     }

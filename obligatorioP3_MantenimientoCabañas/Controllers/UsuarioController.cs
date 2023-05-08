@@ -15,6 +15,8 @@ namespace PresentacionMVC.Controllers
         IListadoUsuarios listadoUsuarios { get; set; }
 
 
+
+
         public UsuarioController(ILoginUsuario loginUsuario, IListadoUsuarios listadoUsuarios)
         {
             LoginUsuario = loginUsuario;
@@ -24,12 +26,6 @@ namespace PresentacionMVC.Controllers
         // GET: UsuarioController
         public ActionResult Login()
         {
-            if (HttpContext.Session.GetString("rol") == "funcionario")
-            {
-                return Redirect("/home/index");
-            }
-            HttpContext.Session.SetString("rol", "sinIdentificar");
-           // ViewBag.Error = error;
             
             return View();
         }
@@ -39,34 +35,16 @@ namespace PresentacionMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(string EMail)
         {
-            if (HttpContext.Session.GetString("rol") == "funcionario")
-            {
-                return Redirect("/home/index");
-            }
+            
             try
             {
-                if (string.IsNullOrEmpty(EMail))
-                {
-                    return RedirectToAction("login", new { error = "Por favor completar ambos campos." });
-                }
 
-                Usuario usuario = LoginUsuario.ExiteUsuario(EMail);
+                LoginUsuario.ExiteUsuario(EMail);
 
-                if (usuario == null)
-                {
-                    return RedirectToAction("login", new { error = "Usuario y/o contraseña incorrectos." });
-                }
+                HttpContext.Session.SetString("usuarioLogueado","si");
 
-                HttpContext.Session.SetString("email", EMail);
-                HttpContext.Session.SetInt32("idUsuario", usuario.Id);
-              
+                return RedirectToAction("Index","Home");
 
-                if (usuario.Rol == "funcionario")
-                {
-                    HttpContext.Session.SetString("rol", "funcionario");
-                }
-               
-                return Redirect("/home/index");
             }
             catch (Exception e)
             {
@@ -80,9 +58,9 @@ namespace PresentacionMVC.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            HttpContext.Session.SetString("rol", "sinIdentificar");
+            HttpContext.Session.SetString("usurioLogueado", "no");
             return RedirectToAction("login");
         }
 
-       }
+     }
 }

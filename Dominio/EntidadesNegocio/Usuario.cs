@@ -19,21 +19,14 @@ namespace Dominio.EntidadesNegocio
 
         public string Password { get; set; }
 
-        public string Rol { get; set; }
+ 
 
 
         public Usuario()
         {
             Id = UltIdUsuario++;
         }
-        public Usuario(string email, string password, string rol)
-        {
-            this.Id = UltIdUsuario++;
-            this.Email = email;
-            this.Password = password;
-            this.Rol = rol;
-            Validar();
-        }
+      
 
 
         public void Validar()
