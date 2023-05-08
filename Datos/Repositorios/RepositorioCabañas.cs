@@ -59,18 +59,41 @@ namespace Datos.Repositorios
             throw new NotImplementedException();
         }
 
-        //public IEnumerable<Cabaña> CabañaPorTexto(string txt)
+    //    public IEnumerable<Cabaña> CabañaPorTexto(string txt)
 
 
-        //{
-        //    {
-        //        var cabañas = Contexto.Cabañas.Where(cabaña => cabaña.Nombre.Contains(txt))                         
-        //                                         .ToList();
+    //    {
+    //        {
+    //            var cabañas = Contexto.Cabañas
+    //                .Where(cabaña => cabaña.Nombre.Contains(txt))
+    //                .Select(cabaña=> new Cabaña
+    //                {
+    //                    Id=cabaña.Id,        
+    //                    Nombre=cabaña.Nombre,
+    //                    NumHabitacion=cabaña.NumHabitacion,
+    //                    CantMaxPersonas=cabaña.CantMaxPersonas,
 
-        //        return cabañas.ToList();
-        //    }
+    //                    Tipo = new Tipo
+    //                    {
+    //                        Id=cabaña.Tipo.Id,
+    //                        Nombre=cabaña.Tipo.Nombre,
+    //                        Descripcion=cabaña.Tipo.Descripcion,
+    //    },
+    //                    Costo=cabaña.Costo,
+    //                    Descripcion=cabaña.Descripcion,
+    //                    Jacuzzi=cabaña.Jacuzzi,
+    //                    Habilitada=cabaña.Habilitada,
+      
+    //                    //Foto=cabaña.Foto,
+        
+    //}
+    //                )
+    //                                             .ToList();
 
-        //}
+    //            return cabañas.ToList();
+    //        }
+
+    //    }
 
         //IEnumerable<Cabaña> CabañasPorTipo(Tipo tipo)
         //{
