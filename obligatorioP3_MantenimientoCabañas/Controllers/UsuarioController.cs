@@ -33,13 +33,13 @@ namespace PresentacionMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(string EMail)
+        public ActionResult Login(string EMail, string Password)
         {
             
             try
             {
 
-                LoginUsuario.ExiteUsuario(EMail);
+                LoginUsuario.ExiteUsuario(EMail, Password);
 
                 HttpContext.Session.SetString("usuarioLogueado","si");
 
@@ -48,7 +48,7 @@ namespace PresentacionMVC.Controllers
             }
             catch (Exception e)
             {
-                ViewBag.Error = e.Message;
+                ViewBag.Mensaje = "Nombre de usuario o contraseña incorrectos";
                 return RedirectToAction("login");
             }          
 

@@ -22,13 +22,13 @@ namespace Aplicacion
         }
     
 
-        public Usuario ExiteUsuario(string Email) {
+        public Usuario ExiteUsuario(string Email, string Password) {
 
 
 
             foreach (Usuario item in RepoUsuario.FindAll())
             {
-                if (item.Equals(Email))
+                if (item.Email.Equals(Email) && item.Password.Equals(Password))
                 {
                     return item;
                 }

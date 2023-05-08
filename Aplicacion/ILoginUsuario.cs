@@ -9,6 +9,6 @@ namespace Aplicacion
 {
     public interface ILoginUsuario   
     {
-        public Usuario ExiteUsuario(string EMail);
+        public Usuario ExiteUsuario(string EMail , string Password);
     }
 }

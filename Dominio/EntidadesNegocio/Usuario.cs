@@ -65,7 +65,7 @@ namespace Dominio.EntidadesNegocio
 
         public bool Equals([AllowNull] Usuario other)
         {
-            // TODO: es necesario comparar tambien la contraseña?
+           
             return (Email.Equals(other.Email) && Password.Equals(other.Password));
         }
 
