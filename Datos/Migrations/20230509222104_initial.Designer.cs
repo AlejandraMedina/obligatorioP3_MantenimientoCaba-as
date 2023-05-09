@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Datos.Migrations
 {
     [DbContext(typeof(MantenimientoCabañaContext))]
-    [Migration("20230508014100_initial")]
+    [Migration("20230509222104_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -84,7 +84,7 @@ namespace Datos.Migrations
                     b.Property<int>("CabaniaId")
                         .HasColumnType("int");
 
-                    b.Property<double>("CostoMant")
+                    b.Property<double>("Costo")
                         .HasColumnType("float");
 
                     b.Property<string>("Descripcion")

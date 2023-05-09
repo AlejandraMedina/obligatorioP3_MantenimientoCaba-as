@@ -1,5 +1,6 @@
 ﻿using Aplicacion;
 using Dominio.EntidadesNegocio;
+using Dominio.InterfacesRepositorios;
 using Dominio.InterfacesRespositorios;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,15 +12,18 @@ namespace PresentacionMVC.Controllers
     {
 
         public IListadoMantenimientos ListadoMantenimientos { get; set; }
-        public IRepositorio<Cabaña> RepoCabañas { get; set; }
+        public IRepositorioCabañas RepoCabañas { get; set; }
+
+        public IRepositorioMantenimientos RepoMantenimientos { get; set; }
 
         IAltaMantenimiento AltaMantenimiento { get; set; }
 
-        public MantenimientoController(IAltaMantenimiento altaMantenimiento, IListadoCabañas listadoCabañas,  IRepositorio<Cabaña> repoCabañas, IListadoMantenimientos listadoMantenimientos)
+        public MantenimientoController(IAltaMantenimiento altaMantenimiento, IListadoCabañas listadoCabañas,  IRepositorioCabañas repoCabañas, IListadoMantenimientos listadoMantenimientos, IRepositorioMantenimientos RepoMantenimientos)
         {
             AltaMantenimiento = altaMantenimiento;        
             RepoCabañas = repoCabañas;
             ListadoMantenimientos = listadoMantenimientos;
+            RepoMantenimientos = RepoMantenimientos;
         }
 
         // GET: MantenimientoController

@@ -129,6 +129,7 @@ namespace PresentacionMVC.Controllers
 
             Cabaña c = RepoCabañas.FindById(Id);
 
+
             return View(c);
         }
 
@@ -140,8 +141,15 @@ namespace PresentacionMVC.Controllers
         {
             try
             {
-               c.Validar();
-               RepoCabañas.Update(c);
+
+                Cabaña aux = RepoCabañas.FindById(id);
+
+                aux.Costo = c.Costo;
+                aux.Nombre = c.Nombre;
+
+
+               aux.Validar();
+               RepoCabañas.Update(aux);
                return RedirectToAction(nameof(Index));
             }
             catch

@@ -32,7 +32,7 @@ namespace PresentacionMVC
             builder.Services.AddScoped<IEliminarTipo, EliminarTipo>();
             builder.Services.AddScoped<IEliminarCabaña, EliminarCabaña>();
             //builder.Services.AddScoped<IRepositorio<Cabaña>, RepositorioCabañas>();
-            builder.Services.AddScoped<IRepositorio<Mantenimiento>, RepositorioMantenimientos>();
+            //builder.Services.AddScoped<IRepositorio<Mantenimiento>, RepositorioMantenimientos>();
             //builder.Services.AddScoped<IRepositorio<Tipo>, RepositorioTipos>();
             builder.Services.AddScoped<IRepositorio<Usuario>, RepositorioUsuarios>();
             builder.Services.AddScoped<ILoginUsuario, LoginUsuario>();

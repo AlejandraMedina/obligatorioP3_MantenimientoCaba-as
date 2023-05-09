@@ -75,7 +75,7 @@ namespace Datos.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CostoMant = table.Column<double>(type: "float", nullable: false),
+                    Costo = table.Column<double>(type: "float", nullable: false),
                     Funcionario = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CabaniaId = table.Column<int>(type: "int", nullable: false),
                     IdCabania = table.Column<int>(type: "int", nullable: false)

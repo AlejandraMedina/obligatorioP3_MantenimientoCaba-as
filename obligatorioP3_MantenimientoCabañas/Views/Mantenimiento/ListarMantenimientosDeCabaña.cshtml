@@ -22,13 +22,13 @@
                 @Html.DisplayNameFor(model => model.Descripcion)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CostoMant)
+                @Html.DisplayNameFor(model => model.Costo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Funcionario)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdCabania)
+                @Html.DisplayNameFor(model => model.Cabania.Nombre)
             </th>
             <th></th>
         </tr>
@@ -46,7 +46,7 @@
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CostoMant)
+                @Html.DisplayFor(modelItem => item.Costo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Funcionario)
@@ -54,11 +54,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IdCabania)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
+           
         </tr>
 }
     </tbody>

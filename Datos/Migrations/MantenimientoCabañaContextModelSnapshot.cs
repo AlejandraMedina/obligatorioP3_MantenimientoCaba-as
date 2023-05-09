@@ -81,7 +81,7 @@ namespace Datos.Migrations
                     b.Property<int>("CabaniaId")
                         .HasColumnType("int");
 
-                    b.Property<double>("CostoMant")
+                    b.Property<double>("Costo")
                         .HasColumnType("float");
 
                     b.Property<string>("Descripcion")

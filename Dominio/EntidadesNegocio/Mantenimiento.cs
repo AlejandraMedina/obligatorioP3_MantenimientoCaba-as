@@ -11,7 +11,7 @@ namespace Dominio.EntidadesNegocio
         public int Id { get; set; }
         public DateTime Fecha { get; set; }
         public string Descripcion { get; set; }
-        public double CostoMant { get; set; }
+        public double Costo { get; set; }
         public string Funcionario { get; set; }
 
         public Cabaña Cabania { get; set; }
