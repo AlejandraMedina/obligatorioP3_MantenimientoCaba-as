@@ -1,14 +1,29 @@
 ﻿@model IEnumerable<Dominio.EntidadesNegocio.Mantenimiento>
 
 @{
-    ViewData["Title"] = "ListarMantenimientosDeCabaña";
+    ViewData["Title"] = "MantenimientosPorCabañaPorFechas";
 }
 
-<h1>ListarMantenimientosDeCabaña</h1>
+<h1>MantenimientosPorCabañaPorFechas</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+<form asp-action="MantenimientosPorCabañaPorFechas">
+    <div class="form-group">
+        <label for="inicio" class="control-label">Ingrese fecha de inicio: </label>
+        <input type="Date" class="form-control" id="inicio" name="inicio">
+    </div>
+
+
+    <div class="form-group">
+        <label for="fin" class="control-label">Ingrese fecha de fin: </label>
+        <input type="Date" class="form-control" id="fin" name="fin">
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Buscar" class="btn btn-primary" />
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -26,7 +41,8 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Funcionario)
-            </th>          
+            </th>
+           
             <th></th>
         </tr>
     </thead>
@@ -47,8 +63,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Funcionario)
-            </td>      
-           
+            </td>
+          
+     
         </tr>
 }
     </tbody>

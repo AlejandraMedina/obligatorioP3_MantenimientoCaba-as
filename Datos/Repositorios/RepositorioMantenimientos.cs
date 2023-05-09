@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Datos.Repositorios
 {
@@ -65,6 +66,25 @@ namespace Datos.Repositorios
             throw new NotImplementedException();
         }
 
-      
+
+        public IEnumerable<Mantenimiento> MantenimientosPorCabañaPorFechas(DateTime inicio, DateTime fin, int id)
+        {
+
+                var mantenimientos = Contexto.Mantenimientos
+                    .Where(mantenimiento => mantenimiento.Cabania.Id == id && mantenimiento.Fecha >= inicio && mantenimiento.Fecha<= fin ) 
+                    .Select(mantenimiento => new Mantenimiento { 
+                        Fecha = mantenimiento.Fecha,
+                        Descripcion = mantenimiento.Descripcion,
+                        Costo = mantenimiento.Costo,
+                        Funcionario = mantenimiento.Funcionario,                       
+
+                    }
+                     )
+                    .OrderByDescending(mantenimiento => mantenimiento.Costo)
+                    .ToList();
+
+                return mantenimientos;
+        }
     }
+    
 }

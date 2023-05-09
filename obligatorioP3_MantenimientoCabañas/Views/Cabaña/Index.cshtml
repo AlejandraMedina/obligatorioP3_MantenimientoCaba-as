@@ -80,10 +80,16 @@
                 <td>
                     <img src="/Imagenes/@item.Foto" height="200"/>                    
                 </td>
-                <td>
-                    @Html.ActionLink("EditCabaña", "EditCabaña", new {id = item.Id }) 
+                <td>        
+                    <div>
+                    @Html.ActionLink("EditCabaña", "EditCabaña", new {id = item.Id })
+                    </div>
+                    <div>
                     @Html.ActionLink("DeleteCabaña", "DeleteCabaña", new { id = item.Id})
+                    </div>
+                    <div>
                     @Html.ActionLink("Details", "Details", new { id = item.Id})
+                    </div>
                 </td>
             </tr>
         }

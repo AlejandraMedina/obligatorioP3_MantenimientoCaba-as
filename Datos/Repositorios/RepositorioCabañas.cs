@@ -64,7 +64,7 @@ namespace Datos.Repositorios
 
         public IEnumerable<Cabaña> CabañasPorTexto(string txt)
         {
-            {
+            
                 var cabañas = Contexto.Cabañas
                     .Where(cabaña => cabaña.Nombre.Contains(txt))
                     .Select(cabaña => new Cabaña
@@ -91,7 +91,7 @@ namespace Datos.Repositorios
                     .ToList();
 
                 return cabañas;
-            }
+            
 
         }
 

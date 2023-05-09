@@ -131,5 +131,29 @@ namespace PresentacionMVC.Controllers
             return View(aux);
            
         }
+
+
+        // GET: MantenimientoController/
+        public ActionResult MantenimientosPorCabañaPorFechas(int id)
+        {
+            return View(new List<Mantenimiento>());
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        // POST: MantenimientoController/
+        public ActionResult MantenimientosPorCabañaPorFechas(DateTime inicio, DateTime fin, int id)
+        {
+
+            IEnumerable<Mantenimiento> mantenimientos = RepoMantenimientos.MantenimientosPorCabañaPorFechas(inicio,fin,id);
+
+            if (mantenimientos.Count() == 0)
+            {
+                ViewBag.Mensaje = "No hay mantenimientos para la búsqueda realizada";
+            }
+            return View(mantenimientos);
+
+        }
     }
 }
