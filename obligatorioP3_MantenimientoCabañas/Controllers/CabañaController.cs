@@ -9,6 +9,7 @@ using System.Globalization;
 using Datos.Repositorios;
 using System.Collections.Generic;
 using Dominio.InterfacesRepositorios;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PresentacionMVC.Controllers
 {
@@ -18,9 +19,9 @@ namespace PresentacionMVC.Controllers
         public IListadoTipos ListadoTipos { get; set; }
         public IListadoCabañas ListadoCabañas { get; set; }
 
-        public IRepositorio<Cabaña> RepoCabañas { get; set; }
+        public IRepositorioCabañas RepoCabañas { get; set; }
 
-        public IRepositorio<Tipo> RepoTipo { get; set; }
+        public IRepositorioTipos RepoTipo { get; set; }
 
       
 
@@ -31,7 +32,7 @@ namespace PresentacionMVC.Controllers
 
         public IWebHostEnvironment WHE { get; set; }
 
-        public CabañaController(IListadoTipos listadoTipos, IRepositorio<Cabaña> repo, IWebHostEnvironment whe, IRepositorio<Tipo> repoTipo, IAltaCabaña altaCabaña, IListadoCabañas listadoCabañas)
+        public CabañaController(IListadoTipos listadoTipos, IRepositorioCabañas repo, IWebHostEnvironment whe, IRepositorioTipos repoTipo, IAltaCabaña altaCabaña, IListadoCabañas listadoCabañas)
         {
             ListadoTipos = listadoTipos;
             RepoCabañas = repo;
@@ -122,6 +123,16 @@ namespace PresentacionMVC.Controllers
         }
 
 
+        // GET: CabañasController
+        public ActionResult EditCabaña(int Id)
+        {
+
+            Cabaña c = RepoCabañas.FindById(Id);
+
+            return View(c);
+        }
+
+
         // POST: CabañasController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -177,22 +188,94 @@ namespace PresentacionMVC.Controllers
         }
 
 
-        // GET: CabañaController/Details/
-        // public ActionResult CabañasPorCantMaxPersonas(int MaxPersonas)
-        //{
 
-        // IEnumerable<Cabaña> cabañas = RepoCabañas.
+        // GET: CabañasController/Create
+        public ActionResult CabaCabañasPorCantMaxPersonas() { 
 
-        //if (cabañas.Count() == 0)
-        //{
-        //    ViewBag.Mensaje = "No hay cabañas disponibles para mostrar";
-        //}
-        //return View(cabañas);
-        //}
+            return View(new List<Cabaña>());
+        }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        //POST: CabañaController/Details/
+        public ActionResult CabañasPorCantMaxPersonas(int MaxPersonas)
+        {
+
+            IEnumerable<Cabaña> cabañas = RepoCabañas.CabañasPorCantMaxPersonas(MaxPersonas);
 
 
-       
+            if (cabañas.Count() == 0)
+            {
+                ViewBag.Mensaje = "No hay cabañas disponibles para esta cantidad de personas";
+            }
+            return View(cabañas);
+        }
+
+
+        // GET: CabañasController/Create
+        public ActionResult CabañasPorTexto()
+        {
+
+            return View(new List<Cabaña>());
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        // POST: CabañaController/Details/
+        public ActionResult CabañasPorTexto(string txt)
+        {
+
+            IEnumerable<Cabaña> cabañas = RepoCabañas.CabañasPorTexto(txt);
+
+            if (cabañas.Count() == 0)
+            {
+                ViewBag.Mensaje = "No hay cabañas para la búsqueda realizada";
+            }
+            return View(cabañas);
+            
+        }
+
+
+
+        // GET: CabañasController/Create
+        public ActionResult CabañasHabilitadas()
+        {
+            IEnumerable<Cabaña> cabañas= RepoCabañas.CabañasHabilitadas();
+
+            return View(cabañas);
+        }
+
+
+
+        // GET: CabañasController/Cabañas por tipo
+        public ActionResult CabañasPorTipo()
+        {
+            //Para que se carguen los tipos de cabaña en el desplegable de la vista inicial
+            AltaCabañaViewModel vm = new AltaCabañaViewModel();
+            IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
+            vm.Tipos = tipos;
+
+            return View(vm.Tipos);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        // POST: CabañaController/Details/
+        public ActionResult CabañasPorTipo(Tipo t)
+        {
+
+            IEnumerable<Cabaña> cabañas = RepoCabañas.CabañasPorTipo(t);
+
+            if (cabañas.Count() == 0)
+            {
+                ViewBag.Mensaje = "No hay cabañas de este tipo para mostrar";
+            }
+            return View(cabañas);
+
+        }
+
+
     }
 }

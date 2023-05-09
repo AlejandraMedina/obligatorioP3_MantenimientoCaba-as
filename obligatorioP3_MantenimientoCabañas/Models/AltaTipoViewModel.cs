@@ -7,5 +7,7 @@ namespace PresentacionMVC.Models
         //public int Id { get; set; }
         public Tipo Tipo { get; set; }
         public IEnumerable<Tipo> Tipos { get; set; }
+
+        
     }
 }

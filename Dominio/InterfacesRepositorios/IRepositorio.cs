@@ -14,7 +14,8 @@ namespace Dominio.InterfacesRespositorios
         void Remove(int id);
         T FindById(int id);
         IEnumerable<T> FindAll();
-        void Update(T obj);      
+        void Update(T obj);
+       
     }
 
 }

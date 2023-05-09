@@ -1,7 +1,10 @@
-﻿@model PresentacionMVC.Models.EditarCabañaViewModel
+﻿@model Dominio.EntidadesNegocio.Cabaña
 
+@{
+    ViewData["Title"] = "EditCabaña";
+}
 
-<h1>EditarCabaña</h1>
+<h1>EditCabaña</h1>
 
 <h4>Cabaña</h4>
 <hr />
@@ -9,56 +12,28 @@
     <div class="col-md-4">
         <form asp-action="EditCabaña">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" value="@Model.Id" name="Id" />
             <div class="form-group">
-                <label asp-for="Cabaña.Id" class="control-label"></label>
-                <input asp-for="Cabaña.Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
+          
             <div class="form-group">
-                <label asp-for="Cabaña.Nombre" class="control-label"></label>
-                <input asp-for="Cabaña.Nombre" class="form-control" />
-                <span asp-validation-for="Cabaña.Nombre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cabaña.NumHabitacion" class="control-label"></label>
-                <input asp-for="Cabaña.NumHabitacion" class="form-control" />
-                <span asp-validation-for="Cabaña.NumHabitacion" class="text-danger"></span>
+                <label asp-for="Costo" class="control-label"></label>
+                <input asp-for="Costo" class="form-control"  />
+                <span asp-validation-for="Costo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Cabaña.Costo" class="control-label"></label>
-                <input asp-for="Cabaña.Costo" class="form-control" />
-                <span asp-validation-for="Cabaña.Costo" class="text-danger"></span>
+                <select name="IdTipoSeleccionado" id="IdTipoSeleccionado">
+                @*    @foreach (var tipo in @model.Tipos)
+                            {
+                        <option value="@tipo.Id">@tipo.Nombre</option>
+                    }*@
+                </select>
             </div>
-            <div class="form-group">
-                <label asp-for="Cabaña.Descripcion" class="control-label"></label>
-                <input asp-for="Cabaña.Descripcion" class="form-control" />
-                <span asp-validation-for="Cabaña.Descripcion" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Cabaña.Jacuzzi" /> 
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Cabaña.Habilitada" /> 
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cabaña.PersonasMax" class="control-label"></label>
-                <input asp-for="Cabaña.PersonasMax" class="form-control" />
-                <span asp-validation-for="Cabaña.PersonasMax" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Foto" class="control-label"></label>
-                <input asp-for="Foto" class="form-control" />
-                <span asp-validation-for="Foto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cabaña.Mantenimiento" class="control-label"></label>
-                <input asp-for="Cabaña.Mantenimiento" class="form-control" />
-                <span asp-validation-for="Cabaña.Mantenimiento" class="text-danger"></span>
-            </div>
+    
+        
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -67,6 +42,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Volver</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 

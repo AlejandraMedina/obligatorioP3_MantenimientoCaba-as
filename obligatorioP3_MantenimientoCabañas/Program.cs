@@ -31,9 +31,9 @@ namespace PresentacionMVC
             builder.Services.AddScoped<IModificarTipo, ModificarTipo>();
             builder.Services.AddScoped<IEliminarTipo, EliminarTipo>();
             builder.Services.AddScoped<IEliminarCabaña, EliminarCabaña>();
-            builder.Services.AddScoped<IRepositorio<Cabaña>, RepositorioCabañas>();
+            //builder.Services.AddScoped<IRepositorio<Cabaña>, RepositorioCabañas>();
             builder.Services.AddScoped<IRepositorio<Mantenimiento>, RepositorioMantenimientos>();
-            builder.Services.AddScoped<IRepositorio<Tipo>, RepositorioTipos>();
+            //builder.Services.AddScoped<IRepositorio<Tipo>, RepositorioTipos>();
             builder.Services.AddScoped<IRepositorio<Usuario>, RepositorioUsuarios>();
             builder.Services.AddScoped<ILoginUsuario, LoginUsuario>();
             builder.Services.AddScoped<IListadoUsuarios, ListadoUsuarios>();
@@ -69,12 +69,13 @@ namespace PresentacionMVC
 
             app.MapControllerRoute(
                 name: "default",
-            pattern: "{controller=Usuario}/{action=Login}");
-            // pattern: "{controller=Cabaña}/{action=CreateCabaña}/{id?}");
-            //pattern: "{controller=Tipo}/{action=Index}");
-            //pattern: "{controller=Home}/{action=Index}");
-            //pattern: "{controller=Mantenimiento}/{action=CreateMantenimiento}/{8?}");
-         
+                pattern: "{controller=Cabaña}/{action=CreateCabaña}/{id?}");
+        //pattern: "{controller=Usuario}/{action=Login}");
+        //pattern: "{controller=Cabaña}/{action=CreateCabaña}/{id?}");
+        //pattern: "{controller=Tipo}/{action=Index}");
+        //pattern: "{controller=Home}/{action=Index}");
+        //pattern: "{controller=Mantenimiento}/{action=CreateMantenimiento}/{8?}");
+        
             app.Run();
         }
     }
