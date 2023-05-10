@@ -54,12 +54,12 @@ namespace Datos.Repositorios
         }
 
 
-        public Usuario ExiteUsuario(string Email)
+        public Usuario ExiteUsuario(string Email, string Password)
         {
 
             foreach (Usuario item in Contexto.Usuarios)
             {
-                if (item.Equals(Email))
+                if (item.Email.Equals(Email.Trim()) && item.Password.Equals(Password.Trim()))
                 {
                     return item;
                 }

@@ -39,16 +39,23 @@ namespace PresentacionMVC.Controllers
             try
             {
 
-                LoginUsuario.ExiteUsuario(EMail, Password);
+                if (LoginUsuario.ExiteUsuario(EMail, Password) != null)
+                {
+                    HttpContext.Session.SetString("usuarioLogueado", "si");
 
-                HttpContext.Session.SetString("usuarioLogueado","si");
+                    return RedirectToAction("Index", "Home");
 
-                return RedirectToAction("Index","Home");
+                }
+                else 
+                {
+                    ViewBag.Mensaje = "Nombre de usuario o contraseña incorrectos";
+                    return RedirectToAction("login");
+                }             
 
             }
             catch (Exception e)
             {
-                ViewBag.Mensaje = "Nombre de usuario o contraseña incorrectos";
+                ViewBag.Mensaje = "Intente nuevamente";
                 return RedirectToAction("login");
             }          
 
@@ -58,7 +65,7 @@ namespace PresentacionMVC.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            HttpContext.Session.SetString("usurioLogueado", "no");
+            HttpContext.Session.SetString("usuarioLogueado", "no");
             return RedirectToAction("login");
         }
 

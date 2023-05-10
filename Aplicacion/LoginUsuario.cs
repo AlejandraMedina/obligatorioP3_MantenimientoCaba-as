@@ -28,7 +28,7 @@ namespace Aplicacion
 
             foreach (Usuario item in RepoUsuario.FindAll())
             {
-                if (item.Email.Equals(Email) && item.Password.Equals(Password))
+                if (item.Email.Equals(Email.Trim()) && item.Password.Equals(Password.Trim()))
                 {
                     return item;
                 }
