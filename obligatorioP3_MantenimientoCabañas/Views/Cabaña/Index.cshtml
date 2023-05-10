@@ -1,9 +1,10 @@
 ﻿@model IEnumerable<Dominio.EntidadesNegocio.Cabaña>
+
 @{
     ViewData["Title"] = "ListadoCabañas";
 }
 
-<h1>ListadoCabañas</h1>
+<h1>Listado Cabañas</h1>
 
 <p>
     <a asp-action="CreateCabaña">Crear Nueva</a>
@@ -30,14 +31,11 @@
                 @Html.DisplayNameFor(model => model.Jacuzzi)
             </th>
             <th>
-               Tipo
+                @Html.DisplayNameFor(model => model.Tipo.Nombre)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Habilitada)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mantenimiento)
-            </th>
+            </th>      
 
             <th>
                 @Html.DisplayNameFor(model => model.Foto)
@@ -68,17 +66,13 @@
                 </td>
 
                 <td>
-                    @Html.DisplayFor(modelItem => item.Tipo.Id) 
-                </td>
-              
-                <td>
-                    @Html.DisplayFor(modelItem => item.Mantenimiento)
-                </td>
+                    @Html.DisplayFor(modelItem => item.Tipo.Nombre) 
+                </td>                     
                 <td>
                     @Html.DisplayFor(modelItem => item.Habilitada)
                 </td>
                 <td>
-                    <img src="/Imagenes/@item.Foto" height="200"/>                    
+                    <img src="/Imagenes/@item.Foto" height="150"/>                    
                 </td>
                 <td>        
                     <div>

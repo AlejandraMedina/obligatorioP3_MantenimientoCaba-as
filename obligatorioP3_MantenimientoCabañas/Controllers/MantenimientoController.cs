@@ -69,7 +69,7 @@ namespace PresentacionMVC.Controllers
                     }
                 }
 
-                if(contador <= 3)
+                if(contador < 3)
                 {                   
                     AltaMantenimiento.Alta(vm.Mantenimiento);
                     return RedirectToAction(nameof(ListarMantenimientosDeCabaña), new { id = id });

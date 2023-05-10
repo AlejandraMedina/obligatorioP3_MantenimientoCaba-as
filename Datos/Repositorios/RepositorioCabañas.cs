@@ -124,11 +124,10 @@ namespace Datos.Repositorios
 
         public IEnumerable<Cabaña> CabañasPorCantMaxPersonas(int cantMax)
         {
-            
-                var cabañas = Contexto.Cabañas
-                                      .Include(cabaña => cabaña.Tipo)
-                                      .ThenInclude(Tipo => Tipo.Nombre)
-                                      .Where(cabaña => cabaña.PersonasMax == cantMax)
+
+            var cabañas = Contexto.Cabañas
+                                  .Include(cabaña => cabaña.Tipo)                                  
+                                      .Where(cabaña => cabaña.PersonasMax >= cantMax)
                                       .Select(cabaña => new Cabaña
                                       {
                                           Id = cabaña.Id,
@@ -140,8 +139,9 @@ namespace Datos.Repositorios
                                           Jacuzzi = cabaña.Jacuzzi,
                                           Habilitada = cabaña.Habilitada,
                                           Foto = cabaña.Foto,
+                                          Tipo = new Tipo { Id = cabaña.Tipo.Id, Nombre = cabaña.Tipo.Nombre }
                                       }
-                                      )
+                                      ) 
                                      .ToList();
                 return cabañas;
            

@@ -22,7 +22,7 @@ namespace Dominio.EntidadesNegocio
         public bool Habilitada { get; set; }
         public int PersonasMax { get; set; }
         public string Foto { get; set; }
-        public int Mantenimiento { get; set; }
+      
 
         public void Validar()
         {

@@ -1,22 +1,23 @@
 ﻿@model IEnumerable<Dominio.EntidadesNegocio.Cabaña>
 
 @{
-    ViewData["Title"] = "CabañasPorTexto";
+    ViewData["Title"] = "Cabañas por CantMaxPersonas";
 }
 
-<h1>CabañasPorTexto</h1>
+<h1>Cabañas por cantidad máxima de personas:</h1>
 
+<div>@ViewBag.Mensaje</div>
 
-    <form asp-action="CabañasPorTexto">
+<form asp-action="CabañasPorCantMaxPersonas">
     <div class="form-group">
-        <label  for="txt" class="control-label">Ingrese el texto a buscar: </label>
-        <input  type= "text" class="form-control" id="txt" name="txt">        
+        <label for="number" class="control-label">Ingrese cantidad de personas máxima: </label>
+        <input type="number" class="form-control" id="MaxPersonas" min=1 name="MaxPersonas">
     </div>
 
     <div class="form-group">
         <input type="submit" value="Buscar" class="btn btn-primary" />
     </div>
-    </form>
+</form><br/>
 
 <table class="table">
     <thead>
@@ -48,7 +49,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.Foto)
             </th>
-           
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo.Nombre)
+            </th>
+          
             <th></th>
         </tr>
     </thead>
@@ -82,12 +86,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Foto)
             </td>
-           
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.DisplayFor(modelItem => item.Tipo.Nombre)
             </td>
+          
+         
         </tr>
 }
     </tbody>

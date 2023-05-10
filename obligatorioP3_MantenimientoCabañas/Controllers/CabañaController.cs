@@ -48,6 +48,10 @@ namespace PresentacionMVC.Controllers
         public ActionResult Index()
         {
             IEnumerable<Cabaña> cabañas = ListadoCabañas.ObtenerListado();
+
+            IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
+            ViewBag.Tipos = tipos;
+
             if (cabañas.Count()==0)
             {
                 ViewBag.Mensaje = "No hay cabañas disponibles para mostrar";
@@ -198,7 +202,10 @@ namespace PresentacionMVC.Controllers
 
 
         // GET: CabañasController/Create
-        public ActionResult CabaCabañasPorCantMaxPersonas() { 
+        public ActionResult CabañasPorCantMaxPersonas() {
+
+            IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
+            ViewBag.Tipos = tipos;
 
             return View(new List<Cabaña>());
         }
