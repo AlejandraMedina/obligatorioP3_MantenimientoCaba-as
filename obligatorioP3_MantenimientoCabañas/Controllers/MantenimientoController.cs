@@ -18,12 +18,12 @@ namespace PresentacionMVC.Controllers
 
         IAltaMantenimiento AltaMantenimiento { get; set; }
 
-        public MantenimientoController(IAltaMantenimiento altaMantenimiento, IListadoCabañas listadoCabañas,  IRepositorioCabañas repoCabañas, IListadoMantenimientos listadoMantenimientos, IRepositorioMantenimientos RepoMantenimientos)
+        public MantenimientoController(IAltaMantenimiento altaMantenimiento, IListadoCabañas listadoCabañas,  IRepositorioCabañas repoCabañas, IListadoMantenimientos listadoMantenimientos, IRepositorioMantenimientos repoMantenimientos)
         {
             AltaMantenimiento = altaMantenimiento;        
             RepoCabañas = repoCabañas;
             ListadoMantenimientos = listadoMantenimientos;
-            RepoMantenimientos = RepoMantenimientos;
+            RepoMantenimientos = repoMantenimientos;
         }
 
         // GET: MantenimientoController
@@ -58,10 +58,27 @@ namespace PresentacionMVC.Controllers
                 vm.Mantenimiento.Cabania = RepoCabañas.FindById(vm.IdCabañaSeleccionada);               
                 vm.Mantenimiento.IdCabania = vm.IdCabañaSeleccionada;
                 int id = vm.IdCabañaSeleccionada;
-                AltaMantenimiento.Alta(vm.Mantenimiento);
+
+                IEnumerable<Mantenimiento> mantenimientos = RepoMantenimientos.FindAll();
+
+                int contador = 0;
+
+                foreach (var item in mantenimientos) {
+                    if (item.Cabania.Id == vm.Cabaña.Id) {
+                        contador++;
+                    }
+                }
+
+                if(contador <= 3)
+                {                   
+                    AltaMantenimiento.Alta(vm.Mantenimiento);
+                    return RedirectToAction(nameof(ListarMantenimientosDeCabaña), new { id = id });
+                }
+
+                ViewBag.Mensaje = "Esta cabaña ya tiene 3 mantenimientos realizados.";
 
 
-                return RedirectToAction(nameof(ListarMantenimientosDeCabaña),new {id = id });
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
@@ -147,6 +164,7 @@ namespace PresentacionMVC.Controllers
         {
 
             IEnumerable<Mantenimiento> mantenimientos = RepoMantenimientos.MantenimientosPorCabañaPorFechas(inicio,fin,id);
+   
 
             if (mantenimientos.Count() == 0)
             {

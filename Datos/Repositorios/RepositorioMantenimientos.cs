@@ -71,8 +71,9 @@ namespace Datos.Repositorios
         {
 
                 var mantenimientos = Contexto.Mantenimientos
-                    .Where(mantenimiento => mantenimiento.Cabania.Id == id && mantenimiento.Fecha >= inicio && mantenimiento.Fecha<= fin ) 
+                    .Where(mantenimiento => mantenimiento.Cabania.Id == id && mantenimiento.Fecha.Date >= inicio.Date && mantenimiento.Fecha.Date <= fin.Date ) 
                     .Select(mantenimiento => new Mantenimiento { 
+                        Id = mantenimiento.Id,
                         Fecha = mantenimiento.Fecha,
                         Descripcion = mantenimiento.Descripcion,
                         Costo = mantenimiento.Costo,
