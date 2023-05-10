@@ -84,7 +84,7 @@ namespace PresentacionMVC.Controllers
         // GET: TipoController/Edit/5
         public ActionResult EditTipo(int id)
         {               
-            //cambia el costo y la descripcion ver como cargar esos datos
+            
             return View();
         }
 
@@ -149,7 +149,7 @@ namespace PresentacionMVC.Controllers
 
 
         // GET: TipoController/Edit/5
-        public ActionResult BuscarTipoPorId()
+        public ActionResult BuscarTipoPorNombre()
         {
 
             return View();
@@ -159,11 +159,29 @@ namespace PresentacionMVC.Controllers
         // POST: TipoController/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult BuscarTipoPorId(string nombre)
+        public ActionResult BuscarTipoPorNombre(string nombre)
         {
-            //Tipo t = RepoTipo.FindById(Id);
+
+            try
+            {
+
+                foreach (var item in RepoTipo.FindAll())
+                {
+                    if (item.Nombre.ToLower().Equals(nombre.Trim().ToLower()))
+                    {
+                        return View(item);
+                    }
+                }
+                ViewBag.Mensaje = "No existe un tipo con el nombre ingresado";
+                return View();
+            }
+            catch
+            {
+                ViewBag.Mensaje = "Intente nuevamente";
+                return View();
+            }
+
            
-            return View();
         }
        
     }

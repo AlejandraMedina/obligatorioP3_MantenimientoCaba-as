@@ -283,8 +283,9 @@ namespace PresentacionMVC.Controllers
         {
              
             IEnumerable<Cabaña> cabañas = RepoCabañas.CabañasPorTipo(IdTipo);
+            IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
+            ViewBag.Tipos = tipos;
 
-            
 
             if (cabañas.Count() == 0)
             {

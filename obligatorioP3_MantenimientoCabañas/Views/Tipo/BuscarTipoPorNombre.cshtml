@@ -1,11 +1,23 @@
 ﻿@model Dominio.EntidadesNegocio.Tipo
 
 @{
-    ViewData["Title"] = "BuscarTipoPorId";
+    ViewData["Title"] = "BuscarTipoPorNombre";
 }
 
-<h1>BuscarTipoPorId</h1>
+<h1>Buscar Tipo por Nombre</h1><br>
 
+<div>@ViewBag.Mensaje</div>
+
+<form asp-action="BuscarTipoPorNombre">
+    <div class="form-group">
+        <label for="nombre" class="control-label">Ingrese el nombre del tipo a buscar: </label>
+        <input type="text" class="form-control" id="nombre" name="nombre">
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Buscar" class="btn btn-primary" />
+    </div>
+</form>
 <div>
     <h4>Tipo</h4>
     <hr />
