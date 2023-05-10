@@ -268,11 +268,12 @@ namespace PresentacionMVC.Controllers
         public ActionResult CabañasPorTipo()
         {
             //Para que se carguen los tipos de cabaña en el desplegable de la vista inicial
-            AltaCabañaViewModel vm = new AltaCabañaViewModel();
+           // AltaCabañaViewModel vm = new AltaCabañaViewModel();
+           // IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
+            //vm.Tipos = tipos;
             IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
-            vm.Tipos = tipos;
-
-            return View(vm.Tipos);
+            ViewBag.Tipos = tipos;
+            return View(tipos);
         }
 
         [HttpPost]
@@ -282,6 +283,8 @@ namespace PresentacionMVC.Controllers
         {
 
             IEnumerable<Cabaña> cabañas = RepoCabañas.CabañasPorTipo(t);
+
+            
 
             if (cabañas.Count() == 0)
             {

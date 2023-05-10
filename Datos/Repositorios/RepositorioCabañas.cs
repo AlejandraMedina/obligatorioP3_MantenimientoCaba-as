@@ -98,8 +98,7 @@ namespace Datos.Repositorios
         public IEnumerable<Cabaña> CabañasPorTipo(Tipo tipo)
         {
             var cabañas = Contexto.Cabañas
-                                      .Include(cabaña => cabaña.Tipo)
-                                      .ThenInclude(Tipo => Tipo.Nombre)
+                                      .Include(cabaña => cabaña.Tipo)                                      
                                       .Where(cabaña => cabaña.Tipo.Id == tipo.Id)
                                       .Select(cabaña => new Cabaña
                                       {
@@ -112,6 +111,7 @@ namespace Datos.Repositorios
                                           Jacuzzi = cabaña.Jacuzzi,
                                           Habilitada = cabaña.Habilitada,
                                           Foto = cabaña.Foto,
+                                          Tipo = new Tipo { Id = cabaña.Tipo.Id, Nombre = cabaña.Tipo.Nombre }
                                       }
                                       )
                                      .ToList();
