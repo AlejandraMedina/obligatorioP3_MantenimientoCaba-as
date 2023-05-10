@@ -23,7 +23,7 @@
                         @if (Context.Session.GetString("usuarioLogueado") == "si")
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Volver al Inicio</a>
                             </li>
 
 
@@ -35,8 +35,9 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Cabaña" asp-action="Index">Listado de Cabañas</a>
                             </li>
 
-
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Volver al Inicio</a>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Mantenimiento" asp-action="Index">Listado de Mantenimientos</a>
+                            </li>                      
 
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Logout"> Salir</a>
@@ -62,26 +63,29 @@
             @RenderBody()
         </main>
     </div>
+
     @if (Context.Session.GetString("usuarioLogueado") == "si" && Context.Session.GetString("Menu") == "si")
     {
-        <h1>Mantenimiento de Cabañas: </h1>
+        <h1>Getión de tipos: </h1><br />
 
         <a class="nav-link text-dark" asp-area="" asp-controller="Tipo" asp-action="CreateTipo">Crear Tipo</a>
         <a class="nav-link text-dark" asp-area="" asp-controller="Tipo" asp-action="Index">Listar tipos</a>
         <a class="nav-link text-dark" asp-area="" asp-controller="Tipo" asp-action="DeleteTipo">Eliminar Tipo</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Tipo" asp-action="EditTipo">Modificar Tipo</a>
         <a class="nav-link text-dark" asp-area="" asp-controller="Tipo" asp-action="BuscarTipoPorNombre">Buscar tipo por Nombre</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Cabaña" asp-action="CreateCabaña">Crear Cabaña</a>
 
 
-
+        <h1>Gestión de Mantenimientos: </h1><br />
 
         <a class="nav-link text-dark" asp-area="" asp-controller="Mantenimiento" asp-action="CreateMantenimiento">Crear Mantenimiento</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Mantenimiento" asp-action="listarMantenimientosDeCabaña">Listar mantenimientos de una cabaña</a>
         <a class="nav-link text-dark" asp-area="" asp-controller="Mantenimiento" asp-action="VerMantenimientoACabañaPorFecha">Ver mantenimientos realizados por cabaña entre fechas: </a>
 
 
-        <h1>Búsquedas de Cabañas: </h1>
+        <h1>Gestión de Cabañas: </h1><br />
 
+
+        <a class="nav-link text-dark" asp-area="" asp-controller="Cabaña" asp-action="CreateCabaña">Crear Cabaña</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Cabaña" asp-action="Index">Listar Cabañas</a>
         <a class="nav-link text-dark" asp-area="" asp-controller="Cabaña" asp-action="CabañasPorTexto">Buscar Cabaña por texto</a>
         <a class="nav-link text-dark" asp-area="" asp-controller="Cabaña" asp-action="CabañasPorTipo">Buscar Cabaña por tipo</a>
         <a class="nav-link text-dark" asp-area="" asp-controller="Cabaña" asp-action="CabañasPorCantidadMaxPersonas">Buscar Cabaña por cantidad máxima</a>
