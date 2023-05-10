@@ -131,8 +131,8 @@ namespace PresentacionMVC.Controllers
         public ActionResult EditCabaña(int Id)
         {
 
+            HttpContext.Session.SetString("Menu", "no");
             Cabaña c = RepoCabañas.FindById(Id);
-
 
             return View(c);
         }
@@ -165,7 +165,7 @@ namespace PresentacionMVC.Controllers
         // GET: CabañasController/Delete/5
         public ActionResult DeleteCabaña(int Id)
         {
-          
+            HttpContext.Session.SetString("Menu", "no");
             Cabaña c = RepoCabañas.FindById(Id);
             
             return View(c);
@@ -194,6 +194,7 @@ namespace PresentacionMVC.Controllers
         // GET: CabañaController/Details/
         public ActionResult Details(int id)
         {
+            HttpContext.Session.SetString("Menu", "no");
             Cabaña c = RepoCabañas.FindById(id);
             return View(c);
            
@@ -204,6 +205,7 @@ namespace PresentacionMVC.Controllers
         // GET: CabañasController/Create
         public ActionResult CabañasPorCantMaxPersonas() {
 
+            HttpContext.Session.SetString("Menu", "no");
             IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
             ViewBag.Tipos = tipos;
 
@@ -267,8 +269,8 @@ namespace PresentacionMVC.Controllers
         // GET: CabañasController/Cabañas por tipo
         public ActionResult CabañasPorTipo()
         {
-            
-           
+
+            HttpContext.Session.SetString("Menu", "no");
             IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
             ViewBag.Tipos = tipos;
 
@@ -281,17 +283,17 @@ namespace PresentacionMVC.Controllers
         // POST: CabañaController/Details/
         public ActionResult CabañasPorTipo(int IdTipo)
         {
-             
-            IEnumerable<Cabaña> cabañas = RepoCabañas.CabañasPorTipo(IdTipo);
-            IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
-            ViewBag.Tipos = tipos;
+              
+                IEnumerable<Cabaña> cabañas = RepoCabañas.CabañasPorTipo(IdTipo);
+                IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
+                ViewBag.Tipos = tipos;
 
 
-            if (cabañas.Count() == 0)
-            {
-                ViewBag.Mensaje = "No hay cabañas de este tipo para mostrar";
-            }
-            return View(cabañas);
+                if (cabañas.Count() == 0)
+                {
+                    ViewBag.Mensaje = "No hay cabañas de este tipo para mostrar";
+                }
+                return View(cabañas);
 
         }
 

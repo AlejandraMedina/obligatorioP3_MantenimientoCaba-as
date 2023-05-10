@@ -25,6 +25,7 @@ namespace PresentacionMVC.Controllers
         IRepositorioTipos RepoTipo { get; set; }
         IRepositorioCabañas RepoCabaña { get; set; }
 
+      
         public TipoController(IListadoTipos listadoTipos, IAltaTipo altaTipo, IModificarTipo modificarTipo, IEliminarTipo eliminarTipo, IRepositorioTipos repotipo, IRepositorioCabañas repocabaña)
         { 
         
@@ -33,8 +34,10 @@ namespace PresentacionMVC.Controllers
             ModificarTipo = modificarTipo;
             EliminarTipo = eliminarTipo;
             RepoTipo = repotipo;
-            RepoCabaña = repocabaña;
+            RepoCabaña = repocabaña;          
+
         }
+
 
         // GET: TipoController
         public ActionResult Index()

@@ -62,7 +62,7 @@
             @RenderBody()
         </main>
     </div>
-    @if (Context.Session.GetString("usuarioLogueado") == "si")
+    @if (Context.Session.GetString("usuarioLogueado") == "si" && Context.Session.GetString("Menu") == "si")
     {
         <h1>Mantenimiento de Cabañas: </h1>
 

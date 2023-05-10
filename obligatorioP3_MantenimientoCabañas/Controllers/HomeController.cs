@@ -15,6 +15,7 @@ namespace PresentacionMVC.Controllers
 
         public IActionResult Index()
         {
+            HttpContext.Session.SetString("Menu", "si"); 
             return View();
         }
 
