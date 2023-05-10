@@ -242,7 +242,7 @@ namespace PresentacionMVC.Controllers
         public ActionResult CabañasPorTexto(string txt)
         {
 
-            IEnumerable<Cabaña> cabañas = RepoCabañas.CabañasPorTexto(txt);
+            IEnumerable<Cabaña> cabañas = RepoCabañas.CabañasPorTexto(txt.Trim());
 
             if (cabañas.Count() == 0)
             {
@@ -267,22 +267,22 @@ namespace PresentacionMVC.Controllers
         // GET: CabañasController/Cabañas por tipo
         public ActionResult CabañasPorTipo()
         {
-            //Para que se carguen los tipos de cabaña en el desplegable de la vista inicial
-           // AltaCabañaViewModel vm = new AltaCabañaViewModel();
-           // IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
-            //vm.Tipos = tipos;
+            
+           
             IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
             ViewBag.Tipos = tipos;
-            return View(tipos);
+
+            return View(new List<Cabaña>());
+           
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         // POST: CabañaController/Details/
-        public ActionResult CabañasPorTipo(Tipo t)
+        public ActionResult CabañasPorTipo(int IdTipo)
         {
-
-            IEnumerable<Cabaña> cabañas = RepoCabañas.CabañasPorTipo(t);
+             
+            IEnumerable<Cabaña> cabañas = RepoCabañas.CabañasPorTipo(IdTipo);
 
             
 

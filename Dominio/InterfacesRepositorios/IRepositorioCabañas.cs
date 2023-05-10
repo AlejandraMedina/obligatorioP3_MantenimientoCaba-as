@@ -13,7 +13,7 @@ namespace Dominio.InterfacesRespositorios
       
         IEnumerable<Cabaña> CabañasPorTexto(string txt);
 
-        IEnumerable<Cabaña> CabañasPorTipo(Tipo tipo);
+        IEnumerable<Cabaña> CabañasPorTipo(int tipo);
 
         IEnumerable<Cabaña> CabañasPorCantMaxPersonas(int cantMax);
 

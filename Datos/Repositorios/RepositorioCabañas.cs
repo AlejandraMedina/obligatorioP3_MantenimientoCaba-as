@@ -95,11 +95,11 @@ namespace Datos.Repositorios
 
         }
 
-        public IEnumerable<Cabaña> CabañasPorTipo(Tipo tipo)
+        public IEnumerable<Cabaña> CabañasPorTipo(int idTipo)
         {
             var cabañas = Contexto.Cabañas
                                       .Include(cabaña => cabaña.Tipo)                                      
-                                      .Where(cabaña => cabaña.Tipo.Id == tipo.Id)
+                                      .Where(cabaña => cabaña.Tipo.Id == idTipo)
                                       .Select(cabaña => new Cabaña
                                       {
                                           Id = cabaña.Id,
