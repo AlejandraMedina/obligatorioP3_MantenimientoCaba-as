@@ -6,21 +6,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Dominio.EntidadesNegocio
 {
+
+
+    [Index(nameof(Nombre), IsUnique = true)]
     public class Cabaña : IValidable, IComparable<Cabaña>
     {
 
         public int Id { get; set; }
+   
+        [Required]
+        [RegularExpression(@"^[a-zA-Z]+$")]
         public string Nombre { get; set; }
-        public int NumHabitacion { get; set; }        
+    
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
+        public int NumHabitacion { get; set; }      
+        
         public Tipo Tipo { get; set; }
+
         public float Costo { get; set; }
+
+        [StringLength(500, MinimumLength = 10)]
+
         public string Descripcion { get; set; }
+
         public bool Jacuzzi { get; set; }
+
         public bool Habilitada { get; set; }
+
         public int PersonasMax { get; set; }
         public string Foto { get; set; }
       

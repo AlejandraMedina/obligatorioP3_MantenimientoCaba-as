@@ -63,6 +63,13 @@ namespace PresentacionMVC.Controllers
 
                 IEnumerable<Mantenimiento> mantenimientos = RepoMantenimientos.FindAll();
 
+
+
+                if (vm.Mantenimiento.Fecha.Date <= DateTime.Now.Date)
+                {
+                    ViewBag.Mensaje = "la fecha no puede ser anterior a la fecha de hoy";
+                }
+
                 int contador = 0;
 
                 foreach (var item in mantenimientos) {
@@ -71,7 +78,9 @@ namespace PresentacionMVC.Controllers
                     }
                 }
 
-                if(contador < 3)
+              
+
+                if (contador < 3)
                 {                   
                     AltaMantenimiento.Alta(vm.Mantenimiento);
                     return RedirectToAction(nameof(ListarMantenimientosDeCabaña), new { id = id });

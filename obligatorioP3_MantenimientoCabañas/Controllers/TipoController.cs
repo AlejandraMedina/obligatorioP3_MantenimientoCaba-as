@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Datos.Repositorios;
 using Dominio.InterfacesRespositorios;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 
 namespace PresentacionMVC.Controllers
 {
@@ -130,30 +131,15 @@ namespace PresentacionMVC.Controllers
            
             try
             {
-      
-                foreach (var item in RepoCabaña.FindAll())
-                {
-                   
-                    if (item.Tipo.Id == id)
-                    {                      
-                      
-                      ViewBag.Mensaje = "No es posible eliminar, hay cabañas con este tipo.";
-                        return RedirectToAction(nameof(Index));
-
-                    }
-                    else 
-                    {
-                        EliminarTipo.Remove(id);
-                        ViewBag.Mensaje = "El tipo fue eliminado correctamente";
-                        return RedirectToAction(nameof(Index));
-                    }
-                }
-               return ViewBag.Mensaje = "llega accaaaaa";
+                RepoTipo.Remove(id);
+                ViewBag.Mensaje = "El tipo fue eliminado con éxito";
+                return RedirectToAction(nameof(Index));              
+                
             }
             catch
             {
-                ViewBag.Mensaje = "Oops! Ocurrió un error inesperado";
-                return View();
+                ViewBag.Mensaje = "No es posible eliminar tipo ya que tiene cabañas";
+                return View(Index);
             }
             
         }
@@ -176,22 +162,15 @@ namespace PresentacionMVC.Controllers
             try
             {
 
-                foreach (var item in RepoTipo.FindAll())
-                {
-                    if (item.Nombre.ToLower().Equals(nombre.Trim().ToLower()))
-                    {
-                        return View(item);
-                    }
-                }
-                ViewBag.Mensaje = "No existe un tipo con el nombre ingresado";
-                return View();
+                Tipo tipo = RepoTipo.BuscarTipoPorNombre(nombre);
+
+                return View(tipo);
             }
             catch
             {
-                ViewBag.Mensaje = "Intente nuevamente";
+                ViewBag.Mensaje = "No existe un tipo con el nombre ingresado";
                 return View();
             }
-
            
         }
        

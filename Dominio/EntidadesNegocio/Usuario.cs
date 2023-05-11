@@ -7,22 +7,22 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-//using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 
 
 namespace Dominio.EntidadesNegocio
 {
+   // [Index(nameof(Email), IsUnique = true)]
     public class Usuario 
            
-    {
-        
+    {        
         public int Id { get; set; }
 
         static int UltIdUsuario;
 
-        //[Index(IsUnique = true)]
-        [Required]
+       
+     
         public string Email { get; set; }
 
         public string Password { get; set; }

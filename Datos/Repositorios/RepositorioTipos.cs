@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Datos.Repositorios
 {
@@ -48,17 +49,39 @@ namespace Datos.Repositorios
 
             public void Remove(int id)
             {
-                Tipo aBorrar = this.FindById(id);
-                Contexto.Tipos.Remove(aBorrar);
-                Contexto.SaveChanges();
+                
+                var buscadas = Contexto.Cabañas.Where(c => c.Tipo.Id == id).ToList();
+                if (buscadas.Count() == 0) 
+                {
+                    Tipo tipo = FindById(id);
+                    Contexto.Tipos.Remove(tipo);
+                    Contexto.SaveChanges();
+                    throw new Exception("El tipo fue eliminado con éxito");
+                }
+
+               
             }
 
             public void Update(Tipo obj)
             {
-            Contexto.Update(obj);
+                Contexto.Update(obj);
                 Contexto.SaveChanges();
             }
 
-      
+
+            public Tipo BuscarTipoPorNombre(string nombre)
+            {
+                Tipo buscado = Contexto.Tipos.Where(t => t.Nombre.ToLower() == nombre.Trim().ToLower()).SingleOrDefault();
+
+                if (buscado == null)
+                {
+                    throw new Exception("No existe el tipo con nombre " + nombre);
+                }
+
+                return buscado;
+            }
+
+
+
         }
 }

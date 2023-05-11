@@ -10,7 +10,7 @@ namespace Dominio.InterfacesRepositorios
 {
     public interface IRepositorioTipos : IRepositorio<Tipo>
     {
-      
+        Tipo BuscarTipoPorNombre(string nombre);
 
     }
 }

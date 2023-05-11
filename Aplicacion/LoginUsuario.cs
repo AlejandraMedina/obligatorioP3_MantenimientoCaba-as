@@ -22,7 +22,7 @@ namespace Aplicacion
         }
     
 
-        public Usuario ExiteUsuario(string Email, string Password) {
+        public Usuario ExisteUsuario(string Email, string Password) {
 
 
 

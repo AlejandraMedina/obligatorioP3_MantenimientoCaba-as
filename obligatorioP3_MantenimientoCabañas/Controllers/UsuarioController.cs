@@ -35,13 +35,13 @@ namespace PresentacionMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(string EMail, string Password)
+        public ActionResult Login(string Email, string Password)
         {
             
             try
             {
 
-                if (LoginUsuario.ExiteUsuario(EMail, Password) != null)
+                if (LoginUsuario.ExisteUsuario(Email, Password) != null)
                 {
                     HttpContext.Session.SetString("usuarioLogueado", "si");
 
