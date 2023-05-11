@@ -33,11 +33,7 @@
 
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Cabaña" asp-action="Index">Listado de Cabañas</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Mantenimiento" asp-action="Index">Listado de Mantenimientos</a>
-                            </li>                      
+                            </li>                
 
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Logout"> Salir</a>
@@ -77,7 +73,7 @@
 
         <a class="nav-link text-dark" asp-area="" asp-controller="Mantenimiento" asp-action="CreateMantenimiento">Crear Mantenimiento</a>
         <a class="nav-link text-dark" asp-area="" asp-controller="Mantenimiento" asp-action="listarMantenimientosDeCabaña">Listar mantenimientos de una cabaña</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Mantenimiento" asp-action="VerMantenimientoACabañaPorFecha">Ver mantenimientos realizados por cabaña entre fechas: </a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Mantenimiento" asp-action="MantenimientosPorCabañaPorFechas">Ver mantenimientos realizados por cabaña entre fechas: </a>
 
 
         <h1>Gestión de Cabañas: </h1><br />
@@ -87,7 +83,7 @@
         <a class="nav-link text-dark" asp-area="" asp-controller="Cabaña" asp-action="Index">Listar Cabañas</a>
         <a class="nav-link text-dark" asp-area="" asp-controller="Cabaña" asp-action="CabañasPorTexto">Buscar Cabaña por texto</a>
         <a class="nav-link text-dark" asp-area="" asp-controller="Cabaña" asp-action="CabañasPorTipo">Buscar Cabaña por tipo</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Cabaña" asp-action="CabañasPorCantidadMaxPersonas">Buscar Cabaña por cantidad máxima</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Cabaña" asp-action="CabañasPorCantMaxPersonas">Buscar Cabaña por cantidad máxima</a>
         <a class="nav-link text-dark" asp-area="" asp-controller="Cabaña" asp-action="CabañasHabilitadas">Buscar Cabaña cabañas habilitadas</a>
     }
 

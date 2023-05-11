@@ -105,7 +105,7 @@ namespace PresentacionMVC.Controllers
         {
             try
             {
-               
+               //No implementada no se pide
                
                 return RedirectToAction(nameof(Index));
             }
@@ -133,14 +133,16 @@ namespace PresentacionMVC.Controllers
             {
                 RepoTipo.Remove(id);
                 ViewBag.Mensaje = "El tipo fue eliminado con éxito";
-                return RedirectToAction(nameof(Index));              
-                
-            }
-            catch
+                return RedirectToAction(nameof(Index));
+
+            }         
+                 catch (Exception ex)
             {
-                ViewBag.Mensaje = "No es posible eliminar tipo ya que tiene cabañas";
-                return View(Index);
+                ViewBag.Mensaje = "No es posible eliminar el tipo ya que tiene cabañas asociadas";
+                return RedirectToAction(nameof(Index));
             }
+          
+            
             
         }
 

@@ -7,10 +7,11 @@
 
 <h1>Tipos disponibles de cabañas</h1>
 
-<div>@ViewBag.Mensaje</div>
+
 <p>
     <a asp-action="CreateTipo">Crear nuevo </a>
 </p>
+<div>@ViewBag.Mensaje</div>
 <table class="table">
     <thead>
         <tr>
@@ -39,8 +40,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Descripcion)
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new {id = item.Id}) 
+                <td>                   
                     @Html.ActionLink("DeleteTipo", "DeleteTipo", new { id = item.Id})
                 </td>
             </tr>
