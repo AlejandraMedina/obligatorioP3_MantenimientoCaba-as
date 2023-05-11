@@ -10,9 +10,11 @@ using Datos.Repositorios;
 using System.Collections.Generic;
 using Dominio.InterfacesRepositorios;
 using static System.Net.Mime.MediaTypeNames;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PresentacionMVC.Controllers
 {
+  
     public class CabañaController : Controller
     {
 

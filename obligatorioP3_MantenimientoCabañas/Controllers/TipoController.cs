@@ -10,9 +10,11 @@ using Microsoft.CodeAnalysis.Host;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Datos.Repositorios;
 using Dominio.InterfacesRespositorios;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PresentacionMVC.Controllers
 {
+   
     public class TipoController : Controller
     {
 
@@ -40,11 +42,15 @@ namespace PresentacionMVC.Controllers
 
 
         // GET: TipoController
-        public ActionResult Index()
-        {
+        public ActionResult Index()        {
 
             IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
-          
+
+            if (tipos.Count() == 0)
+            {
+                ViewBag.Mensaje = "No existen tipos para mostrar";
+            }
+
             return View(tipos);
         }
 
@@ -124,23 +130,25 @@ namespace PresentacionMVC.Controllers
            
             try
             {
-                bool encontre = false;
-
+      
                 foreach (var item in RepoCabaña.FindAll())
                 {
-                if (item.Tipo.Id == id)
-                    {
-                      encontre = true;
+                   
+                    if (item.Tipo.Id == id)
+                    {                      
+                      
+                      ViewBag.Mensaje = "No es posible eliminar, hay cabañas con este tipo.";
+                        return RedirectToAction(nameof(Index));
+
                     }
-                    if (!encontre)
+                    else 
                     {
                         EliminarTipo.Remove(id);
+                        ViewBag.Mensaje = "El tipo fue eliminado correctamente";
                         return RedirectToAction(nameof(Index));
                     }
                 }
-                
-                ViewBag.Mensaje = "No es posible eliminar, hay cabañas con este tipo.";
-                return View();
+               return ViewBag.Mensaje = "llega accaaaaa";
             }
             catch
             {

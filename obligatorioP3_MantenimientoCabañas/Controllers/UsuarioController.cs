@@ -1,11 +1,13 @@
 ﻿using Aplicacion;
 using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRespositorios;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PresentacionMVC.Controllers
 {
+    
     public class UsuarioController : Controller
     {
 
@@ -44,7 +46,6 @@ namespace PresentacionMVC.Controllers
                     HttpContext.Session.SetString("usuarioLogueado", "si");
 
                     return RedirectToAction("Index", "Home");
-
                 }
                 else 
                 {

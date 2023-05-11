@@ -31,9 +31,12 @@
             @Html.DisplayFor(model => model.Descripcion)
         </dd>
     </dl>
+   
     
     <form asp-action="DeleteTipo">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <div>@ViewBag.Mensaje</div>
+        <input type="hidden" value="@Model.Id" name="id" />
+        <input type="submit" value="Delete"  class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>
 </div>

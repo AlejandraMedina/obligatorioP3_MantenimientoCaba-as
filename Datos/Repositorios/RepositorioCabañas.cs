@@ -30,13 +30,16 @@ namespace Datos.Repositorios
 
         public IEnumerable<Cabaña> FindAll()
         {
-            return Contexto.Cabañas.ToList();
+            return Contexto.Cabañas.Include(c => c.Tipo).ToList();
+
         }
 
         public Cabaña FindById(int id)
         {
 
-            Cabaña buscada = Contexto.Cabañas.Find(id);
+            Cabaña buscada = Contexto.Cabañas.Include(c => c.Tipo)
+                           .Where(c => c.Id == id)
+                           .SingleOrDefault();
 
 
             if (buscada == null)

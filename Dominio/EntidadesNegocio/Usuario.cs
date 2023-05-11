@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+//using Microsoft.EntityFrameworkCore;
+
+
 
 namespace Dominio.EntidadesNegocio
 {
@@ -15,6 +21,8 @@ namespace Dominio.EntidadesNegocio
 
         static int UltIdUsuario;
 
+        //[Index(IsUnique = true)]
+        [Required]
         public string Email { get; set; }
 
         public string Password { get; set; }
@@ -33,6 +41,7 @@ namespace Dominio.EntidadesNegocio
         {
             ValidarEmail();
             ValidarPassword();
+            //SoloLetrasYNumeros(contrasenia);
         }
 
 
@@ -41,6 +50,10 @@ namespace Dominio.EntidadesNegocio
             if (string.IsNullOrEmpty(Email))
             {
                 throw new Exception("Se recibió email sin datos.");
+            }
+            if (Email.Length < 6)
+            {
+                throw new Exception("El nombre de usuario debe contener al menos 6 caracteres.");
             }
             if (!(Email.Contains("@")))
             {
@@ -57,9 +70,9 @@ namespace Dominio.EntidadesNegocio
             {
                 throw new Exception("Se recibió password sin datos.");
             }
-            if (Password.Length < 8)
+            if (Password.Length < 6)
             {
-                throw new Exception("La contraseña debe contener al menos 8 caracteres.");
+                throw new Exception("La contraseña debe contener al menos 6 caracteres.");
             }
         }
 
@@ -69,7 +82,17 @@ namespace Dominio.EntidadesNegocio
             return (Email.Equals(other.Email) && Password.Equals(other.Password));
         }
 
+        
+        
+         public void SoloLetrasYNumeros(string contrasenia)                {                   
 
+                 if (!Regex.IsMatch(contrasenia, "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{6,}$"))
+                 {
+                 throw new Exception("La contraseña debe contener al menos una minuscula, una mayúscula y un número");
+                 }
+                
+          }
+        
 
     }
 
