@@ -14,14 +14,14 @@ namespace Dominio.EntidadesNegocio
 {
 
 
-    [Index(nameof(Nombre), IsUnique = true)]
+    //[Index(nameof(Nombre), IsUnique = true)]
     public class Cabaña : IValidable, IComparable<Cabaña>
     {
 
         public int Id { get; set; }
    
         [Required]
-        [RegularExpression(@"^[a-zA-Z]+$")]
+        //[RegularExpression(@"^[a-zA-Z]+$")]
         public string Nombre { get; set; }
     
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]

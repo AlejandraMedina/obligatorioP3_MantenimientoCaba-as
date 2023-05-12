@@ -86,6 +86,23 @@ namespace Datos.Repositorios
 
                 return mantenimientos;
         }
+
+        public IEnumerable<Mantenimiento> MantenimientosPorCabaña (int id) 
+        {
+            var mantenimientos = Contexto.Mantenimientos
+                        .Where(mantenimiento => mantenimiento.Cabania.Id == id)
+                        .Select(mantenimiento => new Mantenimiento
+                        {
+                            Id = mantenimiento.Id,
+                            Fecha = mantenimiento.Fecha,
+                            Descripcion = mantenimiento.Descripcion,
+                            Costo = mantenimiento.Costo,
+                            Funcionario = mantenimiento.Funcionario
+                        })
+                        .ToList();
+
+            return mantenimientos;
+        }
     }
     
 }

@@ -19,7 +19,7 @@ namespace Dominio.EntidadesNegocio
 
         [StringLength(200, MinimumLength = 10)]
         [Required]
-        [RegularExpression(@"^[a-zA-Z]+$")]
+      //  [RegularExpression("@^[a-zA-Z]+$")]
         public string Descripcion { get; set; }
 
         [Range(0, double.MaxValue)]

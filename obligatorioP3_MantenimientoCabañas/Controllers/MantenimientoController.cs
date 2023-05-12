@@ -9,7 +9,7 @@ using PresentacionMVC.Models;
 
 namespace PresentacionMVC.Controllers
 {
-  
+
     public class MantenimientoController : Controller
     {
 
@@ -20,31 +20,32 @@ namespace PresentacionMVC.Controllers
 
         IAltaMantenimiento AltaMantenimiento { get; set; }
 
-        public MantenimientoController(IAltaMantenimiento altaMantenimiento, IListadoCabañas listadoCabañas,  IRepositorioCabañas repoCabañas, IListadoMantenimientos listadoMantenimientos, IRepositorioMantenimientos repoMantenimientos)
+        public MantenimientoController(IAltaMantenimiento altaMantenimiento, IListadoCabañas listadoCabañas, IRepositorioCabañas repoCabañas, IListadoMantenimientos listadoMantenimientos, IRepositorioMantenimientos repoMantenimientos)
         {
-            AltaMantenimiento = altaMantenimiento;        
+            AltaMantenimiento = altaMantenimiento;
             RepoCabañas = repoCabañas;
             ListadoMantenimientos = listadoMantenimientos;
             RepoMantenimientos = repoMantenimientos;
         }
 
         // GET: MantenimientoController
-            public ActionResult Index()
-            {
-            return View();
-            }
-
-        // GET: MantenimientoController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Index()
         {
             return View();
         }
 
+        // GET: MantenimientoController/Details/5
+        public ActionResult Details(int IdCabañaSeleccionada)
+        {
+            return View();
+        }
+
+        //[Context.Session.GetString("usuarioLogueado") == "si" && Context.Session.GetString("Menu") == "si")]
         //// GET: MantenimientoController/Create
-        public ActionResult CreateMantenimiento(int id)
+        public ActionResult CreateMantenimiento()
         {
             AltaMantenimientoViewModel vm = new AltaMantenimientoViewModel();
-            vm.IdCabañaSeleccionada = id;
+            vm.Cabaña = RepoCabañas.FindById(vm.Cabaña.Id);
 
             return View(vm);
         }
@@ -61,10 +62,6 @@ namespace PresentacionMVC.Controllers
                 vm.Mantenimiento.IdCabania = vm.IdCabañaSeleccionada;
                 int id = vm.IdCabañaSeleccionada;
 
-                IEnumerable<Mantenimiento> mantenimientos = RepoMantenimientos.FindAll();
-
-
-
                 if (vm.Mantenimiento.Fecha.Date <= DateTime.Now.Date)
                 {
                     ViewBag.Mensaje = "la fecha no puede ser anterior a la fecha de hoy";
@@ -72,14 +69,9 @@ namespace PresentacionMVC.Controllers
 
                 int contador = 0;
 
-                foreach (var item in mantenimientos) {
-                    if (item.Cabania.Id == vm.Cabaña.Id) {
-                        contador++;
-                    }
-                }
+                contador = RepoMantenimientos.MantenimientosPorCabaña(id).Count();
 
-              
-
+                
                 if (contador < 3)
                 {                   
                     AltaMantenimiento.Alta(vm.Mantenimiento);
@@ -164,6 +156,8 @@ namespace PresentacionMVC.Controllers
         // GET: MantenimientoController/
         public ActionResult MantenimientosPorCabañaPorFechas(int id)
         {
+            
+         
             return View(new List<Mantenimiento>());
         }
 
@@ -173,7 +167,7 @@ namespace PresentacionMVC.Controllers
         // POST: MantenimientoController/
         public ActionResult MantenimientosPorCabañaPorFechas(DateTime inicio, DateTime fin, int id)
         {
-
+       
             IEnumerable<Mantenimiento> mantenimientos = RepoMantenimientos.MantenimientosPorCabañaPorFechas(inicio,fin,id);
    
 

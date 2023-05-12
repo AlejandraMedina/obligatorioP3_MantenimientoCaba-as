@@ -12,5 +12,7 @@ namespace Dominio.InterfacesRepositorios
     {
 
         IEnumerable<Mantenimiento> MantenimientosPorCabañaPorFechas(DateTime inicio, DateTime fin, int id);
+
+        IEnumerable<Mantenimiento> MantenimientosPorCabaña(int id);
     }
 }
