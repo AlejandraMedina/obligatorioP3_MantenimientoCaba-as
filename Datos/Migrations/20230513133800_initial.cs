@@ -49,7 +49,7 @@ namespace Datos.Migrations
                     NumHabitacion = table.Column<int>(type: "int", nullable: false),
                     TipoId = table.Column<int>(type: "int", nullable: false),
                     Costo = table.Column<float>(type: "real", nullable: false),
-                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Descripcion = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Jacuzzi = table.Column<bool>(type: "bit", nullable: false),
                     Habilitada = table.Column<bool>(type: "bit", nullable: false),
                     PersonasMax = table.Column<int>(type: "int", nullable: false),
@@ -73,11 +73,10 @@ namespace Datos.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Descripcion = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Costo = table.Column<double>(type: "float", nullable: false),
                     Funcionario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CabaniaId = table.Column<int>(type: "int", nullable: false),
-                    IdCabania = table.Column<int>(type: "int", nullable: false)
+                    CabaniaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -99,6 +98,12 @@ namespace Datos.Migrations
                 name: "IX_Mantenimientos_CabaniaId",
                 table: "Mantenimientos",
                 column: "CabaniaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Mantenimientos_Descripcion",
+                table: "Mantenimientos",
+                column: "Descripcion",
+                unique: true);
         }
 
         /// <inheritdoc />

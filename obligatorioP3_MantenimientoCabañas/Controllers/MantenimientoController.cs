@@ -1,4 +1,5 @@
 ﻿using Aplicacion;
+//using Datos.Migrations;
 using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRepositorios;
 using Dominio.InterfacesRespositorios;
@@ -42,10 +43,10 @@ namespace PresentacionMVC.Controllers
 
         //[Context.Session.GetString("usuarioLogueado") == "si" && Context.Session.GetString("Menu") == "si")]
         //// GET: MantenimientoController/Create
-        public ActionResult CreateMantenimiento()
+        public ActionResult CreateMantenimiento(int id)
         {
             AltaMantenimientoViewModel vm = new AltaMantenimientoViewModel();
-            vm.Cabaña = RepoCabañas.FindById(vm.Cabaña.Id);
+            vm.Id = id;
 
             return View(vm);
         }
@@ -57,10 +58,9 @@ namespace PresentacionMVC.Controllers
         {
             try
             {
-                vm.Cabaña = RepoCabañas.FindById(vm.IdCabañaSeleccionada);
-                vm.Mantenimiento.Cabania = RepoCabañas.FindById(vm.IdCabañaSeleccionada);               
-                vm.Mantenimiento.IdCabania = vm.IdCabañaSeleccionada;
-                int id = vm.IdCabañaSeleccionada;
+
+                Cabaña cabaña = RepoCabañas.FindById(vm.Id);
+                vm.Mantenimiento.Cabania = cabaña;
 
                 if (vm.Mantenimiento.Fecha.Date <= DateTime.Now.Date)
                 {
@@ -69,25 +69,33 @@ namespace PresentacionMVC.Controllers
 
                 int contador = 0;
 
-                contador = RepoMantenimientos.MantenimientosPorCabaña(id).Count();
+                contador = RepoMantenimientos.MantenimientosPorCabaña(vm.Id).Count();
 
                 
                 if (contador < 3)
-                {                   
-                    AltaMantenimiento.Alta(vm.Mantenimiento);
-                    return RedirectToAction(nameof(ListarMantenimientosDeCabaña), new { id = id });
+                {          
+                    Mantenimiento m = new Mantenimiento();
+                    m.Fecha = vm.Mantenimiento.Fecha;
+                    m.Funcionario = vm.Mantenimiento.Funcionario;
+                    m.Cabania = cabaña;
+                    m.Descripcion = vm.Mantenimiento.Descripcion;
+                    m.Costo = vm.Mantenimiento.Costo;
+
+                    AltaMantenimiento.Alta(m);
+
+                    ViewBag.Mensaje = "Se agregó el mantenimiento con éxito!";
+                    return View(vm);
                 }
 
                 ViewBag.Mensaje = "Esta cabaña ya tiene 3 mantenimientos realizados.";
 
-
-                return RedirectToAction(nameof(Index));
+                  return View(vm); ;
             }
             catch (Exception ex)
             {
                 ViewBag.Mensaje = "Oops! Ocurrió un error inesperado";
 
-                return View(vm);
+                return View();
             }
         }
 
@@ -135,15 +143,15 @@ namespace PresentacionMVC.Controllers
 
 
         // GET: MantenimientoController
-        public  IActionResult ListarMantenimientosDeCabaña(int id)
+        public  ActionResult ListarMantenimientosDeCabaña(int Id)
         {
 
-            List<Mantenimiento> aux = new List<Mantenimiento>();
+            List<Mantenimiento> aux =  new List<Mantenimiento>();
 
             foreach (Mantenimiento m in ListadoMantenimientos.ObtenerListado())
             {
 
-                if (m.IdCabania == id)
+                if (m.CabaniaId == Id)
                 {
                     aux.Add(m);
                 }

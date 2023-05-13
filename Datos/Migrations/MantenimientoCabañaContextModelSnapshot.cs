@@ -35,7 +35,8 @@ namespace Datos.Migrations
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Foto")
                         .IsRequired()
@@ -83,7 +84,8 @@ namespace Datos.Migrations
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime2");
@@ -92,12 +94,12 @@ namespace Datos.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IdCabania")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CabaniaId");
+
+                    b.HasIndex("Descripcion")
+                        .IsUnique();
 
                     b.ToTable("Mantenimientos");
                 });
