@@ -69,10 +69,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PersonasMax)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Foto)
-            </td>
-           
+            <td>               
+                <img src="/Imagenes/@item.Foto" height="150" />
+                
+            </td>          
          
         </tr>
 }
