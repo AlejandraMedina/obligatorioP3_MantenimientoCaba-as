@@ -60,8 +60,9 @@ namespace Dominio.EntidadesNegocio
             }
         }
 
-     
-    
+
+
+
         public int CompareTo(Cabaña other)
         {
             throw new NotImplementedException();

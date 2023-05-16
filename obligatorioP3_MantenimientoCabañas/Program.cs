@@ -24,6 +24,8 @@ namespace PresentacionMVC
             builder.Services.AddScoped<IRepositorioMantenimientos, RepositorioMantenimientos>();
             builder.Services.AddScoped<IRepositorioTipos, RepositorioTipos>();
             builder.Services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
+            builder.Services.AddScoped<IRepositorioParametros, RepositorioParametros>();
+
             builder.Services.AddScoped<IAltaCabaña, AltaCabaña>();
             builder.Services.AddScoped<IAltaTipo, AltaTipo>();
             builder.Services.AddScoped<IListadoCabañas, ListadoCabañas>();
@@ -31,15 +33,12 @@ namespace PresentacionMVC
             builder.Services.AddScoped<IModificarTipo, ModificarTipo>();
             builder.Services.AddScoped<IEliminarTipo, EliminarTipo>();
             builder.Services.AddScoped<IEliminarCabaña, EliminarCabaña>();
-            //builder.Services.AddScoped<IRepositorio<Cabaña>, RepositorioCabañas>();
-            //builder.Services.AddScoped<IRepositorio<Mantenimiento>, RepositorioMantenimientos>();
-            //builder.Services.AddScoped<IRepositorio<Tipo>, RepositorioTipos>();
             builder.Services.AddScoped<IRepositorio<Usuario>, RepositorioUsuarios>();
             builder.Services.AddScoped<ILoginUsuario, LoginUsuario>();
             builder.Services.AddScoped<IListadoUsuarios, ListadoUsuarios>();
             builder.Services.AddScoped<IAltaMantenimiento, AltaMantenimiento>();
             builder.Services.AddScoped<IListadoMantenimientos, ListadoMantenimientos>();
-
+        
 
             var configurationBuilder = new ConfigurationBuilder();
             configurationBuilder.AddJsonFile("appsettings.json", false, true);

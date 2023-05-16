@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dominio.EntidadesAuxiliares;
 
 namespace Datos.EF
 {
@@ -14,6 +15,9 @@ namespace Datos.EF
         public DbSet<Cabaña>Cabañas { get; set; }       
         public DbSet<Mantenimiento> Mantenimientos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+
+        public DbSet<Parametro> Parametros { get; set; }
+ 
         public MantenimientoCabañaContext(DbContextOptions<MantenimientoCabañaContext> options):base(options)
         {
 
