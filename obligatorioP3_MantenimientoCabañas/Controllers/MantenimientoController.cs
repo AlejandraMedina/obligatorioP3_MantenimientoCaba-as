@@ -93,7 +93,7 @@ namespace PresentacionMVC.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Mensaje = "Oops! Ocurrió un error inesperado";
+                ViewBag.Mensaje = ex.Message;
 
                 return View();
             }

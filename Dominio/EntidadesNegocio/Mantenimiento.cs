@@ -44,11 +44,11 @@ namespace Dominio.EntidadesNegocio
             }
             if (Descripcion.Length < CantMinCarDecripcionMantenimiento)
             {
-                throw new Exception("la descripción no puede tener menos de " + CantMinCarDecripcionMantenimiento);
+                throw new Exception("La descripción no puede tener menos de " + CantMinCarDecripcionMantenimiento);
             }
             if (Descripcion.Length > CantMaxCarDecripcionMantenimiento)
             {
-                throw new Exception("la descripción no puede tener más de " + CantMaxCarDecripcionMantenimiento);
+                throw new Exception("La descripción no puede tener más de " + CantMaxCarDecripcionMantenimiento);
             }
         }
 
