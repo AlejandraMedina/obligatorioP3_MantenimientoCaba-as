@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplicacion
+namespace Aplicacion.Interfaces
 {
-    public interface IListadoMantenimientos
+    public interface IListadoTipos
     {
-        IEnumerable<Mantenimiento> ObtenerListado();
+        IEnumerable<Tipo> ObtenerListado();
+
     }
 }

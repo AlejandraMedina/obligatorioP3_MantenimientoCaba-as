@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Dominio.EntidadesNegocio;
-using Aplicacion;
 using Dominio.ExcepcionesPropias;
 using NuGet.Protocol;
 using PresentacionMVC.Models;
@@ -12,10 +11,11 @@ using Datos.Repositorios;
 using Dominio.InterfacesRespositorios;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using Aplicacion.Interfaces;
 
 namespace PresentacionMVC.Controllers
 {
-   
+
     public class TipoController : Controller
     {
 
@@ -136,10 +136,11 @@ namespace PresentacionMVC.Controllers
                 return RedirectToAction(nameof(Index));
 
             }         
-                 catch (Exception ex)
+             catch (Exception ex)
             {
                 ViewBag.Mensaje = "No es posible eliminar el tipo ya que tiene cabañas asociadas";
-                return RedirectToAction(nameof(Index));
+
+                return View();
             }
           
             

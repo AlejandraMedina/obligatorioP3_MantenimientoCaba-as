@@ -1,15 +1,14 @@
 using Dominio.EntidadesNegocio;
-using Dominio.InterfacesRepositorios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplicacion
+namespace Aplicacion.Interfaces
 {
-    public interface IAltaCabaña
+    public interface IListadoCabañas
     {
-        void Alta(Cabaña c);
+        IEnumerable<Cabaña> ObtenerListado();
     }
 }

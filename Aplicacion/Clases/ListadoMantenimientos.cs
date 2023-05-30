@@ -1,4 +1,5 @@
-﻿using Dominio.EntidadesNegocio;
+﻿using Aplicacion.Interfaces;
+using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRepositorios;
 using Dominio.InterfacesRespositorios;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplicacion
+namespace Aplicacion.Clases
 {
     public class ListadoMantenimientos : IListadoMantenimientos
     {

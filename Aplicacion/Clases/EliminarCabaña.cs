@@ -1,4 +1,5 @@
-﻿using Dominio.EntidadesNegocio;
+﻿using Aplicacion.Interfaces;
+using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRespositorios;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplicacion
+namespace Aplicacion.Clases
 {
     public class EliminarCabaña : IEliminarCabaña
     {
@@ -18,7 +19,7 @@ namespace Aplicacion
             Repo = repo;
         }
 
-       
+
 
         public void Eliminar(int id)
         {

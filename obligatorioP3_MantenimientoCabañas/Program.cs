@@ -1,11 +1,12 @@
 using Datos.Repositorios;
 using PresentacionMVC.Controllers;
 using Dominio.InterfacesRespositorios;
-using Aplicacion;
 using Datos.EF;
 using Microsoft.EntityFrameworkCore;
 using Dominio.InterfacesRepositorios;
 using Dominio.EntidadesNegocio;
+using Aplicacion.Interfaces;
+using Aplicacion.Clases;
 
 namespace PresentacionMVC
 {

@@ -1,4 +1,4 @@
-﻿using Aplicacion;
+﻿using Aplicacion.Interfaces;
 using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRespositorios;
 using Microsoft.AspNetCore.Authorization;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PresentacionMVC.Controllers
 {
-    
+
     public class UsuarioController : Controller
     {
 

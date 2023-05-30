@@ -1,4 +1,5 @@
-﻿using Dominio.EntidadesNegocio;
+﻿using Aplicacion.Interfaces;
+using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRepositorios;
 using Dominio.InterfacesRespositorios;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplicacion
+namespace Aplicacion.Clases
 {
     public class LoginUsuario : ILoginUsuario
     {
@@ -16,13 +17,15 @@ namespace Aplicacion
         public IRepositorioUsuarios RepoUsuario { get; set; }
 
 
-        public LoginUsuario(IRepositorioUsuarios repoUsuario) {
+        public LoginUsuario(IRepositorioUsuarios repoUsuario)
+        {
 
             RepoUsuario = repoUsuario;
         }
-    
 
-        public Usuario ExisteUsuario(string Email, string Password) {
+
+        public Usuario ExisteUsuario(string Email, string Password)
+        {
 
 
 
@@ -37,6 +40,6 @@ namespace Aplicacion
 
         }
 
-       
+
     }
 }

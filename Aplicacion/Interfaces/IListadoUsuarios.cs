@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplicacion
+namespace Aplicacion.Interfaces
 {
-    public interface IListadoTipos
+    public interface IListadoUsuarios
     {
-        IEnumerable<Tipo> ObtenerListado();
-
+        IEnumerable<Usuario> ObtenerListado();
     }
 }

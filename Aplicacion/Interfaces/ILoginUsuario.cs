@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Dominio.EntidadesNegocio;
 
-namespace Aplicacion
+namespace Aplicacion.Interfaces
 {
-    public interface ILoginUsuario   
+    public interface ILoginUsuario
     {
-        public Usuario ExisteUsuario(string Email , string Password);
+        public Usuario ExisteUsuario(string Email, string Password);
     }
 }

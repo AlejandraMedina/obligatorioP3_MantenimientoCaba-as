@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplicacion
+namespace Aplicacion.Interfaces
 {
-    public interface IEliminarTipo
+    public interface IAltaTipo
     {
-        void Remove(int id);
+        void Alta(Tipo t);
     }
 }

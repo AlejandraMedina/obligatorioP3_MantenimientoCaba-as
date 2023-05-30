@@ -2,15 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplicacion
+namespace Aplicacion.Interfaces
 {
-    public interface IModificarTipo
+    public interface IEliminarTipo
     {
-       void ModificarTipo(Tipo t);
-       
+        void Remove(int id);
     }
 }

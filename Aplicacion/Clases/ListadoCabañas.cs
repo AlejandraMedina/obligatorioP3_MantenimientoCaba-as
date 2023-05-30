@@ -1,3 +1,4 @@
+using Aplicacion.Interfaces;
 using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRespositorios;
 using System;
@@ -6,20 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplicacion
+namespace Aplicacion.Clases
 {
-    public class AltaCabaña : IAltaCabaña
+    public class ListadoCabañas : IListadoCabañas
     {
         public IRepositorioCabañas Repo { get; set; }
 
-        public AltaCabaña(IRepositorioCabañas repo)
+        public ListadoCabañas(IRepositorioCabañas repo)
         {
-            
             Repo = repo;
         }
-        public void Alta(Cabaña c)
+
+        public IEnumerable<Cabaña> ObtenerListado()
         {
-            Repo.Add(c);
+            return Repo.FindAll();
         }
+
+
     }
 }

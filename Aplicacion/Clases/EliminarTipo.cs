@@ -1,26 +1,28 @@
-﻿using Dominio.EntidadesNegocio;
+﻿using Aplicacion.Interfaces;
+using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRepositorios;
-using Dominio.InterfacesRespositorios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplicacion
+namespace Aplicacion.Clases
 {
-    public class AltaTipo: IAltaTipo
+    public class EliminarTipo : IEliminarTipo
     {
         public IRepositorioTipos Repo { get; set; }
 
-        public AltaTipo(IRepositorioTipos repo)
+        public EliminarTipo(IRepositorioTipos repo)
         {
 
             Repo = repo;
         }
-        public void Alta(Tipo t)
+
+
+        public void Remove(int id)
         {
-            Repo.Add(t);
+            Repo.Remove(id);
         }
     }
 

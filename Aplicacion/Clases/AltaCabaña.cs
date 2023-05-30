@@ -6,22 +6,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Aplicacion
+namespace Aplicacion.Clases
 {
-    public class ListadoCabañas : IListadoCabañas
+    public class AltaCabaña : IAltaCabaña
     {
         public IRepositorioCabañas Repo { get; set; }
 
-        public ListadoCabañas(IRepositorioCabañas repo)
+        public AltaCabaña(IRepositorioCabañas repo)
         {
+
             Repo = repo;
         }
-
-        public IEnumerable<Cabaña> ObtenerListado()
+        public void Alta(Cabaña c)
         {
-            return Repo.FindAll();
+            Repo.Add(c);
         }
-
-      
     }
 }

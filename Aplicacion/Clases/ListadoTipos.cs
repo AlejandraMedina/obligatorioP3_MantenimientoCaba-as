@@ -1,14 +1,14 @@
 ﻿using Dominio.EntidadesNegocio;
-using Dominio.InterfacesRespositorios; 
+using Dominio.InterfacesRespositorios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio.InterfacesRepositorios;
+using Aplicacion.Interfaces;
 
-
-namespace Aplicacion
+namespace Aplicacion.Clases
 {
     public class ListadoTipos : IListadoTipos
     {

@@ -1,4 +1,4 @@
-﻿using Aplicacion;
+﻿using Aplicacion.Interfaces;
 //using Datos.Migrations;
 using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRepositorios;
@@ -75,6 +75,7 @@ namespace PresentacionMVC.Controllers
                 if (contador < 3)
                 {          
                     Mantenimiento m = new Mantenimiento();
+
                     m.Fecha = vm.Mantenimiento.Fecha;
                     m.Funcionario = vm.Mantenimiento.Funcionario;
                     m.Cabania = cabaña;
