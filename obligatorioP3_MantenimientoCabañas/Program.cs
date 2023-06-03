@@ -30,7 +30,7 @@ namespace PresentacionMVC
             builder.Services.AddScoped<IAltaCabaña, AltaCabaña>();
             builder.Services.AddScoped<IAltaTipo, AltaTipo>();
             builder.Services.AddScoped<IListadoCabañas, ListadoCabañas>();
-            builder.Services.AddScoped<IListadoTipos, ListadoTipos>();
+            builder.Services.AddScoped<Aplicacion.Interfaces.IListadoTipos, ListadoTipos>();
             builder.Services.AddScoped<IModificarTipo, ModificarTipo>();
             builder.Services.AddScoped<IEliminarTipo, EliminarTipo>();
             builder.Services.AddScoped<IEliminarCabaña, EliminarCabaña>();

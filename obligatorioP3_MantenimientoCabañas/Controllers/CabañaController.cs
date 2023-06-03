@@ -11,6 +11,7 @@ using Dominio.InterfacesRepositorios;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.AspNetCore.Authorization;
 using Aplicacion.Interfaces;
+using DTOs
 
 namespace PresentacionMVC.Controllers
 {
@@ -51,7 +52,7 @@ namespace PresentacionMVC.Controllers
         {
             IEnumerable<Cabaña> cabañas = ListadoCabañas.ObtenerListado();
 
-            IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
+            IEnumerable<TipoDTO> tipos = ListadoTipos.ObtenerListado();
             ViewBag.Tipos = tipos;
 
             if (cabañas.Count()==0)

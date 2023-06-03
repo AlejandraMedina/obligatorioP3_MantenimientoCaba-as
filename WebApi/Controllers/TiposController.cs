@@ -1,4 +1,5 @@
 ﻿using Aplicacion;
+using Aplicacion.Interfacaces;
 using Aplicacion.Interfaces;
 using DTOs;
 using ExcepcionesPropias;
@@ -15,9 +16,17 @@ namespace WebApi.Controllers
     {
 
         public IAltaTipo CUAltaTipo { get; set; }
-        public TiposController(IAltaTipo cuAltaTipo)
+   
+        public IListadoTipos CUListadoTipos { get; set; }
+
+        public IBuscarTipoPorId CUBuscarTipoPorId{ get; set; }
+
+
+        public TiposController(IAltaTipo cuAltaTipo, IListadoTipos cuListadoTipo, IBuscarTipoPorId cuBuscarTipoPorId)
         {
             CUAltaTipo = cuAltaTipo;
+            CUListadoTipos = cuListadoTipo;
+            CUBuscarTipoPorId = cuBuscarTipoPorId;
 
         }
 
@@ -27,14 +36,29 @@ namespace WebApi.Controllers
         [HttpGet]
         public IActionResult Get()  //Find all
         {
-            return Ok();
+            IEnumerable<TipoDTO> tipos = CUListadoTipos.ObtenerListado();
+            return Ok(tipos);
         }
 
         // GET api/<TiposController>/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "FindById")]
         public IActionResult Get(int id)  //  FindBy Id 
         {
-            return Ok();
+            if (id == 0) return BadRequest("El id proporcionado no es válido");
+
+            try
+            {
+                TipoDTO tipo = CUBuscarTipoPorId.Buscar(id); 
+                if (tipo == null) return NotFound($"No existe el tipo con id: {id}");
+
+                return Ok(tipo);
+            }
+            catch
+            {
+                return StatusCode(500, "Ocurrió un error inesperado");
+            
+            }
+
         }
 
 
@@ -58,7 +82,6 @@ namespace WebApi.Controllers
 
                 CUAltaTipo.Alta(tipo);
             }
-
             catch (NombreTipoInvalidoException ex)
             {
                 return BadRequest(ex.Message);

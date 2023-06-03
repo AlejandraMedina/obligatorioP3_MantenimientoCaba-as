@@ -12,6 +12,8 @@ using Dominio.InterfacesRespositorios;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Aplicacion.Interfaces;
+using Aplicacion.Interfacaces;
+using DTOs;
 
 namespace PresentacionMVC.Controllers
 {
@@ -28,8 +30,10 @@ namespace PresentacionMVC.Controllers
         IRepositorioTipos RepoTipo { get; set; }
         IRepositorioCabañas RepoCabaña { get; set; }
 
+        IBuscarTipoPorId BuscarTipoPorId { get; set; }
+
       
-        public TipoController(IListadoTipos listadoTipos, IAltaTipo altaTipo, IModificarTipo modificarTipo, IEliminarTipo eliminarTipo, IRepositorioTipos repotipo, IRepositorioCabañas repocabaña)
+        public TipoController(IListadoTipos listadoTipos, IAltaTipo altaTipo,IBuscarTipoPorId buscarTipoPorId, IModificarTipo modificarTipo, IEliminarTipo eliminarTipo, IRepositorioTipos repotipo, IRepositorioCabañas repocabaña)
         { 
         
             ListadoTipos = listadoTipos;
@@ -37,7 +41,8 @@ namespace PresentacionMVC.Controllers
             ModificarTipo = modificarTipo;
             EliminarTipo = eliminarTipo;
             RepoTipo = repotipo;
-            RepoCabaña = repocabaña;          
+            RepoCabaña = repocabaña;  
+            BuscarTipoPorId = buscarTipoPorId;          
 
         }
 
@@ -45,7 +50,7 @@ namespace PresentacionMVC.Controllers
         // GET: TipoController
         public ActionResult Index()        {
 
-            IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
+            IEnumerable<TipoDTO> tipos = ListadoTipos.ObtenerListado();
 
             if (tipos.Count() == 0)
             {
