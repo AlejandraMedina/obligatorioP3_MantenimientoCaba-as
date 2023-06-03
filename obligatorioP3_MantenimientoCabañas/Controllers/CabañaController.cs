@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRespositorios;
-using Dominio.ExcepcionesPropias;
+using ExcepcionesPropias;
 using PresentacionMVC.Models;
 using System.Globalization;
 using Datos.Repositorios;

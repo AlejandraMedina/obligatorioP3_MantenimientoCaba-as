@@ -1,5 +1,5 @@
 ﻿using Dominio.InterfacesDominio;
-using Dominio.ExcepcionesPropias;
+using ExcepcionesPropias;
 using System;
 using System.Collections.Generic;
 using System.Linq;

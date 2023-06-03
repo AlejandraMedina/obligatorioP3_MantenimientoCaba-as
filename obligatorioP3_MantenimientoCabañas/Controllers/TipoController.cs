@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Dominio.EntidadesNegocio;
-using Dominio.ExcepcionesPropias;
+using ExcepcionesPropias;
 using NuGet.Protocol;
 using PresentacionMVC.Models;
 using Dominio.InterfacesRepositorios;
@@ -75,7 +75,7 @@ namespace PresentacionMVC.Controllers
             try
             {
                 //t.Validar();
-                AltaTipo.Alta(t);
+               // AltaTipo.Alta(t);
                 
                 return RedirectToAction(nameof(Index));
             }

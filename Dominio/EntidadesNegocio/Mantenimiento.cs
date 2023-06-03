@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.EntityFrameworkCore;
-using Dominio.ExcepcionesPropias;
+using ExcepcionesPropias;
 
 namespace Dominio.EntidadesNegocio
 {

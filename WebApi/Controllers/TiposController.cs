@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Aplicacion;
+using Aplicacion.Interfaces;
+using DTOs;
+using ExcepcionesPropias;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,6 +12,16 @@ namespace WebApi.Controllers
     [ApiController]
     public class TiposController : ControllerBase
     {
+
+        public IAltaTipo CUAltaTipo { get; set; }
+        public TiposController(IAltaTipo cuAltaTipo) 
+        { 
+        CUAltaTipo = cuAltaTipo;
+        
+        }
+
+
+
         // GET: api/<TiposController>
         [HttpGet]
         public IActionResult Get()  //Find all
@@ -34,9 +48,25 @@ namespace WebApi.Controllers
 
         // POST api/<TiposController>
         [HttpPost]
-        public IActionResult Post([FromBody] string value)   //Add
+        public IActionResult Post([FromBody] TipoDTO? tipo)   //Add
         {
-            return CreatedAtRoute("Get" , new { id= 0}, null);
+            if (tipo == null) return BadRequest("No se envió información de tipo");
+            try
+            {
+
+                CUAltaTipo.Alta(tipo);
+            }
+
+            catch (NombreTipoInvalidoException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Ocurrió un error, no se pudo dara el alta de tipo");
+                
+            }
+            return CreatedAtRoute("FindById", new { id = tipo.Id }, tipo);
 
         }
 
