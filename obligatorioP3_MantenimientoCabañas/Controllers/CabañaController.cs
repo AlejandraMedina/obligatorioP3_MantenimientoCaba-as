@@ -151,7 +151,7 @@ namespace PresentacionMVC.Controllers
 
                 Cabaña aux = RepoCabañas.FindById(id);
 
-                aux.Costo = c.Costo;
+               
                 aux.Nombre = c.Nombre;
 
 

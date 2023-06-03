@@ -4,6 +4,7 @@ using DTOs;
 using ExcepcionesPropias;
 using Microsoft.AspNetCore.Mvc;
 
+
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WebApi.Controllers
@@ -14,10 +15,10 @@ namespace WebApi.Controllers
     {
 
         public IAltaTipo CUAltaTipo { get; set; }
-        public TiposController(IAltaTipo cuAltaTipo) 
-        { 
-        CUAltaTipo = cuAltaTipo;
-        
+        public TiposController(IAltaTipo cuAltaTipo)
+        {
+            CUAltaTipo = cuAltaTipo;
+
         }
 
 
@@ -30,7 +31,7 @@ namespace WebApi.Controllers
         }
 
         // GET api/<TiposController>/5
-        [HttpGet("{id}" , Name = "Get")]
+        [HttpGet("{id}", Name = "Get")]
         public IActionResult Get(int id)  //  FindBy Id 
         {
             return Ok();
@@ -48,6 +49,7 @@ namespace WebApi.Controllers
 
         // POST api/<TiposController>
         [HttpPost]
+        [ActionName (nameof(Post))]
         public IActionResult Post([FromBody] TipoDTO? tipo)   //Add
         {
             if (tipo == null) return BadRequest("No se envió información de tipo");

@@ -30,7 +30,7 @@ namespace Dominio.EntidadesNegocio
         
         public Tipo Tipo { get; set; }
 
-        public float Costo { get; set; }
+      
 
         [StringLength(500, MinimumLength = 10)]
 

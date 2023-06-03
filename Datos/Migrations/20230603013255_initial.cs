@@ -12,13 +12,28 @@ namespace Datos.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Parametros",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Descripcion = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Valor = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Parametros", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tipos",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Costo = table.Column<float>(type: "real", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -48,7 +63,6 @@ namespace Datos.Migrations
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NumHabitacion = table.Column<int>(type: "int", nullable: false),
                     TipoId = table.Column<int>(type: "int", nullable: false),
-                    Costo = table.Column<float>(type: "real", nullable: false),
                     Descripcion = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Jacuzzi = table.Column<bool>(type: "bit", nullable: false),
                     Habilitada = table.Column<bool>(type: "bit", nullable: false),
@@ -73,7 +87,7 @@ namespace Datos.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Descripcion = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Descripcion = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Costo = table.Column<double>(type: "float", nullable: false),
                     Funcionario = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CabaniaId = table.Column<int>(type: "int", nullable: false)
@@ -104,6 +118,12 @@ namespace Datos.Migrations
                 table: "Mantenimientos",
                 column: "Descripcion",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Parametros_Descripcion",
+                table: "Parametros",
+                column: "Descripcion",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -111,6 +131,9 @@ namespace Datos.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Mantenimientos");
+
+            migrationBuilder.DropTable(
+                name: "Parametros");
 
             migrationBuilder.DropTable(
                 name: "Usuarios");

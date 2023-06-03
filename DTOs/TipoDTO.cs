@@ -15,6 +15,8 @@ namespace DTOs
 
         public string Descripcion { get; set; }
 
+        public float Costo { get; set; }
+
 
     }
 }

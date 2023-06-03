@@ -27,7 +27,8 @@ namespace Aplicacion.Clases
             Tipo nuevo = new Tipo() {
 
                 Nombre = t.Nombre,
-                Descripcion = t.Descripcion
+                Descripcion = t.Descripcion,
+                Costo = t.Costo
             };
             Repo.Add(nuevo);
             t.Id = nuevo.Id;

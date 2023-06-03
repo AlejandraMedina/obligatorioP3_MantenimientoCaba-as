@@ -54,9 +54,6 @@ namespace Datos.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<float>("Costo")
-                        .HasColumnType("real");
-
                     b.Property<string>("Descripcion")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -134,6 +131,9 @@ namespace Datos.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<float>("Costo")
+                        .HasColumnType("real");
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
