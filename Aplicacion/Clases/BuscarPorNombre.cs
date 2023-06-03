@@ -27,16 +27,16 @@ namespace Aplicacion.Clases
 
 
 
-        public TipoDTO Buscar(string nombre)
-        {
-            Tipo tipo Repo.BuscarTipoPorNombre(nombre);  // ACA NO RECONOCE EL SELECT
-            {
-                Id = t.Id,
-                Nombre = t.Nombre.Value,
-                Descripcion = t.Descripcion,
-                Costo = t.Costo
-            });
+        //public TipoDTO Buscar(string nombre)
+        //{
+        //    //Tipo tipo Repo.BuscarTipoPorNombre(nombre);  // ACA NO RECONOCE EL SELECT
+        //    //{
+        //    //    Id = t.Id,
+        //    //    Nombre = t.Nombre.Value,
+        //    //    Descripcion = t.Descripcion,
+        //    //    Costo = t.Costo
+        //    //});
 
-        }
+        //}
     }
 }
