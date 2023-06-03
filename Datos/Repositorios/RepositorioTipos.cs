@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using ExcepcionesPropias;
 
 namespace Datos.Repositorios
 {
@@ -39,7 +40,10 @@ namespace Datos.Repositorios
             {
             Tipo buscado = Contexto.Tipos.Find(id);
 
-           
+            if (buscado == null)
+            {
+                throw new ErrorTipoException("No existe el tipo con id " + id);
+            }           
 
             return buscado;
             }
@@ -66,19 +70,19 @@ namespace Datos.Repositorios
             }
 
 
-            public Tipo BuscarTipoPorNombre(string nombre)
+            public Tipo BuscarTipoPorNombre(string nombre)   // VER TEMA DEL VALUE NO ANDA
             {
-                Tipo buscado = Contexto.Tipos.Where(t => t.Nombre.ToLower() == nombre.Trim().ToLower()).SingleOrDefault();
+            Tipo buscado = Contexto.Tipos.ToList().Where(t => t.Nombre.Value.Equals(nombre.Trim().ToLower()));
 
-                if (buscado == null)
-                {
-                    throw new Exception("No existe el tipo con nombre " + nombre);
-                }
-
-                return buscado;
+            if (buscado == null)
+            {
+                throw new Exception("No existe el tipo con nombre " + nombre);
             }
 
-
-
+            return buscado;
         }
+
+
+
+    }
 }

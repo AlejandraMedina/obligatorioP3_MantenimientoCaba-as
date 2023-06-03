@@ -1,17 +1,15 @@
-﻿using Dominio.EntidadesNegocio;
-using DTOs;
+﻿using DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using DTOs;
 
 namespace Aplicacion.Interfaces
 {
-    public interface IModificarTipo
+    public interface IBuscarPorNombre
     {
-        void Modificar(TipoDTO tipo);
-
+        //TipoDTO Buscar(string nombre);
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTOs;
 
 namespace Aplicacion.Clases
 {
@@ -13,21 +14,27 @@ namespace Aplicacion.Clases
     {
 
         public IRepositorioTipos Repo { get; set; }
+       
 
 
         public ModificarTipo(IRepositorioTipos repo)
         {
             Repo = repo;
         }
-        public void Modificar(Tipo t)
-        {
-            Repo.Update(t);
 
-        }
 
-        void IModificarTipo.ModificarTipo(Tipo t)
+        public void Modificar(TipoDTO t)
         {
-            throw new NotImplementedException();
-        }
+
+            Tipo aMofificar = new Tipo()
+            {
+                Id= t.Id,
+                Nombre = t.Nombre,
+                Descripcion = t.Descripcion,
+                Costo = t.Costo
+            };
+            Repo.Update(aMofificar);               
+
+        }      
     }
 }
