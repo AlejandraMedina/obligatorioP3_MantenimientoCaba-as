@@ -1,6 +1,8 @@
 ﻿using Aplicacion;
 using Aplicacion.Interfacaces;
 using Aplicacion.Interfaces;
+using Datos.Repositorios;
+using Dominio.EntidadesNegocio;
 using DTOs;
 using ExcepcionesPropias;
 using Microsoft.AspNetCore.Mvc;
@@ -21,13 +23,21 @@ namespace WebApi.Controllers
 
         public IBuscarTipoPorId CUBuscarTipoPorId{ get; set; }
 
+        public IModificarTipo CUModificarTipo { get; set; }
 
-        public TiposController(IAltaTipo cuAltaTipo, IListadoTipos cuListadoTipo, IBuscarTipoPorId cuBuscarTipoPorId)
+        public IEliminarTipo CUEliminarTipo { get; set; }
+
+        public IBuscarPorNombre CUBuscarPorNombre { get; set; }
+
+
+        public TiposController(IAltaTipo cuAltaTipo, IListadoTipos cuListadoTipo, IBuscarTipoPorId cuBuscarTipoPorId, IModificarTipo cuModificarTipo, IEliminarTipo cuEliminarTipo, IBuscarPorNombre cuBuscarPoNombre)
         {
             CUAltaTipo = cuAltaTipo;
             CUListadoTipos = cuListadoTipo;
             CUBuscarTipoPorId = cuBuscarTipoPorId;
-
+            CUModificarTipo = cuModificarTipo;
+            CUEliminarTipo = cuEliminarTipo;
+            CUBuscarPorNombre = cuBuscarPoNombre;
         }
 
 
@@ -44,7 +54,7 @@ namespace WebApi.Controllers
         [HttpGet("{id}", Name = "FindById")]
         public IActionResult Get(int id)  //  FindBy Id 
         {
-            if (id == 0) return BadRequest("El id proporcionado no es válido");
+            if (id <= 0) return BadRequest("El id proporcionado no es válido");
 
             try
             {
@@ -66,9 +76,26 @@ namespace WebApi.Controllers
 
         public IActionResult BuscarPorNombre(string texto)  //  FindByName
         {
-            return Ok();
+            if(!string.IsNullOrEmpty(texto))
+            {
+                return BadRequest("No se ingresó un nombre para la búsqueda");
+            }
+          
+            try
+            {
+                // TipoDTO tipo = CUBuscarPorNombre.Buscar(texto);
+                //return Ok(tipo);
+                return Ok();   // VER QUE ANDE LO DE ARRIBAAAA!
+            }
+            catch
+            {
+                return StatusCode(500, "Ocurrió un error");
+            }
+
+         
         }
 
+       
 
 
         // POST api/<TiposController>
@@ -86,7 +113,7 @@ namespace WebApi.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            catch (Exception ex)
+            catch 
             {
                 return StatusCode(500, "Ocurrió un error, no se pudo dara el alta de tipo");
                 
@@ -97,15 +124,42 @@ namespace WebApi.Controllers
 
         // PUT api/<TiposController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] string value)   // Update 
+        public IActionResult Put(int id, [FromBody] TipoDTO? tipo)   // Update 
         {
-            return Ok();
+            if (id <= 0 || tipo == null || tipo.Id != id) return BadRequest("Los datos proporcionados no son válidos");
+            try
+            {
+                CUModificarTipo.Modificar(tipo);
+            }
+            
+            catch (NombreTipoInvalidoException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch 
+            {
+                return StatusCode(500, "Ocurrió un error");
+            }
+            return Ok(tipo);
         }
 
         // DELETE api/<TiposController>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)  // Delete 
         {
+            if (id <= 0) return BadRequest("El id proporcionado no es válido");
+            try
+            {
+                CUEliminarTipo.Remove(id);
+            }
+            catch (ErrorTipoException ex)
+            {
+                return NotFound($"El tipo con id  {id} NotFound se puede borrar porque no existe");
+            }
+            catch 
+            {
+                return StatusCode(500, "Ocurrió un error");
+            }
             return NoContent();
         }
     }

@@ -11,7 +11,7 @@ using Dominio.InterfacesRepositorios;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.AspNetCore.Authorization;
 using Aplicacion.Interfaces;
-using DTOs
+using DTOs;
 
 namespace PresentacionMVC.Controllers
 {

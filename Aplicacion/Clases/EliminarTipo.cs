@@ -1,6 +1,8 @@
 ﻿using Aplicacion.Interfaces;
 using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRepositorios;
+using DTOs;
+using ExcepcionesPropias;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +24,9 @@ namespace Aplicacion.Clases
 
         public void Remove(int id)
         {
-            Repo.Remove(id);
+           
+                Repo.Remove(id);       
+          
         }
     }
 
