@@ -40,10 +40,12 @@ namespace Datos.Repositorios
             {
             Tipo buscado = Contexto.Tipos.Find(id);
 
-            if (buscado == null)
-            {
-                throw new ErrorTipoException("No existe el tipo con id " + id);
-            }           
+            //Se comenta para que lleve nulo al api client y no tire una excepcion
+
+            //if (buscado == null)
+            //{
+            //    throw new ErrorTipoException("No existe el tipo con id " + id);
+            //}           
 
             return buscado;
             }

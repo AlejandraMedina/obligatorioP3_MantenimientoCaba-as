@@ -52,6 +52,10 @@ namespace WebApi.Controllers
 
         // GET api/<TiposController>/5
         [HttpGet("{id}", Name = "FindById")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Get(int id)  //  FindBy Id 
         {
             if (id <= 0) return BadRequest("El id proporcionado no es válido");
@@ -63,7 +67,7 @@ namespace WebApi.Controllers
 
                 return Ok(tipo);
             }
-            catch
+            catch(Exception ex)
             {
                 return StatusCode(500, "Ocurrió un error inesperado");
             
@@ -71,6 +75,11 @@ namespace WebApi.Controllers
 
         }
 
+        /// <summary>
+        /// Permite buscar temas que contengan el texto iniciado 
+        /// </summary>
+        /// <param name="texto">El texto ingresado en el campo input de tipos buscados</param>
+        /// <returns>Los tipos que incluyen en su nombre el texto pasado por parámetro </returns>
 
         [HttpGet("nombre/{texto}")]
 

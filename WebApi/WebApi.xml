@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:WebApi.Controllers.TiposController.BuscarPorNombre(System.String)">
+            <summary>
+            Permite buscar temas que contengan el texto iniciado 
+            </summary>
+            <param name="texto">El texto ingresado en el campo input de tipos buscados</param>
+            <returns>Los tipos que incluyen en su nombre el texto pasado por parámetro </returns>
+        </member>
+    </members>
+</doc>
