@@ -38,7 +38,7 @@ namespace Dominio.EntidadesNegocio
 
         public void ValidarMantenimiento()
         {
-            if (string.IsNullOrEmpty(Descripcion))
+            /*if (string.IsNullOrEmpty(Descripcion))
             {
                 throw new Exception("La descripción no puede ser nula o vacía");
             }
@@ -49,7 +49,7 @@ namespace Dominio.EntidadesNegocio
             if (Descripcion.Length > CantMaxCarDecripcionMantenimiento)
             {
                 throw new Exception("La descripción no puede tener más de " + CantMaxCarDecripcionMantenimiento);
-            }
+            }*/
         }
 
     }
