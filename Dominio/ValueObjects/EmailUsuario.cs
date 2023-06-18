@@ -1,5 +1,6 @@
 ﻿using Dominio.InterfacesDominio;
 using ExcepcionesPropias;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.ValueObjects
 {
+    [Owned]
     public class EmailUsuario
     {
         public string Value { get; private set; }
