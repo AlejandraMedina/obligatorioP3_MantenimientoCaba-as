@@ -34,7 +34,7 @@ namespace WebApi.Controllers
         }
 
         // GET api/<MantenimientosController>/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "Getmant")]
         public IActionResult Get(int? id) //findById
         {
             if (id == null) return BadRequest("No se envió información del mantenimiento");
@@ -68,7 +68,7 @@ namespace WebApi.Controllers
                 return StatusCode(500, "Ocurrió un error, no se pudo realizar el alta");
             }
 
-            return CreatedAtRoute("Get", new { id= mantenimiento.Id}, mantenimiento);
+            return CreatedAtRoute("Getmant", new { id= mantenimiento.Id}, mantenimiento);
         }
 
         // PUT api/<MantenimientosController>/5
