@@ -47,18 +47,18 @@ builder.Services.AddAuthentication(aut =>
 //////////////////// FIN JWT ////////////////////////
 
 
-
-
-
-
-
-
 //AGREGAR INFORMACIÓN PARA LA INYECCIÓN DE DEPENDENCIAS AUTOMÁTICA:
+//repositorios
 builder.Services.AddScoped<IRepositorioCabañas, RepositorioCabañas>();
 builder.Services.AddScoped<IRepositorioMantenimientos, RepositorioMantenimientos>();
 builder.Services.AddScoped<IRepositorioTipos, RepositorioTipos>();
 builder.Services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
 builder.Services.AddScoped<IRepositorioParametros, RepositorioParametros>();
+
+builder.Services.AddScoped<IRepositorio<Usuario>, RepositorioUsuarios>();
+builder.Services.AddScoped<IRepositorio<Cabaña>, RepositorioCabañas>();
+builder.Services.AddScoped<IRepositorio<Mantenimiento>, RepositorioMantenimientos>();
+//casos de uso
 builder.Services.AddScoped<IAltaCabaña, AltaCabaña>();
 builder.Services.AddScoped<IAltaTipo, AltaTipo>();
 builder.Services.AddScoped<IListadoCabañas, ListadoCabañas>();
@@ -67,13 +67,13 @@ builder.Services.AddScoped<IBuscarTipoPorId, BuscarTipoPorId>();
 builder.Services.AddScoped<IModificarTipo, ModificarTipo>();
 builder.Services.AddScoped<IEliminarTipo, EliminarTipo>();
 builder.Services.AddScoped<IEliminarCabaña, EliminarCabaña>();
-builder.Services.AddScoped<IRepositorio<Usuario>, RepositorioUsuarios>();
+
 builder.Services.AddScoped<ILoginUsuario, LoginUsuario>();
 builder.Services.AddScoped<IListadoUsuarios, ListadoUsuarios>();
 builder.Services.AddScoped<IAltaMantenimiento, AltaMantenimiento>();
 builder.Services.AddScoped<IListadoMantenimientos, ListadoMantenimientos>();
 builder.Services.AddScoped<IBuscarPorNombre, BuscarPorNombre>();
-builder.Services.AddScoped < IBuscarCabaña, BuscarCabaña>();
+builder.Services.AddScoped<IBuscarCabaña, BuscarCabaña>();
 
 
 var configurationBuilder = new ConfigurationBuilder();

@@ -67,7 +67,7 @@ namespace WebApi.Controllers
 
         // POST api/<CabañaController>
         [HttpPost]
-        public IActionResult Post([FromBody] CabañaDTO cabaña)
+        public IActionResult Post([FromBody] CabañaDTO? cabaña)
         {
             try
             {
