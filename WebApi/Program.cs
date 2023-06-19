@@ -73,7 +73,7 @@ builder.Services.AddScoped<IListadoUsuarios, ListadoUsuarios>();
 builder.Services.AddScoped<IAltaMantenimiento, AltaMantenimiento>();
 builder.Services.AddScoped<IListadoMantenimientos, ListadoMantenimientos>();
 builder.Services.AddScoped<IBuscarPorNombre, BuscarPorNombre>();
-builder.Services.AddScoped<IBuscarMantenimientoPorId, BuscarMantenimientoPorId>();
+
 
 
 
