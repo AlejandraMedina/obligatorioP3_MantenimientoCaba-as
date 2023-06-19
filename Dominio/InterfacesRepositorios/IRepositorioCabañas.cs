@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio.EntidadesNegocio;
-
+using DTOs;
 
 namespace Dominio.InterfacesRespositorios
 {
