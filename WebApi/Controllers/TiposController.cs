@@ -5,6 +5,7 @@ using Datos.Repositorios;
 using Dominio.EntidadesNegocio;
 using DTOs;
 using ExcepcionesPropias;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -18,10 +19,10 @@ namespace WebApi.Controllers
     {
 
         public IAltaTipo CUAltaTipo { get; set; }
-   
+
         public IListadoTipos CUListadoTipos { get; set; }
 
-        public IBuscarTipoPorId CUBuscarTipoPorId{ get; set; }
+        public IBuscarTipoPorId CUBuscarTipoPorId { get; set; }
 
         public IModificarTipo CUModificarTipo { get; set; }
 
@@ -44,14 +45,17 @@ namespace WebApi.Controllers
 
         // GET: api/<TiposController>
         [HttpGet]
+        [Authorize] 
         public IActionResult Get()  //Find all
         {
             IEnumerable<TipoDTO> tipos = CUListadoTipos.ObtenerListado();
             return Ok(tipos);
         }
 
+       
         // GET api/<TiposController>/5
         [HttpGet("{id}", Name = "FindById")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -82,6 +86,7 @@ namespace WebApi.Controllers
         /// <returns>Los tipos que incluyen en su nombre el texto pasado por parámetro </returns>
 
         [HttpGet("nombre/{texto}")]
+        [Authorize]
 
         public IActionResult BuscarPorNombre(string texto)  //  FindByName
         {
@@ -110,6 +115,7 @@ namespace WebApi.Controllers
         // POST api/<TiposController>
         [HttpPost]
         [ActionName (nameof(Post))]
+        [Authorize]
         public IActionResult Post([FromBody] TipoDTO? tipo)   //Add
         {
             if (tipo == null) return BadRequest("No se envió información de tipo");
@@ -133,6 +139,7 @@ namespace WebApi.Controllers
 
         // PUT api/<TiposController>/5
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Put(int id, [FromBody] TipoDTO? tipo)   // Update 
         {
             if (id <= 0 || tipo == null || tipo.Id != id) return BadRequest("Los datos proporcionados no son válidos");
@@ -154,6 +161,7 @@ namespace WebApi.Controllers
 
         // DELETE api/<TiposController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id)  // Delete 
         {
             if (id <= 0) return BadRequest("El id proporcionado no es válido");

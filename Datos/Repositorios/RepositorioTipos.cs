@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using ExcepcionesPropias;
+using Dominio.ValueObjects;
 
 namespace Datos.Repositorios
 {
@@ -72,17 +73,17 @@ namespace Datos.Repositorios
             }
 
 
-            //public Tipo BuscarTipoPorNombre(string nombre)   // VER TEMA DEL VALUE NO ANDA
-            //{
-            //    Tipo buscado = Contexto.Tipos.ToList().Where(t => t.Nombre.Value.Equals(nombre.Trim().ToLower()));
+            public Tipo BuscarTipoPorNombre(string nombre)   // VER TEMA DEL VALUE NO ANDA
+            {
+               // Tipo buscado = Contexto.Tipos.ToList().Where(t => t.Nombre.Value.Equals(nombre.Trim().ToLower()));
 
-            //    if (buscado == null)
-            //    {
-            //        throw new Exception("No existe el tipo con nombre " + nombre);
-            //    }
+               // if (buscado == null)
+                {
+                    throw new Exception("No existe el tipo con nombre " + nombre);
+                }
 
-            //    return buscado;
-            //}
+               /// return buscado;
+            }
 
          }
 }

@@ -69,8 +69,8 @@ namespace PresentacionMVC.Controllers
         {
            //Para que se carguen los tipos de cabaña en el desplegable de la vista inicial
             AltaCabañaViewModel vm = new AltaCabañaViewModel();
-            IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
-            vm.Tipos = tipos;         
+         //   IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
+           // vm.Tipos = tipos;         
 
             return View(vm);
         }
@@ -123,8 +123,8 @@ namespace PresentacionMVC.Controllers
             catch (Exception ex)
             {
                 ViewBag.Mensaje = "Oops! Ocurrió un error inesperado";               
-                IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
-                ViewBag.Tipos = tipos;
+             //   IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
+              //  ViewBag.Tipos = tipos;
                 return View(vm);                
             }
         }
@@ -210,8 +210,8 @@ namespace PresentacionMVC.Controllers
         public ActionResult CabañasPorCantMaxPersonas() {
 
             HttpContext.Session.SetString("Menu", "no");
-            IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
-            ViewBag.Tipos = tipos;
+           // IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
+           // ViewBag.Tipos = tipos;
 
             return View(new List<Cabaña>());
         }
@@ -275,8 +275,8 @@ namespace PresentacionMVC.Controllers
         {
 
             HttpContext.Session.SetString("Menu", "no");
-            IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
-            ViewBag.Tipos = tipos;
+           // IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
+          //  ViewBag.Tipos = tipos;
 
             return View(new List<Cabaña>());
            
@@ -289,8 +289,8 @@ namespace PresentacionMVC.Controllers
         {
               
                 IEnumerable<Cabaña> cabañas = RepoCabañas.CabañasPorTipo(IdTipo);
-                IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
-                ViewBag.Tipos = tipos;
+              //  IEnumerable<Tipo> tipos = ListadoTipos.ObtenerListado();
+               // ViewBag.Tipos = tipos;
 
 
                 if (cabañas.Count() == 0)

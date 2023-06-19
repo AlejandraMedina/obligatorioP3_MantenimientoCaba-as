@@ -68,7 +68,12 @@ namespace Datos.Repositorios
 
         }
 
-    
+      public Usuario Login(string mail , string password) { 
+        
+        return Contexto.Usuarios.Where(u => u.Email == mail && u.Password == password)
+                                .SingleOrDefault();          
+        
+      }
     }
 
 

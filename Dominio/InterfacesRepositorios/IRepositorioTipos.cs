@@ -11,8 +11,8 @@ namespace Dominio.InterfacesRepositorios
     public interface IRepositorioTipos : IRepositorio<Tipo>
     {
 
-        //prueba para git borrar esta linea
-        //Tipo BuscarTipoPorNombre(string nombre);
+      
+       Tipo BuscarTipoPorNombre(string nombre);
 
     }
 }

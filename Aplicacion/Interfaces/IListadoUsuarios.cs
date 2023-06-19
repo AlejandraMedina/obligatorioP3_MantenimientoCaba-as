@@ -1,4 +1,5 @@
 ﻿using Dominio.EntidadesNegocio;
+using Dominio.InterfacesRepositorios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace Aplicacion.Interfaces
 {
     public interface IListadoUsuarios
     {
-        IEnumerable<Usuario> ObtenerListado();
+
+        public IEnumerable<Usuario> ObtenerListado();
+       
     }
 }

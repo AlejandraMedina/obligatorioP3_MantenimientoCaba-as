@@ -19,9 +19,7 @@ namespace Dominio.EntidadesNegocio
     {        
         public int Id { get; set; }
 
-        static int UltIdUsuario;
-
-       
+        static int UltIdUsuario;       
      
         public string Email { get; set; }
 

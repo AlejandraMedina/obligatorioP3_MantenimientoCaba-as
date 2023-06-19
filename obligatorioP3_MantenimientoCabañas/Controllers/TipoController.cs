@@ -165,22 +165,22 @@ namespace PresentacionMVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult BuscarTipoPorNombre(string nombre)
-        //{
+        {
 
-        //    try
-        //    {
+            try
+            {
 
-        //       //Tipo tipo = RepoTipo.BuscarTipoPorNombre(nombre);
+            Tipo tipo = RepoTipo.BuscarTipoPorNombre(nombre);
 
-        //        return View(tipo);
-        //    }
-        //    catch
-        //    {
-        //        ViewBag.Mensaje = "No existe un tipo con el nombre ingresado";
-        //        return View();
-        //    }
+              return View(tipo);
+            }
+            catch
+            {
+               ViewBag.Mensaje = "No existe un tipo con el nombre ingresado";
+                return View();
+             }
            
-        //}
+        }
        
     }
 }

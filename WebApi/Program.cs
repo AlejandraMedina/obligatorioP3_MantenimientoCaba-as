@@ -6,8 +6,11 @@ using Datos.Repositorios;
 using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRepositorios;
 using Dominio.InterfacesRespositorios;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,9 +19,39 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options => options.IncludeXmlComments("WebApi"));
+builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options => options.IncludeXmlComments("WebApi.xml"));
 
 //builder.Services.AddSession();
+
+////////////////// JWT ///////////////////////////////////
+var claveSecreta = "ZZZWRpw6fDo28gZW0gY29tcHV0YWRvcmE="; //PUEDE SER OTRA CLAVE, SI ES FUERTE
+
+builder.Services.AddAuthentication(aut =>
+{
+    aut.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    aut.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(aut =>
+{
+    aut.RequireHttpsMetadata = false;
+    aut.SaveToken = true;
+    aut.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(claveSecreta)),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
+//////////////////// FIN JWT ////////////////////////
+
+
+
+
+
+
+
 
 //AGREGAR INFORMACIÓN PARA LA INYECCIÓN DE DEPENDENCIAS AUTOMÁTICA:
 builder.Services.AddScoped<IRepositorioCabañas, RepositorioCabañas>();
@@ -40,6 +73,7 @@ builder.Services.AddScoped<IListadoUsuarios, ListadoUsuarios>();
 builder.Services.AddScoped<IAltaMantenimiento, AltaMantenimiento>();
 builder.Services.AddScoped<IListadoMantenimientos, ListadoMantenimientos>();
 builder.Services.AddScoped<IBuscarPorNombre, BuscarPorNombre>();
+
 
 
 var configurationBuilder = new ConfigurationBuilder();
