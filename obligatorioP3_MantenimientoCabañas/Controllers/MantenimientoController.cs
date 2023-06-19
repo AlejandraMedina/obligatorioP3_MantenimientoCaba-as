@@ -72,21 +72,21 @@ namespace PresentacionMVC.Controllers
                 contador = RepoMantenimientos.MantenimientosPorCabaña(vm.Id).Count();
 
                 
-                if (contador < 3)
-                {          
-                    Mantenimiento m = new Mantenimiento();
+                //if (contador < 3)
+                //{          
+                //    Mantenimiento m = new Mantenimiento();
 
-                    m.Fecha = vm.Mantenimiento.Fecha;
-                    m.Funcionario = vm.Mantenimiento.Funcionario;
-                    m.Cabania = cabaña;
-                    m.Descripcion = vm.Mantenimiento.Descripcion;
-                    m.Costo = vm.Mantenimiento.Costo;
+                //    m.Fecha = vm.Mantenimiento.Fecha;
+                //    m.Funcionario = vm.Mantenimiento.Funcionario;
+                //    m.Cabania = cabaña;
+                //    m.Descripcion = vm.Mantenimiento.Descripcion;
+                //    m.Costo = vm.Mantenimiento.Costo;
 
-                    AltaMantenimiento.Alta(m);
+                //    AltaMantenimiento.Alta(m);
 
-                    ViewBag.Mensaje = "Se agregó el mantenimiento con éxito!";
-                    return View(vm);
-                }
+                //    ViewBag.Mensaje = "Se agregó el mantenimiento con éxito!";
+                //    return View(vm);
+                //}
 
                 ViewBag.Mensaje = "Esta cabaña ya tiene 3 mantenimientos realizados.";
 
