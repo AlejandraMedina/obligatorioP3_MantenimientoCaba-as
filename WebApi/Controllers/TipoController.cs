@@ -45,14 +45,14 @@ namespace WebApi.Controllers
 
         // GET: api/<TiposController>
         [HttpGet]
-        [Authorize] 
+        [Authorize]
         public IActionResult Get()  //Find all
         {
             IEnumerable<TipoDTO> tipos = CUListadoTipos.ObtenerListado();
             return Ok(tipos);
         }
 
-       
+
         // GET api/<TiposController>/5
         [HttpGet("{id}", Name = "FindById")]
         [Authorize]
@@ -66,15 +66,15 @@ namespace WebApi.Controllers
 
             try
             {
-                TipoDTO tipo = CUBuscarTipoPorId.Buscar(id); 
+                TipoDTO tipo = CUBuscarTipoPorId.Buscar(id);
                 if (tipo == null) return NotFound($"No existe el tipo con id: {id}");
 
                 return Ok(tipo);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, "Ocurrió un error inesperado");
-            
+
             }
 
         }
@@ -90,11 +90,11 @@ namespace WebApi.Controllers
 
         public IActionResult BuscarPorNombre(string texto)  //  FindByName
         {
-            if(!string.IsNullOrEmpty(texto))
+            if (!string.IsNullOrEmpty(texto))
             {
                 return BadRequest("No se ingresó un nombre para la búsqueda");
             }
-          
+
             try
             {
                 // TipoDTO tipo = CUBuscarPorNombre.Buscar(texto);
@@ -106,15 +106,15 @@ namespace WebApi.Controllers
                 return StatusCode(500, "Ocurrió un error");
             }
 
-         
+
         }
 
-       
+
 
 
         // POST api/<TiposController>
         [HttpPost]
-        [ActionName (nameof(Post))]
+        [ActionName(nameof(Post))]
         [Authorize]
         public IActionResult Post([FromBody] TipoDTO? tipo)   //Add
         {
@@ -128,10 +128,10 @@ namespace WebApi.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            catch 
+            catch
             {
                 return StatusCode(500, "Ocurrió un error, no se pudo dara el alta de tipo");
-                
+
             }
             return CreatedAtRoute("FindById", new { id = tipo.Id }, tipo);
 
@@ -147,12 +147,12 @@ namespace WebApi.Controllers
             {
                 CUModificarTipo.Modificar(tipo);
             }
-            
+
             catch (NombreTipoInvalidoException ex)
             {
                 return BadRequest(ex.Message);
             }
-            catch 
+            catch
             {
                 return StatusCode(500, "Ocurrió un error");
             }
@@ -173,7 +173,7 @@ namespace WebApi.Controllers
             {
                 return NotFound($"El tipo con id  {id} NotFound se puede borrar porque no existe");
             }
-            catch 
+            catch
             {
                 return StatusCode(500, "Ocurrió un error");
             }

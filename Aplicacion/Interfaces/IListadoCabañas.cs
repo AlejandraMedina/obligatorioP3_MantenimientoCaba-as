@@ -1,4 +1,5 @@
 using Dominio.EntidadesNegocio;
+using DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Aplicacion.Interfaces
 {
     public interface IListadoCabañas
     {
-        IEnumerable<Cabaña> ObtenerListado();
+        IEnumerable<CabañaDTO> ObtenerListado();
     }
 }
