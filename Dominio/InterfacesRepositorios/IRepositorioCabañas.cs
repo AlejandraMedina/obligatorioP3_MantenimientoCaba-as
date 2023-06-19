@@ -19,5 +19,7 @@ namespace Dominio.InterfacesRespositorios
 
         IEnumerable<Cabaña> CabañasHabilitadas();
 
+        IEnumerable<Cabaña> CabañasPorMonto(int monto);
+
     }
 }

@@ -1,13 +1,18 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using Datos.EF;
+using Datos.Migrations;
 using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRespositorios;
 using ExcepcionesPropias;
 using Microsoft.EntityFrameworkCore;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Datos.Repositorios
 {
@@ -151,12 +156,20 @@ namespace Datos.Repositorios
 
         public IEnumerable<Cabaña> CabañasHabilitadas()
         {
-            var cabañas = Contexto.Cabañas.Where(cabaña => cabaña.Habilitada == true);          
-                          
+            var cabañas = Contexto.Cabañas.Where(cabaña => cabaña.Habilitada == true);
             return cabañas.ToList();
         }
 
 
+        //Dado un monto, obtener el nombre y capacidad(cantidad de huéspedes que puede alojar) de las cabañas que tengan
+        //un costo diario menor a ese monto, que tengan jacuzzi y estén habilitadas para reserva.
 
+        public IEnumerable<Cabaña> CabañasPorMonto(int monto)
+        {
+            var cabañas = Contexto.Cabañas.Where(cabaña => cabaña.Habilitada == true);
+            return cabañas.ToList();
+        }
+
+       
     }
 }

@@ -49,15 +49,13 @@ builder.Services.AddAuthentication(aut =>
 
 //AGREGAR INFORMACIÓN PARA LA INYECCIÓN DE DEPENDENCIAS AUTOMÁTICA:
 //repositorios
-builder.Services.AddScoped<IRepositorioCabañas, RepositorioCabañas>();
-builder.Services.AddScoped<IRepositorioMantenimientos, RepositorioMantenimientos>();
+//builder.Services.AddScoped<IRepositorioCabañas, RepositorioCabañas>();
+//builder.Services.AddScoped<IRepositorioMantenimientos, RepositorioMantenimientos>();
 builder.Services.AddScoped<IRepositorioTipos, RepositorioTipos>();
 builder.Services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
 builder.Services.AddScoped<IRepositorioParametros, RepositorioParametros>();
+builder.Services.AddScoped<IRepositorioCabañas, RepositorioCabañas>();
 
-builder.Services.AddScoped<IRepositorio<Usuario>, RepositorioUsuarios>();
-builder.Services.AddScoped<IRepositorio<Cabaña>, RepositorioCabañas>();
-builder.Services.AddScoped<IRepositorio<Mantenimiento>, RepositorioMantenimientos>();
 //casos de uso
 builder.Services.AddScoped<IAltaCabaña, AltaCabaña>();
 builder.Services.AddScoped<IAltaTipo, AltaTipo>();
