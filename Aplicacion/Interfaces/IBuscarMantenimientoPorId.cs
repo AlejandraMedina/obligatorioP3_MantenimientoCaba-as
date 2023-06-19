@@ -1,5 +1,4 @@
-﻿using Dominio.EntidadesNegocio;
-using DTOs;
+﻿using DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Aplicacion.Interfaces
 {
-    public interface IListadoMantenimientos
+    public interface IBuscarMantenimientoPorId
     {
-        IEnumerable<MantenimientoDTO> ObtenerListado();
+        MantenimientoDTO BuscarMant(int id);
     }
 }

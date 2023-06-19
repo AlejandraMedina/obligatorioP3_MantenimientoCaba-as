@@ -2,6 +2,7 @@
 using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRepositorios;
 using Dominio.InterfacesRespositorios;
+using DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +20,18 @@ namespace Aplicacion.Clases
             Repo = repo;
         }
 
-        public IEnumerable<Mantenimiento> ObtenerListado()
+        public IEnumerable<MantenimientoDTO> ObtenerListado()
         {
-            return Repo.FindAll();
+            return Repo.FindAll().Select(m=> new MantenimientoDTO()
+            {
+                Id=m.Id,
+                Fecha=m.Fecha,
+                Descripcion = m.Descripcion,
+                Costo=m.Costo,
+                Funcionario =m.Funcionario,
+                CabaniaId = m.CabaniaId
+
+            });
         }
     }
 

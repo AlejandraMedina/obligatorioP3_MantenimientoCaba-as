@@ -1,4 +1,6 @@
-﻿using Aplicacion.Interfaces;
+﻿using Aplicacion.Clases;
+using Aplicacion.Interfaces;
+using Dominio.EntidadesNegocio;
 using DTOs;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,22 +13,44 @@ namespace WebApi.Controllers
     public class MantenimientosController : ControllerBase
     {
         public IAltaMantenimiento AltaMantenimiento { get; set; }
-        public MantenimientosController (IAltaMantenimiento altaMantenimiento)
+
+        public IListadoMantenimientos ListadoMantenimientos { get; set; }
+
+        public IBuscarMantenimientoPorId BuscarMantenimientoPorId { get; set; }
+        public MantenimientosController (IAltaMantenimiento altaMantenimiento, IListadoMantenimientos listadoMantenimientos, IBuscarMantenimientoPorId buscarMantPorId)
+        
         {
             altaMantenimiento = AltaMantenimiento;
+            listadoMantenimientos = ListadoMantenimientos;
+            buscarMantPorId = BuscarMantenimientoPorId;
+
         }
         // GET: api/<MantenimientosController>
         [HttpGet]
         public IActionResult Get() // findall
         {
-            return Ok();
+            IEnumerable<MantenimientoDTO> mantenimientos = ListadoMantenimientos.ObtenerListado();
+            return Ok(mantenimientos);
         }
 
         // GET api/<MantenimientosController>/5
-        [HttpGet("{id}", Name = "Get")]
-        public IActionResult Get(int id) //findById
+        [HttpGet("{id}", Name = "Getmant")]
+        public IActionResult Get(int? id) //findById
         {
-            return Ok();
+            if (id == null) return BadRequest("No se envió información del mantenimiento");
+            try
+            {
+                MantenimientoDTO mantDto = BuscarMantenimientoPorId.BuscarMant(id.Value);
+                if (mantDto == null) return NotFound("No existe el mantenimiento");
+                return Ok(mantDto);
+            }
+            catch
+            {
+                return StatusCode(500, "Ocurrió un error inesperado");
+            }
+            
+            
+            
         }
 
         // POST api/<MantenimientosController>
@@ -44,7 +68,7 @@ namespace WebApi.Controllers
                 return StatusCode(500, "Ocurrió un error, no se pudo realizar el alta");
             }
 
-            return CreatedAtRoute("Get", new { id= mantenimiento.Id}, mantenimiento);
+            return CreatedAtRoute("Getmant", new { id= mantenimiento.Id}, mantenimiento);
         }
 
         // PUT api/<MantenimientosController>/5

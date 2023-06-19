@@ -48,9 +48,9 @@ namespace Aplicacion.Clases
 
 
 
-        public void Alta(Mantenimiento m)
+        /*public void Alta(Mantenimiento m)
         {
             throw new NotImplementedException();
-        }
+        }*/
     }
 }
