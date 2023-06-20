@@ -45,7 +45,7 @@ namespace WebApi.Controllers
 
         // GET: api/<TiposController>
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public IActionResult Get()  //Find all
         {
             IEnumerable<TipoDTO> tipos = ListadoTipos.ObtenerListado();

@@ -25,7 +25,7 @@ builder.Services.AddSwaggerGen(options => options.IncludeXmlComments("WebApi.xml
 //builder.Services.AddSession();
 
 ////////////////// JWT ///////////////////////////////////
-var claveSecreta = "WRpw6fDo28gZW0gY29tcHV0YWRvcmE="; //PUEDE SER OTRA CLAVE, SI ES FUERTE
+var claveSecreta = "ZZZWRpw6fDo28gZW0gY29tcHV0YWRvcmE="; //PUEDE SER OTRA CLAVE, SI ES FUERTE
 
 builder.Services.AddAuthentication(aut =>
 {

@@ -34,7 +34,7 @@ namespace Aplicacion.Clases
                 NumHabitacion = cabaña.NumHabitacion,
                 Habilitada = cabaña.Habilitada,
                 Jacuzzi = cabaña.Jacuzzi,
-                //Foto = cabaña = cabaña.Foto, //VERR 
+                Foto =  cabaña.Foto, //VERR 
                 Tipo = new TipoDTO() { 
                 Id = cabaña.TipoId,
                 Nombre = cabaña.Tipo.Nombre,  //VER NO ME AGARRA EL Value del valid object
