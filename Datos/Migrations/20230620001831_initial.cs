@@ -62,11 +62,11 @@ namespace Datos.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NumHabitacion = table.Column<int>(type: "int", nullable: false),
-                    TipoId = table.Column<int>(type: "int", nullable: false),
                     Descripcion = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Jacuzzi = table.Column<bool>(type: "bit", nullable: false),
                     Habilitada = table.Column<bool>(type: "bit", nullable: false),
                     PersonasMax = table.Column<int>(type: "int", nullable: false),
+                    TipoId = table.Column<int>(type: "int", nullable: false),
                     Foto = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
