@@ -4,7 +4,7 @@
         <name>WebApi</name>
     </assembly>
     <members>
-        <member name="M:WebApi.Controllers.TiposController.BuscarPorNombre(System.String)">
+        <member name="M:WebApi.Controllers.TiposController.Post(DTOs.TipoDTO)">
             <summary>
             Permite buscar temas que contengan el texto iniciado 
             </summary>

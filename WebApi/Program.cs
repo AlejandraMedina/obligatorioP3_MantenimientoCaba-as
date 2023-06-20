@@ -25,7 +25,7 @@ builder.Services.AddSwaggerGen(options => options.IncludeXmlComments("WebApi.xml
 //builder.Services.AddSession();
 
 ////////////////// JWT ///////////////////////////////////
-var claveSecreta = "ZZZWRpw6fDo28gZW0gY29tcHV0YWRvcmE="; //PUEDE SER OTRA CLAVE, SI ES FUERTE
+var claveSecreta = "WRpw6fDo28gZW0gY29tcHV0YWRvcmE="; //PUEDE SER OTRA CLAVE, SI ES FUERTE
 
 builder.Services.AddAuthentication(aut =>
 {
@@ -49,8 +49,8 @@ builder.Services.AddAuthentication(aut =>
 
 //AGREGAR INFORMACIÓN PARA LA INYECCIÓN DE DEPENDENCIAS AUTOMÁTICA:
 //repositorios
-//builder.Services.AddScoped<IRepositorioCabañas, RepositorioCabañas>();
-//builder.Services.AddScoped<IRepositorioMantenimientos, RepositorioMantenimientos>();
+
+builder.Services.AddScoped<IRepositorioMantenimientos, RepositorioMantenimientos>();
 builder.Services.AddScoped<IRepositorioTipos, RepositorioTipos>();
 builder.Services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
 builder.Services.AddScoped<IRepositorioParametros, RepositorioParametros>();

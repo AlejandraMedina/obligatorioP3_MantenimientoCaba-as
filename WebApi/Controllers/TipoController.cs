@@ -18,44 +18,44 @@ namespace WebApi.Controllers
     public class TiposController : ControllerBase
     {
 
-        public IAltaTipo CUAltaTipo { get; set; }
+        public IAltaTipo AltaTipo { get; set; }
 
-        public IListadoTipos CUListadoTipos { get; set; }
+        public IListadoTipos ListadoTipos { get; set; }
 
-        public IBuscarTipoPorId CUBuscarTipoPorId { get; set; }
+        public IBuscarTipoPorId BuscarTipoPorId { get; set; }
 
-        public IModificarTipo CUModificarTipo { get; set; }
+        public IModificarTipo ModificarTipo { get; set; }
 
-        public IEliminarTipo CUEliminarTipo { get; set; }
+        public IEliminarTipo EliminarTipo { get; set; }
 
-        public IBuscarPorNombre CUBuscarPorNombre { get; set; }
+        public IBuscarPorNombre BuscarPorNombre { get; set; }
 
 
-        public TiposController(IAltaTipo cuAltaTipo, IListadoTipos cuListadoTipo, IBuscarTipoPorId cuBuscarTipoPorId, IModificarTipo cuModificarTipo, IEliminarTipo cuEliminarTipo, IBuscarPorNombre cuBuscarPoNombre)
+        public TiposController(IAltaTipo cuAltaTipo, IListadoTipos cuListadoTipo, IBuscarTipoPorId cuBuscarTipoPorId, IModificarTipo cuModificarTipo, IEliminarTipo cuEliminarTipo, IBuscarPorNombre cuBuscarPorNombre)
         {
-            CUAltaTipo = cuAltaTipo;
-            CUListadoTipos = cuListadoTipo;
-            CUBuscarTipoPorId = cuBuscarTipoPorId;
-            CUModificarTipo = cuModificarTipo;
-            CUEliminarTipo = cuEliminarTipo;
-            CUBuscarPorNombre = cuBuscarPoNombre;
+            AltaTipo = cuAltaTipo;
+            ListadoTipos = cuListadoTipo;
+            BuscarTipoPorId = cuBuscarTipoPorId;
+            ModificarTipo = cuModificarTipo;
+            EliminarTipo = cuEliminarTipo;
+            BuscarPorNombre = cuBuscarPorNombre;
         }
 
 
 
         // GET: api/<TiposController>
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public IActionResult Get()  //Find all
         {
-            IEnumerable<TipoDTO> tipos = CUListadoTipos.ObtenerListado();
+            IEnumerable<TipoDTO> tipos = ListadoTipos.ObtenerListado();
             return Ok(tipos);
         }
 
 
         // GET api/<TiposController>/5
         [HttpGet("{id}", Name = "FindById")]
-        [Authorize]
+        //[Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -66,7 +66,7 @@ namespace WebApi.Controllers
 
             try
             {
-                TipoDTO tipo = CUBuscarTipoPorId.Buscar(id);
+                TipoDTO tipo = BuscarTipoPorId.Buscar(id);
                 if (tipo == null) return NotFound($"No existe el tipo con id: {id}");
 
                 return Ok(tipo);
@@ -88,26 +88,26 @@ namespace WebApi.Controllers
         [HttpGet("nombre/{texto}")]
         [Authorize]
 
-        public IActionResult BuscarPorNombre(string texto)  //  FindByName
-        {
-            if (!string.IsNullOrEmpty(texto))
-            {
-                return BadRequest("No se ingresó un nombre para la búsqueda");
-            }
+        //public IActionResult BuscarPorNombre(string texto)  //  FindByName
+        //{
+        //    if (!string.IsNullOrEmpty(texto))
+        //    {
+        //        return BadRequest("No se ingresó un nombre para la búsqueda");
+        //    }
 
-            try
-            {
-                // TipoDTO tipo = CUBuscarPorNombre.Buscar(texto);
-                //return Ok(tipo);
-                return Ok();   // VER QUE ANDE LO DE ARRIBAAAA!
-            }
-            catch
-            {
-                return StatusCode(500, "Ocurrió un error");
-            }
+        //    try
+        //    {
+        //         TipoDTO tipo = BuscarPorNombre.Buscar(texto);
+        //        return Ok(tipo);
+        //       // return Ok();   // VER QUE ANDE LO DE ARRIBAAAA!
+        //    }
+        //    catch
+        //    {
+        //        return StatusCode(500, "Ocurrió un error");
+        //    }
 
 
-        }
+        //}
 
 
 
@@ -122,7 +122,7 @@ namespace WebApi.Controllers
             try
             {
 
-                CUAltaTipo.Alta(tipo);
+                AltaTipo.Alta(tipo);
             }
             catch (NombreTipoInvalidoException ex)
             {
@@ -145,7 +145,7 @@ namespace WebApi.Controllers
             if (id <= 0 || tipo == null || tipo.Id != id) return BadRequest("Los datos proporcionados no son válidos");
             try
             {
-                CUModificarTipo.Modificar(tipo);
+                ModificarTipo.Modificar(tipo);
             }
 
             catch (NombreTipoInvalidoException ex)
@@ -167,7 +167,7 @@ namespace WebApi.Controllers
             if (id <= 0) return BadRequest("El id proporcionado no es válido");
             try
             {
-                CUEliminarTipo.Remove(id);
+                EliminarTipo.Remove(id);
             }
             catch (ErrorTipoException ex)
             {

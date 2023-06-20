@@ -7,16 +7,15 @@ using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using Datos.EF;
-using Datos.Migrations;
 using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRespositorios;
 using ExcepcionesPropias;
 using Microsoft.EntityFrameworkCore;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+//using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Datos.Repositorios
 {
-    public class RepositorioCabañas : IRepositorioCabañas
+    public class RepositorioCabañas :IRepositorioCabañas
     {
 
         public MantenimientoCabañaContext Contexto { get; set; }

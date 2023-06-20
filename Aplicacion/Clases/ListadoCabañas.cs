@@ -12,9 +12,9 @@ namespace Aplicacion.Clases
 {
     public class ListadoCabañas : IListadoCabañas
     {
-        public IRepositorio<Cabaña> Repo { get; set; }
+        public IRepositorioCabañas Repo { get; set; }
 
-        public ListadoCabañas(IRepositorio<Cabaña> repo)
+        public ListadoCabañas(IRepositorioCabañas repo)
         {
             Repo = repo;
         }

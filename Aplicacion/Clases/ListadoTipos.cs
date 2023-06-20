@@ -12,7 +12,7 @@ using ExcepcionesPropias;
 
 namespace Aplicacion.Clases
 {
-    public class ListadoTipos : Interfaces.IListadoTipos
+    public class ListadoTipos : IListadoTipos
     {
 
         public IRepositorioTipos Repo { get; set; }

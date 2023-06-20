@@ -13,9 +13,9 @@ namespace Aplicacion.Clases
     public class BuscarCabaña :IBuscarCabaña
     {
 
-        public IRepositorio<Cabaña> Repo { get; set; }
+        public IRepositorioCabañas Repo { get; set; }
 
-        public BuscarCabaña(IRepositorio<Cabaña> repo)
+        public BuscarCabaña(IRepositorioCabañas repo)
         {
             Repo = repo;
         }
