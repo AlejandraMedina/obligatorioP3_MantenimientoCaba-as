@@ -3,6 +3,7 @@ using Aplicacion.Interfaces;
 using Dominio.EntidadesNegocio;
 using DTOs;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -29,8 +30,9 @@ namespace WebApi.Controllers
         [HttpGet]
         public IActionResult Get() // findall
         {
-            IEnumerable<MantenimientoDTO> mantenimientos = ListadoMantenimientos.ObtenerListado();
-            return Ok(mantenimientos);
+            //IEnumerable<MantenimientoDTO> mantenimientos = ListadoMantenimientos.ObtenerListado();
+            //return Ok(mantenimientos);
+            return Ok();
         }
 
         // GET api/<MantenimientosController>/5
