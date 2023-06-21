@@ -25,11 +25,10 @@ namespace DTOs
 
         [Required]
         public string Funcionario { get; set; }
-
-       // public Cabaña Cabania { get; set; }
+       
         public int CabaniaId { get; set; }
 
-       // CabañaDTO cabaña { get; set; }
+        CabañaDTO cabaña { get; set; }
 
         public void ValidarMantenimiento()
         {

@@ -47,9 +47,7 @@ namespace WebApi.Controllers
             catch
             {
                 return StatusCode(500, "Ocurrió un error inesperado");
-            }
-            
-            
+            }        
             
         }
 
