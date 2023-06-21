@@ -2,10 +2,12 @@
 using Dominio.EntidadesNegocio;
 using Dominio.InterfacesRepositorios;
 using Dominio.InterfacesRespositorios;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -103,6 +105,23 @@ namespace Datos.Repositorios
 
             return mantenimientos;
         }
+
+        public IEnumerable<Mantenimiento> MantenimientosRealizados(int capMin, int capMax)
+        {
+            var mantenimientos = Contexto.Mantenimientos
+                .Include(mantenimiento => mantenimiento.Cabania)
+                .Where(mantenimiento => mantenimiento.Cabania.PersonasMax >= capMin && mantenimiento.Cabania.PersonasMax <= capMax)
+                .GroupBy(mantenimiento => mantenimiento.Funcionario)
+                .Select(mants => new Mantenimiento
+                {
+                    Funcionario = mants.Key,
+                    Costo = mants.Sum(mantenimiento => mantenimiento.Costo)
+                })
+                .ToList();
+
+            return mantenimientos;
+        }
+
     }
-    
+
 }

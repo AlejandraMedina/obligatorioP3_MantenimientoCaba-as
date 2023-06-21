@@ -163,12 +163,23 @@ namespace Datos.Repositorios
         //Dado un monto, obtener el nombre y capacidad(cantidad de huéspedes que puede alojar) de las cabañas que tengan
         //un costo diario menor a ese monto, que tengan jacuzzi y estén habilitadas para reserva.
 
-        public IEnumerable<Cabaña> CabañasPorMonto(int monto)
+
+        public IEnumerable<Cabaña> CabañasHabilitadasConJacuzzi(decimal monto)
         {
-            var cabañas = Contexto.Cabañas.Where(cabaña => cabaña.Habilitada == true);
-            return cabañas.ToList();
+            var cabañas = Contexto.Cabañas
+                .Where(cabaña => cabaña.Habilitada && cabaña.Jacuzzi && cabaña.Tipo.Costo < monto)
+                .Select(cabaña => new Cabaña
+                {
+                    Nombre = cabaña.Nombre,
+                    PersonasMax = cabaña.PersonasMax
+                })
+                .ToList();
+
+            return cabañas;
         }
 
        
+
+
     }
 }
